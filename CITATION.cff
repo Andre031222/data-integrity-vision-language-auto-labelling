@@ -2,10 +2,12 @@ cff-version: 1.2.0
 message: "If you use this dataset or code, please cite it as below."
 title: "AlpacaVision: Data Integrity in Vision-Language Auto-Labelling Pipelines"
 abstract: >-
-  An open, curated, leakage-free alpaca (Vicugna pacos) detection dataset from the
-  Peruvian Altiplano, a compact YOLOv11n detector (mAP@0.5 = 0.860), a reproducible
-  data-integrity methodology for auto-labelling pipelines, and an honest negative
-  result on vision-language auto-labelled ocular anomaly classification.
+  An openly licensed alpaca (Vicugna pacos) detection benchmark from the Peruvian
+  Altiplano (1460 images resolving to 742 distinct scenes), a compact YOLOv11n
+  detector (mAP@0.5 = 0.698 +/- 0.024 over three seeds), a reproducible
+  data-integrity methodology with a dihedral-invariant near-duplicate audit, and a
+  controlled negative result on vision-language auto-labelled ocular anomaly
+  classification.
 type: software
 authors:
   - family-names: "Vilca-Solorzano"
@@ -33,14 +35,16 @@ preferred-citation:
     Data Integrity in Vision-Language Auto-Labelling Pipelines: An Open Alpaca
     Detection Dataset, a Compact Detector, and a Reproducible Methodology
   authors:
-    - family-names: "Vilca-Solorzano"
-      given-names: "Richar Andre"
     - family-names: "Yana-Yucra"
       given-names: "Dina Maribel"
-    - family-names: "Ccopa-Acero"
-      given-names: "Cristian Daniel"
+    - family-names: "Vilca-Solorzano"
+      given-names: "Richar Andre"
+    - family-names: "Ibanez-Quispe"
+      given-names: "Vladimiro"
     - family-names: "Aleman-Gonzales"
       given-names: "Leonid"
-  journal: "Informatica"
+    - family-names: "Ccopa-Acero"
+      given-names: "Cristian Daniel"
+  journal: "IEEE Access"
   year: 2026
-  notes: "Manuscript under review"
+  notes: "Manuscript prepared for submission"

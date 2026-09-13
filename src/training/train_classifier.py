@@ -37,7 +37,7 @@ VAL_TRANSFORM = transforms.Compose([
 
 
 class SubsetWithTransform(torch.utils.data.Dataset):
-    """Subset que aplica su propio transform, independiente del dataset base."""
+    """Subset applying its own transform, independent of the base dataset."""
     def __init__(self, subset: Subset, transform):
         self.subset    = subset
         self.transform = transform
@@ -71,7 +71,7 @@ def train_classifier(
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Dataset base (solo para obtener indices y clases)
+    # base dataset, used only to obtain indices and class names
     base_ds = datasets.ImageFolder(data_dir)
     num_classes = len(base_ds.classes)
     n_val   = int(len(base_ds) * val_split)
@@ -90,12 +90,12 @@ def train_classifier(
 
     print(f"Tarea: {task} | Clases: {base_ds.classes} | Train: {n_train} | Val: {n_val}")
 
-    # Conteo de clases en train para balanceo
+    # class counts in train, for balancing
     train_labels = [base_ds.imgs[i][1] for i in train_idx]
     class_counts = np.bincount(train_labels, minlength=num_classes).astype(float)
     print(f"Distribucion train: { {base_ds.classes[i]: int(class_counts[i]) for i in range(num_classes)} }")
 
-    # WeightedRandomSampler: equilibra clases en cada batch
+    # WeightedRandomSampler balances the classes within each batch
     sample_weights = [1.0 / class_counts[lbl] for lbl in train_labels]
     sampler = WeightedRandomSampler(
         weights=sample_weights,
@@ -107,7 +107,7 @@ def train_classifier(
     train_loader = DataLoader(train_ds, batch_size=batch_size, sampler=sampler, num_workers=0)
     val_loader   = DataLoader(val_ds,   batch_size=batch_size, shuffle=False,   num_workers=0)
 
-    # Pesos de clase para la loss (doble proteccion contra desbalance)
+    # class weights in the loss, a second guard against imbalance
     class_weights = torch.tensor(
         [len(train_labels) / (num_classes * c) for c in class_counts],
         dtype=torch.float
@@ -122,7 +122,7 @@ def train_classifier(
     class FocalLoss(nn.Module):
         def __init__(self, alpha, gamma=2.0):
             super().__init__()
-            self.alpha = alpha      # peso por clase
+            self.alpha = alpha      # weight per class
             self.gamma = gamma      # factor de enfoque (2.0 estandar)
             self.ce    = nn.CrossEntropyLoss(weight=alpha, reduction="none")
 
@@ -171,7 +171,7 @@ def train_classifier(
 
         val_acc = val_correct / n_val
 
-        # F1 de la clase anomaly (clase 0 en ImageFolder con carpetas alphabeticas)
+        # F1 of the anomaly class, index 0 under ImageFolder's alphabetical ordering
         anomaly_idx = base_ds.class_to_idx.get("anomaly", 0)
         tp = sum(1 for p, l in zip(all_preds, all_labels) if p == anomaly_idx and l == anomaly_idx)
         fp = sum(1 for p, l in zip(all_preds, all_labels) if p == anomaly_idx and l != anomaly_idx)
@@ -188,7 +188,7 @@ def train_classifier(
         print(f"Epoch {epoch:3d} | train={train_acc:.3f} | val_acc={val_acc:.3f} "
               f"| F1_anomaly={f1:.3f} | P={prec:.3f} R={rec:.3f}")
 
-        # Guardar mejor por F1 (no solo accuracy)
+        # keep the best checkpoint by F1, not by accuracy
         if f1 > best_val_f1 or (f1 == best_val_f1 and val_acc > best_val_acc):
             best_val_f1  = f1
             best_val_acc = val_acc

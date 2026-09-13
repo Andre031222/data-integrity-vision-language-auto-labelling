@@ -14,7 +14,7 @@ IMAGES_DIR    = Path("data/annotation_batch")
 LABELS_DIR    = Path("data/auto_labels")
 MANIFEST_FILE = LABELS_DIR / "auto_label_manifest.json"
 
-# Roboflow Stage 2 -- ajusta si cambió el workspace/proyecto
+# stage-2 Roboflow target; adjust if the workspace or project changes
 WORKSPACE  = "andre-nftgn"
 PROJECT_ID = "alpacavision-stage2"
 
@@ -28,7 +28,7 @@ def load_manifest() -> dict:
 
 
 def _clean_label_file(label_path: Path, tmp_dir: Path) -> Path:
-    """Devuelve una copia limpia del label (sin comentarios inline) en tmp_dir."""
+    """Return a copy of the label file in tmp_dir with inline comments stripped."""
     lines = []
     for raw in label_path.read_text().splitlines():
         stripped = raw.split("#")[0].strip()  # quitar comentarios
@@ -55,7 +55,7 @@ def upload_image_with_annotation(rf_project, img_path: Path, label_path: Path,
                 "4": "alpaca_leg_rear",
             },
             split="train",
-            is_prediction=True,   # marca como pseudo-label para revisión
+            is_prediction=True,   # flag as a pseudo-label pending review
             overwrite=False,
         )
         return True
@@ -132,7 +132,7 @@ def main():
             else:
                 failed += 1
 
-            # Progreso cada 25 imágenes
+            # report progress every 25 images
             done = ok + failed + skipped
             if done % 25 == 0:
                 print(f"  Progreso: {done}/{len(to_upload)}  (ok={ok}, err={failed})")

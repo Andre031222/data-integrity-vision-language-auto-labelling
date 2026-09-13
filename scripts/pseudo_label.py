@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Pseudo-etiquetado de crops no etiquetados."""
+"""Pseudo-label the unlabelled crops."""
 
 import argparse
 import json

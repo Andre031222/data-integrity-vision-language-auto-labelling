@@ -42,7 +42,7 @@ def _img_to_b64(img_bgr: np.ndarray) -> str:
 
 
 def analyze_with_vision(img_bgr: np.ndarray, api_key: Optional[str] = None) -> dict:
-    """Analiza una imagen de alpaca con Groq Vision."""
+    """Analyse an alpaca image with the hosted vision-language model."""
     key = api_key or os.environ.get("GROQ_API_KEY")
     if not key:
         return _empty_result(error="GROQ_API_KEY no configurada")
@@ -100,7 +100,7 @@ def _empty_result(error: str = "") -> dict:
 
 
 def vision_to_pipeline_result(vision: dict, detections: list) -> dict:
-    """Convierte el resultado de vision_analyzer al formato de AlpacaVisionPipeline para que el."""
+    """Convert a vision_analyzer result into the AlpacaVisionPipeline format."""
     eye_results = []
     leg_results = []
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Crea o actualiza el usuario super-admin de AlpacaVision AI."""
+"""Create or update the AlpacaVision super-admin user."""
 import sys
 from pathlib import Path
 

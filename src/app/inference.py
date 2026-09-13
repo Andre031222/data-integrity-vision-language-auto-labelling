@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-# Paleta de colores por clase detector (BGR)
+# per-class colour palette for the detector, in BGR
 CLASS_COLORS = {
     0: (0, 200, 0),    # alpaca -- verde
     1: (200, 100, 0),  # alpaca_head -- naranja
@@ -19,7 +19,7 @@ CLASS_COLORS = {
 
 
 def draw_detections(image: np.ndarray, detections: list) -> np.ndarray:
-    """Dibuja bounding boxes y etiquetas sobre la imagen."""
+    """Draw bounding boxes and labels onto the image."""
     out = image.copy()
     for det in detections:
         x1, y1, x2, y2 = det["bbox"]
@@ -36,7 +36,7 @@ def draw_detections(image: np.ndarray, detections: list) -> np.ndarray:
 
 
 def load_image(source: Union[str, Path, np.ndarray, Image.Image]) -> np.ndarray:
-    """Carga una imagen a formato BGR numpy."""
+    """Load an image as a BGR numpy array."""
     if isinstance(source, (str, Path)):
         img = cv2.imread(str(source))
         if img is None:

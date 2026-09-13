@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Entrenamiento HONESTO del clasificador de anomalias oculares."""
+"""Train the ocular-anomaly classifier under the group-aware protocol."""
 
 import argparse
 import json
@@ -45,7 +45,7 @@ EVAL_TF = transforms.Compose([
 
 
 class ListDataset(Dataset):
-    """Dataset desde lista de (ruta, label_idx)."""
+    """Dataset built from a list of (path, label_idx) pairs."""
     def __init__(self, items, transform):
         self.items = items
         self.transform = transform
@@ -160,7 +160,7 @@ def train_loop(model, train_items, val_items, classes, device, epochs, batch_siz
 
 
 def tune_threshold(model, val_items, classes, device, anomaly_idx, tta):
-    """Elige el umbral que maximiza F1 macro en validacion."""
+    """Pick the threshold maximising macro F1 on the validation split."""
     val_loader = DataLoader(ListDataset(val_items, EVAL_TF), batch_size=32, shuffle=False)
     y, p = predict_probs(model, val_loader, device, anomaly_idx, tta=tta)
     yb = (y == anomaly_idx).astype(int)

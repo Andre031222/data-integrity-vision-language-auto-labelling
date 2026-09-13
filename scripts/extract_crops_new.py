@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Extrae crops de nuevas imagenes (llamas, vicunas, alpacas adicionales)."""
+"""Extract crops from additional imagery (llamas, vicunas, further alpacas)."""
 
 import argparse
 import sys
@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT))
 MODEL_PATH  = ROOT / "models" / "detector" / "best.pt"
 CROPS_EYES  = ROOT / "data" / "crops" / "eyes"  / "normal"
 CROPS_LEGS  = ROOT / "data" / "crops" / "legs"  / "normal"
-MIN_SIZE    = 32   # pixels minimos para un crop valido
+MIN_SIZE    = 32   # minimum side in pixels for a crop to be valid
 CONF_THRESH = 0.35
 
 
@@ -36,14 +36,14 @@ def extract_crops(source_dir: Path, skip_existing: bool, max_images: int):
     print(f"Destino ojos: {CROPS_EYES}")
     print(f"Destino patas: {CROPS_LEGS}")
 
-    # Cargar nombres de clases del modelo
+    # load the class names from the model
     class_names = model.names  # {0: 'eye', 1: 'leg', ...}
     print(f"Clases del detector: {class_names}")
 
     stats = {"eyes": 0, "legs": 0, "skipped": 0, "no_detection": 0}
 
     for img_path in tqdm(images, desc="Extrayendo crops"):
-        # Verificar si ya esta procesado
+        # skip if already processed
         prefix = img_path.stem
         existing_eye = list(CROPS_EYES.glob(f"{prefix}_*.jpg"))
         existing_leg = list(CROPS_LEGS.glob(f"{prefix}_*.jpg"))
@@ -75,7 +75,7 @@ def extract_crops(source_dir: Path, skip_existing: bool, max_images: int):
             if bw < MIN_SIZE or bh < MIN_SIZE:
                 continue
 
-            # Si el modelo tiene clases especificas (eye/leg) usarlas
+            # prefer the model's own eye and leg classes when it has them
             if "eye" in cls_name:
                 pad_x = int(bw * 0.10); pad_y = int(bh * 0.10)
                 crop = img[max(0,y1-pad_y):min(h,y2+pad_y), max(0,x1-pad_x):min(w,x2+pad_x)]
@@ -89,7 +89,7 @@ def extract_crops(source_dir: Path, skip_existing: bool, max_images: int):
                     cv2.imwrite(str(CROPS_LEGS / f"{prefix}_leg_{leg_count}.jpg"), crop)
                     leg_count += 1; stats["legs"] += 1
             else:
-                # Modelo generico (solo detecta "alpaca") -- estimacion anatomica
+                # generic model detects only "alpaca", so fall back to an anatomical estimate
                 eye_left = img[
                     max(0, y1 + int(bh * 0.05)) : min(h, y1 + int(bh * 0.30)),
                     max(0, x1 + int(bw * 0.05)) : min(w, x1 + int(bw * 0.35)),

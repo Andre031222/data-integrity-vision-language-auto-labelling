@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Saneamiento del dataset del detector (Stage 1)."""
+"""Clean up the stage-1 detector dataset."""
 
 import argparse
 import hashlib
@@ -20,7 +20,7 @@ def md5(p: Path) -> str:
 
 
 def collect_unique():
-    """Devuelve dict md5 -> (img_path, label_path|None), una entrada por imagen unica."""
+    """Return a dict md5 -> (img_path, label_path or None), one entry per unique image."""
     unique = {}
     dup = 0
     for split in SPLITS:

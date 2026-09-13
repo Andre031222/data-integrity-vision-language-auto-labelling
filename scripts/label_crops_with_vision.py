@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Auto-etiquetado de crops con Groq Vision."""
+"""Auto-label crops with a hosted vision-language model."""
 
 import argparse
 import base64
@@ -56,11 +56,11 @@ def img_to_b64(path: Path) -> str:
 
 
 def analyze_crop(client, b64: str, prompt: str) -> dict:
-    """Analiza un crop con Groq Vision."""
+    """Analyse one crop with the vision-language model."""
     import re
     last_err = ""
     for model in (VISION_MODEL,):  # solo Scout disponible
-        for attempt in range(4):  # hasta 4 reintentos por rate limit
+        for attempt in range(4):  # up to four retries on rate limiting
             try:
                 resp = client.chat.completions.create(
                     model=model,
@@ -95,7 +95,7 @@ def analyze_crop(client, b64: str, prompt: str) -> dict:
                     tqdm.write(f"\n  [rate limit] Esperando {wait_sec:.0f}s antes de reintentar...")
                     time.sleep(wait_sec)
                     continue
-                break  # otro tipo de error, no reintentar
+                break  # any other error is not retried
     return {"has_anomaly": False, "anomaly_type": "error", "confidence": 0.0,
             "description": last_err, "model": None}
 
@@ -112,7 +112,7 @@ def save_manifest(manifest: dict):
 
 
 def process_task(task: str, client, resume: bool, min_confidence: float, source_dir: Path = None):
-    """Procesa todos los crops de una tarea (eyes o legs)."""
+    """Process every crop of one task, eyes or legs."""
     normal_dir  = source_dir if source_dir else CROPS_DIR / task / "normal"
     anomaly_dir = CROPS_DIR / task / "anomaly"
     anomaly_dir.mkdir(parents=True, exist_ok=True)
@@ -154,15 +154,15 @@ def process_task(task: str, client, resume: bool, min_confidence: float, source_
 
         if result.get("has_anomaly") and result.get("confidence", 0) >= min_confidence:
             dest = anomaly_dir / img_path.name
-            shutil.move(str(img_path), str(dest))  # MOVER, no copiar: evita el mismo
-            # crop en anomaly/ y normal/ a la vez (conflicto de etiqueta)
+            shutil.move(str(img_path), str(dest))  # move rather than copy, so one crop cannot end up
+            # in both anomaly/ and normal/ at once (a label conflict)
             anomaly_count += 1
             tqdm.write(f"  ANOMALIA: {img_path.name} -- {result.get('anomaly_type')} "
                        f"({result.get('confidence'):.0%}) -- {result.get('description','')[:60]}")
         else:
             normal_count += 1
 
-        # Guardar cada 10 imagenes
+        # checkpoint every ten images
         if len(manifest[task_key]) % 10 == 0:
             save_manifest(manifest)
 

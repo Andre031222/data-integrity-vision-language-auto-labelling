@@ -1,4 +1,4 @@
-# AlpacaVision AI — Etapa 1 LIMPIA, modelo POTENCIADO YOLOv11s (sin leakage)
+# Stage 1 training config, larger YOLOv11s control
 # Dataset deduplicado (2051 unicas), re-split honesto. RTX 3050 4GB -> batch bajo.
 
 model:   yolo11s.pt
@@ -16,7 +16,7 @@ save_period:  20
 val:          true
 plots:        true
 
-# Aumentación (mas fuerte para robustez)
+# Augmentation, stronger for robustness
 hsv_h:    0.015
 hsv_s:    0.7
 hsv_v:    0.4

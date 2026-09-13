@@ -100,6 +100,10 @@ def main():
     ap.add_argument("--src", default="data/annotated_clean")
     ap.add_argument("--out", default="data/annotated_v2")
     ap.add_argument("--tau", type=int, default=6)
+    # Ablation: "none" groups nothing, "phash" ignores rotations and flips.
+    ap.add_argument("--hash", choices=("none", "phash", "dihedral"), default="dihedral")
+    ap.add_argument("--keep-all-sources", action="store_true",
+                    help="skip the licence filter (ablation only, not for release)")
     ap.add_argument("--seed", type=int, default=42)
     a = ap.parse_args()
 
@@ -107,14 +111,27 @@ def main():
     recs = collect(src_root)
     print(f"images in source split      : {len(recs)}")
 
-    kept = [r for r in recs if r["source"] not in EXCLUDED_SOURCES]
-    print(f"after licence filter        : {len(kept)}  "
-          f"(removed {len(recs) - len(kept)} from {sorted(EXCLUDED_SOURCES)})")
+    if a.keep_all_sources:
+        kept = list(recs)
+        print("licence filter              : skipped (ablation)")
+    else:
+        kept = [r for r in recs if r["source"] not in EXCLUDED_SOURCES]
+        print(f"after licence filter        : {len(kept)}  "
+              f"(removed {len(recs) - len(kept)} from {sorted(EXCLUDED_SOURCES)})")
 
-    dist = dihedral_distance(phash_variants(kept))
-    groups = group_by_distance(dist, a.tau)
-    print(f"unique scene groups         : {len(groups)}  "
-          f"(dihedral-invariant pHash, tau={a.tau})")
+    if a.hash == "none":
+        dist = np.full((len(kept), len(kept)), 127, np.int16)
+        np.fill_diagonal(dist, 0)
+        groups = [[i] for i in range(len(kept))]
+        print(f"grouping                    : none, {len(groups)} singleton groups")
+    else:
+        variants = phash_variants(kept)
+        if a.hash == "phash":
+            variants = variants[:, :1, :]
+        dist = dihedral_distance(variants)
+        groups = group_by_distance(dist, a.tau)
+        print(f"unique scene groups         : {len(groups)}  "
+              f"({a.hash} pHash, tau={a.tau})")
 
     rng = random.Random(a.seed)
     order = sorted(groups, key=lambda g: kept[min(g)]["name"])
@@ -163,7 +180,8 @@ def main():
     (out_root / "data.yaml").write_text(
         f"path: {out_root.resolve()}\ntrain: images/train\nval: images/val\n"
         f"test: images/test\n\nnc: 1\nnames:\n  0: alpaca\n")
-    json.dump({"tau": a.tau, "seed": a.seed, "excluded_sources": sorted(EXCLUDED_SOURCES),
+    json.dump({"tau": a.tau, "hash": a.hash, "seed": a.seed,
+               "excluded_sources": [] if a.keep_all_sources else sorted(EXCLUDED_SOURCES),
                "images": sum(counts.values()), "groups": len(order),
                "per_split_groups": {s: len(g) for s, g in assign.items()},
                "per_split_images": counts,

@@ -10,7 +10,7 @@ from PIL import Image
 from src.models.detector import AlpacaDetector
 from src.models.classifier import AnomalyClassifier
 
-# Clases del detector que alimentan cada clasificador
+# detector classes feeding each classifier
 EYE_DETECTOR_CLASS  = 2  # alpaca_eye
 LEG_DETECTOR_CLASSES = (3, 4)  # alpaca_leg_front, alpaca_leg_rear
 
@@ -41,7 +41,7 @@ class AlpacaVisionPipeline:
         self.classifier_conf = classifier_conf
 
     def predict(self, image_input: Union[str, Path, np.ndarray]) -> dict:
-        """Procesa una imagen y devuelve el reporte de diagnóstico completo."""
+        """Process an image and return the full diagnostic report."""
         if isinstance(image_input, (str, Path)):
             img_bgr = cv2.imread(str(image_input))
         else:

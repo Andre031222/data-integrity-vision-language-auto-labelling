@@ -13,7 +13,7 @@ CROPS_DIR = ROOT / "data" / "crops"
 
 
 def augment_image(img: np.ndarray, aug_id: int) -> np.ndarray:
-    """Aplica la augmentacion numero aug_id (0-7) a la imagen."""
+    """Apply augmentation number aug_id (0-7) to the image."""
     h, w = img.shape[:2]
 
     if aug_id == 0:   # flip horizontal

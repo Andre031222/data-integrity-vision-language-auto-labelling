@@ -49,7 +49,7 @@ def _build_model(num_classes: int, arch: str = "efficientnet_b0") -> torch.nn.Mo
 
 
 class AnomalyClassifier:
-    """Clasificador binario de anomalias para ojos o extremidades."""
+    """Binary anomaly classifier for the eye or limb regions."""
 
     def __init__(
         self,
@@ -92,7 +92,7 @@ class AnomalyClassifier:
         return image.convert("RGB")
 
     def _predict_single(self, img: Image.Image) -> np.ndarray:
-        """Retorna probabilidades para una imagen (sin TTA)."""
+        """Return class probabilities for one image, without test-time augmentation."""
         tensor = _TRANSFORM_CENTER(img).unsqueeze(0).to(self.device)
         with torch.no_grad():
             probs = F.softmax(self.model(tensor), dim=1)[0].cpu().numpy()
@@ -131,7 +131,7 @@ class AnomalyClassifier:
         return np.mean(all_probs, axis=0)  # average over 12 augmentations
 
     def predict(self, image: Union[str, Path, np.ndarray, Image.Image]) -> dict:
-        """Clasifica un recorte de region anatomica."""
+        """Classify one anatomical-region crop."""
         img   = self._to_pil(image)
         probs = self._predict_tta(img) if self.use_tta else self._predict_single(img)
 

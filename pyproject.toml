@@ -5,7 +5,7 @@ build-backend = "setuptools.backends.legacy:build"
 [project]
 name = "alpacavision-ai"
 version = "1.0.0"
-description = "Detección automática de anomalías morfológicas en alpacas del altiplano peruano"
+description = "Automatic detection of morphological anomalies in Peruvian Altiplano alpacas"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.11"

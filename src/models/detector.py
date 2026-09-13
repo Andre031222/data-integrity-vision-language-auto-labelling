@@ -7,7 +7,7 @@ import numpy as np
 
 
 class AlpacaDetector:
-    """Wrapper sobre Ultralytics YOLO para detección de regiones anatómicas."""
+    """Thin wrapper over Ultralytics YOLO for anatomical-region detection."""
 
     CLASS_NAMES = {
         0: "alpaca",
@@ -34,7 +34,7 @@ class AlpacaDetector:
         confidence: float = 0.5,
         iou: float = 0.45,
     ) -> list[dict]:
-        """Detecta regiones anatómicas en una imagen."""
+        """Detect anatomical regions in an image."""
         results = self.model(image, conf=confidence, iou=iou, device=self.device, verbose=False)[0]
         detections = []
         for box in results.boxes:

@@ -1,4 +1,4 @@
-"""Tests del generador de reportes veterinarios (Groq)."""
+"""Tests for the veterinary report generator."""
 
 import os
 import pytest
@@ -73,9 +73,9 @@ def test_format_findings_empty():
     reason="Requiere GROQ_API_KEY en .env"
 )
 def test_generate_report_live(sample_pipeline_result):
-    """Test de integración real con Groq API."""
+    """Live integration test against the hosted API."""
     from src.app.report_generator import VetReportGenerator
-    gen = VetReportGenerator(model="llama-3.1-8b-instant")  # modelo rápido para tests
+    gen = VetReportGenerator(model="llama-3.1-8b-instant")  # fast model for tests
     report = gen.generate(sample_pipeline_result, animal_id="TEST-001")
 
     assert report["report_text"]

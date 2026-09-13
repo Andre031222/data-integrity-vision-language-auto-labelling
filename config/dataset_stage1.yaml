@@ -1,4 +1,4 @@
-# AlpacaVision AI — Etapa 1: Detector base (1 clase)
+# Stage 1 detector dataset, raw consolidation (single class)
 path: ./data/annotated
 train: images/train
 val:   images/val

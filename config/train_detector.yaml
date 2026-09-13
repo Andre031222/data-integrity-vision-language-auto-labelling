@@ -1,6 +1,6 @@
-# AlpacaVision AI — Hiperparámetros Detector YOLOv11
+# YOLOv11 detector hyperparameters
 
-model: yolo11n.pt          # nano para prototipo rápido; cambiar a yolo11s/m para producción
+model: yolo11n.pt          # nano for fast prototyping; use yolo11s/m for production
 data: config/dataset.yaml
 epochs: 100
 patience: 20
@@ -15,7 +15,7 @@ save_period: 10
 val: true
 plots: true
 
-# Aumentación
+# Augmentation
 augment: true
 hsv_h: 0.015
 hsv_s: 0.7

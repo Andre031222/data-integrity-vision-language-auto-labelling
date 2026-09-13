@@ -1,4 +1,4 @@
-# AlpacaVision AI -- Etapa 1 LIMPIA (sin duplicados ni leakage)
+# Stage 1 detector dataset after cryptographic deduplication
 path: ./data/annotated_clean
 train: images/train
 val:   images/val

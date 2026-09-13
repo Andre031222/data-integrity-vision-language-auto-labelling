@@ -1,4 +1,4 @@
-"""Tabla system_config: clave-valor para configuración white-label de la plataforma."""
+"""Key-value system_config table for white-label platform settings."""
 from datetime import datetime, timezone
 from src.webapp.extensions import db
 

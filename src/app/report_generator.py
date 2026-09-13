@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Generador de Reportes Veterinarios con Groq."""
+"""Generate field veterinary reports; the report text itself is in Spanish by design."""
 
 import os
 from datetime import datetime
@@ -42,7 +42,7 @@ REGLAS ESTRICTAS:
 
 
 def _format_findings(pipeline_result: dict) -> str:
-    """Construye el texto de hallazgos priorizando Groq Vision."""
+    """Build the findings text, giving priority to the vision-language output."""
     lines = []
 
     # 1. Hallazgos de Groq Vision (siempre disponibles cuando hay GROQ_API_KEY)
@@ -87,7 +87,7 @@ def _format_findings(pipeline_result: dict) -> str:
 
 
 class VetReportGenerator:
-    """Genera reportes veterinarios usando Groq (llama-3.3-70b-versatile)."""
+    """Generate veterinary reports with a hosted large language model."""
 
     def __init__(self, model: str = "llama-3.3-70b-versatile", api_key: Optional[str] = None):
         try:

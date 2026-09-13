@@ -1,4 +1,4 @@
-"""Evalua un detector YOLO en un split dado (sin multiprocessing, seguro en Windows)."""
+"""Evaluate a YOLO detector on one split, single-process for Windows safety."""
 import argparse
 import json
 from pathlib import Path

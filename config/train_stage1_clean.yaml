@@ -1,4 +1,4 @@
-# AlpacaVision AI — Etapa 1 LIMPIA: YOLOv11n detector base (sin leakage)
+# Stage 1 training config, deployed YOLOv11n detector
 # Dataset deduplicado (2051 unicas) y re-split honesto. RTX 3050 4GB.
 
 model:   yolo11n.pt
@@ -16,7 +16,7 @@ save_period:  10
 val:          true
 plots:        true
 
-# Aumentación
+# Augmentation
 hsv_h:    0.015
 hsv_s:    0.7
 hsv_v:    0.4

@@ -14,11 +14,11 @@ IMAGES_DIR  = Path("data/annotation_batch")
 OUTPUT_DIR  = Path("data/auto_labels")
 BOX_THRESH  = 0.25
 TEXT_THRESH = 0.25
-IMG_SIZE    = 800  # resolución de entrada para Grounding DINO
+IMG_SIZE    = 800  # input resolution for Grounding DINO
 
 CLASS_NAMES = ["alpaca_body", "alpaca_head", "alpaca_eye", "alpaca_leg_front", "alpaca_leg_rear"]
 
-# Prompt único -- Grounding DINO tokeniza cada frase separada por " . "
+# single prompt; Grounding DINO tokenises each phrase separated by " . "
 CAPTION = (
     "alpaca body . alpaca torso . "
     "alpaca head . alpaca face . "
@@ -70,7 +70,7 @@ def load_gd_model(device: str):
 
 
 def preprocess_image(img_path: Path, device: str) -> tuple:
-    """Carga y normaliza imagen para Grounding DINO. Devuelve (tensor, orig_w, orig_h)."""
+    """Load and normalise an image for Grounding DINO; returns (tensor, orig_w, orig_h)."""
     from groundingdino.util.inference import load_image
     img_src, img_tensor = load_image(str(img_path))
     orig_h, orig_w = img_src.shape[:2]
@@ -78,7 +78,7 @@ def preprocess_image(img_path: Path, device: str) -> tuple:
 
 
 def run_inference(model, img_tensor: torch.Tensor, caption: str, tokenizer) -> tuple:
-    """Inferencia directa sin overhead de predict(). Devuelve (boxes_cxcywh, logits, phrases)."""
+    """Direct inference without predict() overhead; returns (boxes_cxcywh, logits, phrases)."""
     from groundingdino.util.misc import clean_state_dict
     from groundingdino.util.vl_utils import create_positive_map_from_span
 
@@ -115,7 +115,7 @@ def run_inference(model, img_tensor: torch.Tensor, caption: str, tokenizer) -> t
 
 
 def phrase_to_class(phrase: str) -> int:
-    """Convierte frase detectada a class_id. Retorna -1 si no coincide."""
+    """Map a detected phrase to a class id; returns -1 when nothing matches."""
     p = phrase.lower().strip()
     # Coincidencia exacta primero
     if p in PHRASE_MAP:
@@ -156,7 +156,7 @@ def main():
     images = sorted(list(IMAGES_DIR.glob("*.jpg")) + list(IMAGES_DIR.glob("*.png")))
     print(f"Imágenes totales: {len(images)}")
 
-    # Resume: saltar imágenes que ya tienen labels no vacíos
+    # resume: skip images that already have non-empty labels
     pending = []
     skipped = 0
     for img_path in images:
@@ -181,7 +181,7 @@ def main():
     tokenizer = model.tokenizer
     print("Modelo listo.")
 
-    # Warm-up con primera imagen pendiente para inicializar CUDA kernels
+    # warm up on the first pending image to initialise CUDA kernels
     print("Warm-up GPU...", end=" ", flush=True)
     try:
         t0 = __import__("time").time()
@@ -226,7 +226,7 @@ def main():
 
 
 def _rebuild_manifest(images: list, output_dir: Path, stats: dict | None = None):
-    """Reconstruye el manifest leyendo el estado real de los txt."""
+    """Rebuild the manifest from the actual state of the label files."""
     manifest = []
     with_labels = 0
     empty = 0

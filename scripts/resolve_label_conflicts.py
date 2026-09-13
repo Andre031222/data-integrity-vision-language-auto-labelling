@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Resolucion de conflictos de etiqueta en crops de ojos."""
+"""Resolve label conflicts among the ocular crops."""
 
 import argparse
 import hashlib
@@ -23,7 +23,7 @@ def md5(p: Path) -> str:
 
 
 def find_conflicts(task: str):
-    """Devuelve lista de (anomaly_path, normal_path) con MD5 identico (originales)."""
+    """Return the (anomaly_path, normal_path) originals sharing an identical MD5."""
     A = ROOT / "data" / "crops" / task / "anomaly"
     N = ROOT / "data" / "crops" / task / "normal"
     def originals(d):
@@ -89,7 +89,7 @@ def main():
             if not args.dry_run:
                 if apath.exists():
                     apath.unlink()  # quitar copia erronea de anomaly/
-                # borrar augmentadas derivadas de este original
+                # delete the augmented copies derived from this original
                 for aug in anomaly_dir.glob(f"aug_*_{apath.name}"):
                     aug.unlink()
         print(f"  [{i}/{len(conflicts)}] {decision.upper():7s} conf={mean_conf:.2f} "

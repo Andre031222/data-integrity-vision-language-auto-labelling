@@ -1,4 +1,4 @@
-"""AlpacaVision AI -- Extrae crops de ojos y patas desde auto_labels Stage 2."""
+"""Extract eye and leg crops from the stage-2 auto-labels."""
 
 from pathlib import Path
 import cv2
@@ -11,7 +11,7 @@ PADDING     = 0.12   # margen adicional proporcional al box
 
 REGION_MAP = {2: "eyes", 3: "legs", 4: "legs"}
 
-# Confianza mínima para incluir un recorte (leída del comentario inline)
+# minimum confidence for a crop to be included, read from the inline comment
 MIN_CONF = 0.30
 
 

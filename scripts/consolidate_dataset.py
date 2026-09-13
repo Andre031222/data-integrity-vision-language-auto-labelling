@@ -1,4 +1,4 @@
-"""Consolida todos los datasets de Roboflow en uno solo."""
+"""Consolidate every Roboflow dataset into a single corpus."""
 
 import random
 import shutil
@@ -7,7 +7,7 @@ from pathlib import Path
 ROBOFLOW_DIR = Path("data/raw/roboflow")
 OUT_DIR      = Path("data/annotated")
 SEED         = 42
-MIN_BOX_AREA = 0.01   # descartar cajas < 1% del área imagen (ruido)
+MIN_BOX_AREA = 0.01   # discard boxes below 1% of the image area as noise
 SPLITS       = {"train": 0.70, "val": 0.15, "test": 0.15}
 
 # Datasets a incluir (excluimos alpaca-zehtv por calidad muy baja)
