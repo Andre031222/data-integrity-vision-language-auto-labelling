@@ -4,7 +4,8 @@ A single-page research demo for the scene-deduplicated **YOLOv11n** alpaca detec
 photo → get the annotated image with bounding boxes and a detections table. Academic /
 institutional UI, bilingual (EN/ES), light + dark themes. No login, no database.
 
-The ocular classifier is intentionally **not** served (it is at chance under the
+The ocular classifier is intentionally **not** served (it predicts its own auto-labels
+above chance, but those labels carry no validated clinical meaning, under the
 protocol; see the paper's honest negative result). An **optional, experimental image
 description** is produced by a **local** vision model via Ollama — the image never leaves the
 server, and it is clearly labelled as *not a veterinary diagnosis*.

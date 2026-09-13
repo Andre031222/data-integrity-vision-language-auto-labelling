@@ -1,0 +1,56 @@
+{
+  "file_level_split": {
+    "per_seed": [
+      {
+        "auc_roc": 0.9202,
+        "f1_anomaly": 0.9247,
+        "accuracy": 0.8827,
+        "n_test": 179,
+        "n_test_anomaly": 137
+      },
+      {
+        "auc_roc": 0.9518,
+        "f1_anomaly": 0.9256,
+        "accuracy": 0.8994,
+        "n_test": 179,
+        "n_test_anomaly": 122
+      },
+      {
+        "auc_roc": 0.9493,
+        "f1_anomaly": 0.9016,
+        "accuracy": 0.8659,
+        "n_test": 179,
+        "n_test_anomaly": 118
+      }
+    ],
+    "auc_mean": 0.9404,
+    "auc_std": 0.0143
+  },
+  "group_aware_split": {
+    "per_seed": [
+      {
+        "auc_roc": 0.8538,
+        "f1_anomaly": 0.5366,
+        "accuracy": 0.7397,
+        "n_test": 73,
+        "n_test_anomaly": 13
+      },
+      {
+        "auc_roc": 0.7447,
+        "f1_anomaly": 0.375,
+        "accuracy": 0.7143,
+        "n_test": 70,
+        "n_test_anomaly": 18
+      },
+      {
+        "auc_roc": 0.6938,
+        "f1_anomaly": 0.359,
+        "accuracy": 0.6622,
+        "n_test": 74,
+        "n_test_anomaly": 15
+      }
+    ],
+    "auc_mean": 0.7641,
+    "auc_std": 0.0667
+  }
+}

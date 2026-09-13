@@ -236,7 +236,7 @@
       t_class:"class", t_conf:"conf", ai:"AI description · experimental",
       ai_dis:"Generated locally by a vision–language model. Not a veterinary diagnosis.",
       ai_wait:"Generating a local description…",
-      note:"<strong>Scope:</strong> this demo serves only the body detector. The ocular anomaly classifier is <em>not</em> deployed — it performs at chance (AUC-ROC = 0.506, against 0.997 for the same pipeline on expert-labelled data) and is reported in the paper as a negative result, not a diagnostic tool.",
+      note:"<strong>Scope:</strong> this demo serves only the body detector. The ocular anomaly classifier is <em>not</em> deployed: it predicts its own vision-language auto-labels above chance (AUC-ROC = 0.736 &plusmn; 0.089), but an independent model judged 93.9% of those crops not assessable and agreed at &kappa; = 0.09, so the score reflects the labeller rather than any pathology.",
       dev:"Developed by", role:"Lead author & developer", lk_code:"code & dataset" },
     es:{ sub:"AlpacaVision · detector YOLOv11n sin escenas repetidas",
       lead:"Un demo de investigación reproducible: sube una foto de una alpaca (<em>Vicugna pacos</em>) y un detector compacto la localiza, entrenado con un conjunto curado y auditado de <strong>742 escenas distintas</strong> del Altiplano peruano.",
@@ -251,7 +251,7 @@
       t_class:"clase", t_conf:"conf", ai:"Descripción IA · experimental",
       ai_dis:"Generada localmente por un modelo de visión-lenguaje. No es un diagnóstico veterinario.",
       ai_wait:"Generando una descripción local…",
-      note:"<strong>Alcance honesto:</strong> este demo sirve solo el detector corporal. El clasificador ocular <em>no</em> está desplegado — bajo un protocolo sin fuga rinde al azar (AUC-ROC = 0.506) y en el artículo se reporta como resultado negativo, no como herramienta de diagnóstico.",
+      note:"<strong>Alcance:</strong> este demo sirve solo el detector corporal. El clasificador ocular <em>no</em> está desplegado: predice sus propias auto-etiquetas por encima del azar (AUC-ROC = 0.736 &plusmn; 0.089), pero un modelo independiente declaró el 93.9% de esos recortes no evaluables y coincidió con &kappa; = 0.09, así que la cifra refleja al etiquetador, no una patología.",
       dev:"Desarrollado por", role:"Autor principal y desarrollador", lk_code:"código y datos" }
   };
   const SUN='<circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>';

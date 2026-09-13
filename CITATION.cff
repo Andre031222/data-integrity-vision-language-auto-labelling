@@ -6,8 +6,9 @@ abstract: >-
   Altiplano (1460 images resolving to 742 distinct scenes), a compact YOLOv11n
   detector (mAP@0.5 = 0.698 +/- 0.024 over three seeds), a reproducible
   data-integrity methodology with a dihedral-invariant near-duplicate audit, and a
-  controlled negative result on vision-language auto-labelled ocular anomaly
-  classification.
+  case study showing that a classifier trained on vision-language auto-labels scores
+  above chance (AUC-ROC = 0.736 +/- 0.089) while reproducing the labeller rather than
+  the pathology.
 type: software
 authors:
   - family-names: "Vilca-Solorzano"

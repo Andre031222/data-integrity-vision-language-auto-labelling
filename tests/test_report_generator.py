@@ -52,8 +52,8 @@ def normal_pipeline_result():
 def test_format_findings_with_anomaly(sample_pipeline_result):
     from src.app.report_generator import _format_findings
     text = _format_findings(sample_pipeline_result)
-    assert "catarata" in text.lower()
-    assert "94" in text  # confianza
+    assert "eye_cataract" in text.lower()
+    assert "94" in text  # classifier confidence
 
 
 def test_format_findings_normal(normal_pipeline_result):
@@ -65,12 +65,13 @@ def test_format_findings_normal(normal_pipeline_result):
 def test_format_findings_empty():
     from src.app.report_generator import _format_findings
     text = _format_findings({"has_anomaly": False, "eye_results": [], "leg_results": []})
-    assert "no se detectaron" in text.lower()
+    assert "sin anomal" in text.lower()
+    assert "ning" in text.lower()  # no object detected by the detector
 
 
 @pytest.mark.skipif(
     not os.environ.get("GROQ_API_KEY"),
-    reason="Requiere GROQ_API_KEY en .env"
+    reason="requires GROQ_API_KEY in .env"
 )
 def test_generate_report_live(sample_pipeline_result):
     """Live integration test against the hosted API."""
@@ -87,7 +88,7 @@ def test_generate_report_live(sample_pipeline_result):
 
 @pytest.mark.skipif(
     not os.environ.get("GROQ_API_KEY"),
-    reason="Requiere GROQ_API_KEY en .env"
+    reason="requires GROQ_API_KEY in .env"
 )
 def test_generate_from_text():
     from src.app.report_generator import VetReportGenerator

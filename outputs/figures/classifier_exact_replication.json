@@ -1,0 +1,20 @@
+{
+  "protocol": "stage-2 protocol, aug=strong, tta=True",
+  "per_seed": [
+    {
+      "seed": 42,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.56,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.699,
+      "f1_anomaly": 0.3333,
+      "accuracy": 0.7714
+    }
+  ],
+  "auc_mean": 0.699,
+  "auc_std": 0.0,
+  "auc_min": 0.699,
+  "auc_max": 0.699
+}

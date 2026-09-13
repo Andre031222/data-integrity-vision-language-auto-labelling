@@ -1,0 +1,119 @@
+{
+  "protocol": "stage-2 protocol, aug=strong, tta=True",
+  "per_seed": [
+    {
+      "seed": 42,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.3,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.6964,
+      "f1_anomaly": 0.3636,
+      "accuracy": 0.7
+    },
+    {
+      "seed": 0,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.46,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.8648,
+      "f1_anomaly": 0.6,
+      "accuracy": 0.8286
+    },
+    {
+      "seed": 1,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.41,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.6696,
+      "f1_anomaly": 0.3902,
+      "accuracy": 0.6429
+    },
+    {
+      "seed": 2,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.34,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.7551,
+      "f1_anomaly": 0.5333,
+      "accuracy": 0.7
+    },
+    {
+      "seed": 3,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.14,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.676,
+      "f1_anomaly": 0.3889,
+      "accuracy": 0.6857
+    },
+    {
+      "seed": 4,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.56,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.5918,
+      "f1_anomaly": 0.303,
+      "accuracy": 0.6714
+    },
+    {
+      "seed": 5,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.44,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.8622,
+      "f1_anomaly": 0.5946,
+      "accuracy": 0.7857
+    },
+    {
+      "seed": 6,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.67,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.6684,
+      "f1_anomaly": 0.3529,
+      "accuracy": 0.6857
+    },
+    {
+      "seed": 7,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.89,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.8406,
+      "f1_anomaly": 0.4444,
+      "accuracy": 0.8571
+    },
+    {
+      "seed": 8,
+      "aug": "strong",
+      "tta": true,
+      "threshold": 0.52,
+      "n_test": 70,
+      "n_test_anomaly": 14,
+      "auc_roc": 0.7334,
+      "f1_anomaly": 0.4444,
+      "accuracy": 0.7857
+    }
+  ],
+  "auc_mean": 0.7358,
+  "auc_std": 0.0888,
+  "auc_min": 0.5918,
+  "auc_max": 0.8648
+}

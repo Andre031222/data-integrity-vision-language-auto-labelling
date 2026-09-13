@@ -8,15 +8,15 @@
 __pycache__/
 *.py[cod]
 *.egg-info/
-dist/
-build/
+/dist/
+/build/
 .eggs/
 *.egg
 
 # Virtual environments (Windows venv/ and Linux .venv-linux/)
-venv/
-env/
-.conda/
+/venv/
+/env/
+/.conda/
 .venv/
 .venv-linux/
 
@@ -34,7 +34,7 @@ kaggle.json
 .mypy_cache/
 
 # Data — all of it is heavy; goes to Zenodo (CC BY 4.0), never to git
-data/
+/data/
 
 # Trained models & exports — go to GitHub Releases / Hugging Face
 models/**/*.pt
@@ -50,8 +50,8 @@ outputs/figures/stage1_test_eval/
 !outputs/figures/
 
 # Ultralytics run dirs & logs
-runs/
-logs/
+/runs/
+/logs/
 *.log
 
 # Root-level stray weights / archives
@@ -62,7 +62,7 @@ logs/
 
 # Paper / manuscript — kept LOCAL only. This is a code repository; the
 # manuscript, figures, cover letter, poster and supplementary do not belong here.
-paper/
+/paper/
 
 # IDE / OS
 .vscode/
@@ -79,8 +79,8 @@ Thumbs.db
 # Legacy / archived (superseded files kept locally, not published)
 **/legacy/
 INICIAR.bat
-_local/
-NuevasImagenes/
+/_local/
+/NuevasImagenes/
 
 # Internal / Spanish working docs — kept local, not part of the public English repo
 docs/ESTADO_PAPER.md
@@ -92,4 +92,4 @@ docs/annotation_guide_stage2.md
 docs/CLASIFICACION_OCULAR_VET.md
 
 # Ultralytics stray download dir
-weights/
+/weights/

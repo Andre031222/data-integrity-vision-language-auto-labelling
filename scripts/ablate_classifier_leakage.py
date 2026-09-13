@@ -83,7 +83,7 @@ def split_group(items, seed):
             part(keys[n_tr + n_va:], True))
 
 
-def run(train, val, test, seed, epochs, device):
+def run(train, val, test, seed, epochs, device, select='auc'):
     torch.manual_seed(seed)
     model = timm.create_model("efficientnet_b2", pretrained=False, num_classes=2)
     if STAGE1.exists():
@@ -117,9 +117,12 @@ def run(train, val, test, seed, epochs, device):
             lossf(model(xb.to(device)), yb.to(device)).backward()
             opt.step()
         y, p = probs(val)
-        auc = roc_auc_score(y, p) if len(set(y)) > 1 else 0.5
-        if auc > best:
-            best, best_state = auc, {k: v.cpu().clone() for k, v in model.state_dict().items()}
+        if select == "auc":
+            score = roc_auc_score(y, p) if len(set(y)) > 1 else 0.5
+        else:
+            score = f1_score(y, p >= 0.5, average="macro", zero_division=0)
+        if score > best:
+            best, best_state = score, {k: v.cpu().clone() for k, v in model.state_dict().items()}
 
     model.load_state_dict(best_state)
     y, p = probs(test)
@@ -134,6 +137,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
     ap.add_argument("--epochs", type=int, default=12)
+    ap.add_argument("--select", choices=("auc", "f1"), default="auc",
+                    help="validation criterion used to keep the best epoch")
     ap.add_argument("--out", default="outputs/figures/classifier_leakage_ablation.json")
     a = ap.parse_args()
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -147,7 +152,7 @@ def main():
         runs = []
         for seed in a.seeds:
             tr, va, te = splitter(items, seed)
-            r = run(tr, va, te, seed, a.epochs, device)
+            r = run(tr, va, te, seed, a.epochs, device, a.select)
             runs.append(r)
             print(f"[{cond}] seed {seed}: {r}", flush=True)
         out[cond] = {"per_seed": runs,

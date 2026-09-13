@@ -75,8 +75,10 @@ methodology that detects and corrects them.
   redistribute flipped and rotated copies.
 - A **compact YOLOv11n detector** at mAP@0.5 = **0.698 ± 0.024** over three seeds under the
   scene-level protocol, against the 0.913 the same pipeline first reported.
-- A **controlled negative case study**: the identical transfer pipeline reaches AUC-ROC =
-  0.997 on expert-labelled human-fundus images and 0.506 on auto-labelled alpaca crops.
+- A **case study on why an above-chance score can still be meaningless**: a classifier on
+  vision-language auto-labels reaches AUC-ROC = 0.736 ± 0.089 over ten retrainings, which
+  reads as a working model, while an independent model judged 93.9% of the same crops **not
+  assessable** and agreed at **κ = 0.09**. It reproduces the labeller, not the pathology.
 
 * * *
 
@@ -113,12 +115,19 @@ Each audit we ran invalidated the guarantee the previous one appeared to provide
   <img src="assets/fig_leakage.png" alt="Detector score and test-set contamination by protocol" width="94%">
 </p>
 
-| Protocol | Train | Test | mAP@0.5 |
-|---|:---:|:---:|:---:|
-| Raw | 1,435 | 308 | 0.913 |
-| After cryptographic deduplication | 1,435 | 308 | 0.860 |
-| Perceptually clean test subset (no retraining) | 1,435 | 153 | 0.762 |
-| **Scene-level** (licence-clean + dihedral, retrained) | 1,011 | 248 | **0.698 ± 0.024** |
+| Stage | Train | Test | mAP@0.5 | Δ |
+|---|:---:|:---:|:---:|:---:|
+| 1. Raw | 2,164 | 466 | 0.930 ± 0.002 | — |
+| 2. + cryptographic deduplication | 1,435 | 308 | 0.882 ± 0.006 | −0.048 |
+| 3. + licence filter | 1,021 | 220 | 0.901 ± 0.008 | **+0.019** |
+| 4. + perceptual hash | 1,018 | 226 | 0.823 ± 0.008 | −0.079 |
+| **5. + dihedral invariance** | 1,011 | 248 | **0.698 ± 0.024** | **−0.124** |
+
+Three seeds per stage. The dihedral pass alone removes more inflation than the exact and
+conventional-perceptual passes combined, so a practitioner applying today's good practice —
+hash the bytes, then hash perceptually — still keeps about half of it. Stage 3 *raises* the
+score, which is expected: dropping a source for legal reasons is not a contamination-removal
+step.
 
 **Share of the test set having a near-duplicate in training**, for the same split, under
 three notions of duplicate identity:
@@ -137,25 +146,36 @@ three flipped or rotated copies of every image, which defeats a plain perceptual
 > (1,011 vs 1,435), so its last step mixes removed contamination with reduced training data.
 > A matched-size control is future work.
 
-### Ocular classifier — an honest negative result
+### Ocular classifier — an above-chance score that means nothing
 
 A two-stage EfficientNet-B2 classifier trained on vision–language auto-labels of ocular
-anomalies performs **at chance** (group-aware test, *n* = 70: 14 anomaly / 56 normal).
+anomalies **is above chance** (group-aware test, *n* = 70: 14 anomaly / 56 normal), and that
+is exactly the trap.
 
-| Metric | Value | 95% CI |
-|---|:---:|:---:|
-| AUC-ROC | **0.506** | [0.366, 0.645] |
-| F1 (anomaly) | 0.065 | — |
-| Accuracy | 0.586 | — |
-| Interpretation | Indistinguishable from chance | |
+| Quantity | Value |
+|---|:---:|
+| Retrainings | 10 |
+| **AUC-ROC** | **0.736 ± 0.089** |
+| AUC-ROC median | 0.715 |
+| AUC-ROC range | [0.592, 0.865] |
+| Spread | 0.273 |
+| F1 (anomaly) range | [0.303, 0.600] |
+
+> ⚠️ **Correction.** An earlier version of this repository reported **AUC-ROC = 0.506** here
+> and described the classifier as indistinguishable from chance. That checkpoint does score
+> 0.504 on its own test split, but it is **not reproducible**: ten retrainings of the
+> identical split, data and protocol all landed between 0.592 and 0.865, above every one of
+> them. With 70 test images and 14 positives, a single run estimates nothing — the spread
+> from run randomness alone is 0.273 AUC. We record the correction rather than quietly
+> replacing the number.
 
 <p align="center">
   <img src="assets/fig_classifier.png" alt="Classifier confusion matrix, ROC and precision-recall curves" width="94%">
 </p>
 
-This is **not** a modelling failure. On the same metric the identical pipeline reaches
-**AUC-ROC = 0.997** (95% CI [0.993, 1.000]) on 379 held-out, expertly labelled human-fundus
-images, so the collapse occurs only on the auto-labelled alpaca stage.
+For contrast, the identical pipeline reaches **AUC-ROC = 0.997** (95% CI [0.993, 1.000]) on
+379 held-out, expertly labelled human-fundus images — stably, not with a 0.27 spread. The
+difference between the two stages is the label source, not the model.
 
 We re-screened all 462 ocular crops with an independent vision–language model, asking it both
 for a label and for whether the crop was assessable at all:
@@ -188,7 +208,7 @@ flowchart LR
     C --> D["Stage 2<br/>EfficientNet-B2<br/>ocular classifier<br/>(feasibility only)"]
     B --> E["Flask web app<br/>+ ONNX runtime"]
     E --> F["Automated Spanish<br/>veterinary report (VLM)"]
-    D -. "chance-level — not deployed" .-> E
+    D -. "not deployed: reproduces the labeller" .-> E
 ```
 
 The deployed system localises the animal with the detector; the ocular classifier is
@@ -232,14 +252,15 @@ perceptual hash maps those to unrelated codes.
 ```mermaid
 flowchart LR
     I["ImageNet<br/>pre-training"] --> S1["Stage 1<br/>Human fundus images<br/>AUC-ROC = 0.997"]
-    S1 --> S2["Stage 2<br/>Alpaca eye crops<br/>AUC-ROC = 0.506 (chance)"]
+    S1 --> S2["Stage 2<br/>Alpaca eye crops<br/>AUC-ROC = 0.736 +/- 0.089"]
 ```
 
 EfficientNet-B2 (MBConv blocks with squeeze-and-excitation, compound-scaled to ~9 M
 parameters) is fine-tuned in two stages. Stage 1 adapts the backbone to the eye-disease
 domain on real, expertly labelled human-fundus images; Stage 2 fine-tunes on the
-auto-labelled alpaca eye crops. The collapse to chance happens only in Stage 2 — the honest
-negative result at the heart of the study.
+auto-labelled alpaca eye crops. Stage 2 predicts its auto-labels above chance while an
+independent annotator finds 93.9% of the same crops unassessable — the result at the heart of
+the study.
 
 * * *
 
@@ -321,7 +342,7 @@ python scripts/train_detector_v2.py --seeds 0 1 2 --tag v2_n
 python scripts/eval_stage1_fundus.py                       # -> AUC-ROC ~ 0.997
 
 # Classifier — honest, group-aware evaluation
-python scripts/evaluate_classifiers.py --task eyes         # -> AUC-ROC ~ 0.506 (chance)
+python scripts/seed_sweep_classifier.py --seeds 42 0 1 2   # -> AUC-ROC 0.736 +/- 0.089
 
 # Regenerate all data figures (R + ggplot2) from the released JSON
 Rscript scripts/gen_figures_ggplot.R
@@ -389,8 +410,13 @@ The dataset has its own citable record:
 
 ## Limitations
 
-- The **detector works and is deployable**; the **ocular classifier does not** — it is at
-  chance and is reported as a feasibility study, not a product.
+- The **detector works and is deployable**; the **ocular classifier is not** — it predicts
+  its own auto-labels above chance but those labels carry no validated clinical meaning
+  (κ = 0.09, 93.9% of crops unassessable). It is reported as a feasibility study, not a
+  product, and is not served by the demo.
+- The classifier's evaluation set holds **70 images with 14 positives**, too small for a
+  stable AUC. We report the distribution over ten retrainings; even that mean is indicative,
+  and no conclusion here rests on its exact magnitude.
 - The scene-level detector trains on fewer images than the original (1,011 vs 1,435), so the
   final step of the drop **mixes removed contamination with reduced training data**. The
   three-seed spread bounds seed variance but not this confound; a matched-size control is
@@ -398,13 +424,14 @@ The dataset has its own citable record:
 - Our near-duplicate criterion is invariant to the **dihedral group only**. Cropping, scaling
   and photometric edits would evade it, so **742 scenes is an upper bound** on the number of
   distinct depictions. Embedding-based retrieval would likely find more.
-- The classifier failure is consistent with (i) vision–language auto-labels without veterinary
-  validation and (ii) a resolution ceiling (source images ≈ 375 px, eye crops ≈ 31 px), rather
-  than with a modelling failure.
+- The gap between predicting the labels and detecting the disease is consistent with
+  (i) vision–language auto-labels without veterinary validation and (ii) a resolution ceiling
+  (source images ≈ 375 px, eye crops ≈ 31 px).
 - A working ocular classifier will require **expert veterinary ground truth** on
   **purpose-acquired, close-up** imagery (eye region ≳ 128 px) — future work.
 - All initially reported metrics (mAP 0.913, AUC 0.824) were inflated and are superseded by
-  the numbers above.
+  the numbers above. The initially reported classifier AUC of 0.506 was not inflated but
+  **irreproducible**, and is superseded by the ten-run distribution.
 
 * * *
 
