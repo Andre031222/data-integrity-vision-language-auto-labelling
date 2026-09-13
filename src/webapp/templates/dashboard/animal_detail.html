@@ -1,0 +1,138 @@
+{% extends "dashboard/layout.html" %}
+{% block page_title %}{{ animal.arete }}{% endblock %}
+{% block page_title_mobile %}{{ animal.arete }}{% endblock %}
+
+{% block content %}
+<div class="p-5 max-w-4xl mx-auto animate-fade-up">
+
+  {# Breadcrumb #}
+  <div class="flex items-center gap-1.5 text-xs text-zinc-600 mb-6">
+    <a href="{{ url_for('dashboard.animals') }}" class="hover:text-zinc-400 transition-colors">Animales</a>
+    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+    <span class="text-zinc-500 font-mono">{{ animal.arete }}</span>
+  </div>
+
+  {# ── HEADER ──────────────────────────────────────────────────── #}
+  <div class="flex items-start gap-4 mb-6">
+    <div class="w-12 h-12 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center flex-shrink-0">
+      <svg class="text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" style="width:22px;height:22px">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/>
+      </svg>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h1 class="text-xl font-semibold text-white font-mono tracking-wide">{{ animal.arete }}</h1>
+      {% if animal.name %}<p class="text-zinc-500 text-sm mt-0.5">{{ animal.name }}</p>{% endif %}
+      <div class="flex flex-wrap gap-1.5 mt-2">
+        {% if animal.breed %}
+          <span class="px-2 py-0.5 text-[11px] rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700/50">{{ animal.breed }}</span>
+        {% endif %}
+        {% if animal.sex %}
+          <span class="px-2 py-0.5 text-[11px] rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700/50">
+            {{ 'Hembra' if animal.sex == 'H' else ('Macho' if animal.sex == 'M' else animal.sex) }}
+          </span>
+        {% endif %}
+        <span class="px-2 py-0.5 text-[11px] rounded-full bg-zinc-800 text-zinc-600 border border-zinc-700/50">
+          Desde {{ animal.created_at.strftime('%d/%m/%Y') }}
+        </span>
+      </div>
+    </div>
+    <a href="{{ url_for('dashboard.index') }}"
+       class="hidden sm:flex items-center gap-1.5 px-3.5 py-2 bg-brand text-black font-semibold rounded-xl hover:bg-brand-light
+              transition-all text-sm flex-shrink-0 shadow-lg shadow-brand/20 hover:-translate-y-px active:translate-y-0">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+      Analizar
+    </a>
+  </div>
+
+  {% if animal.notes %}
+  <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 px-4 py-3 mb-5">
+    <p class="text-sm text-zinc-500 leading-relaxed">{{ animal.notes }}</p>
+  </div>
+  {% endif %}
+
+  {# ── STATS ───────────────────────────────────────────────────── #}
+  <div class="grid grid-cols-3 gap-3 mb-6">
+    <div class="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800">
+      <div class="text-xl font-bold text-white tabular-nums">{{ analyses | length }}</div>
+      <div class="text-xs text-zinc-600 mt-0.5">Análisis</div>
+    </div>
+    <div class="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800">
+      <div class="text-xl font-bold text-red-400 tabular-nums">{{ analyses | selectattr('has_anomaly') | list | length }}</div>
+      <div class="text-xs text-zinc-600 mt-0.5">Con anomalías</div>
+    </div>
+    <div class="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800">
+      <div class="text-xl font-bold text-brand tabular-nums">
+        {% if analyses %}{{ analyses[0].timestamp.strftime('%d/%m') }}{% else %}—{% endif %}
+      </div>
+      <div class="text-xs text-zinc-600 mt-0.5">Último análisis</div>
+    </div>
+  </div>
+
+  {# ── ANALYSIS HISTORY ────────────────────────────────────────── #}
+  <div class="rounded-xl border border-zinc-800 overflow-hidden">
+    <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/40 flex items-center justify-between">
+      <h2 class="text-sm font-medium text-zinc-300">Historial de análisis</h2>
+      <span class="text-xs text-zinc-600">{{ analyses | length }} registros</span>
+    </div>
+
+    {% if not analyses %}
+    <div class="p-12 text-center">
+      <div class="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center mx-auto mb-3">
+        <svg class="w-5 h-5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <p class="text-zinc-600 text-sm">Sin análisis registrados para este animal.</p>
+    </div>
+    {% else %}
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-[11px] text-zinc-600 uppercase tracking-wider border-b border-zinc-800/60">
+          <th class="text-left px-4 py-2.5 font-medium">Fecha</th>
+          <th class="text-left px-4 py-2.5 font-medium">Resultado</th>
+          <th class="text-left px-4 py-2.5 font-medium hidden sm:table-cell">Det.</th>
+          <th class="text-left px-4 py-2.5 font-medium hidden md:table-cell">Severidad</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-zinc-800/40">
+        {% for a in analyses %}
+        <tr class="hover:bg-zinc-900/40 transition-colors">
+          <td class="px-4 py-3">
+            <div class="text-zinc-300 text-xs">{{ a.timestamp.strftime('%d/%m/%Y') }}</div>
+            <div class="text-zinc-600 text-[10px]">{{ a.timestamp.strftime('%H:%M') }}</div>
+          </td>
+          <td class="px-4 py-3">
+            {% if a.has_anomaly %}
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] bg-red-950/60 text-red-300 border border-red-900/60">
+                <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9.303 3.376c.866 1.5-.217 3.374-1.948 3.374H4.645c-1.73 0-2.813-1.874-1.948-3.374L10.051 3.378c.866-1.5 3.032-1.5 3.898 0l6.354 12.748z"/></svg>
+                Anomalía
+              </span>
+            {% else %}
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] bg-emerald-950/60 text-emerald-300 border border-emerald-900/60">
+                <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                Normal
+              </span>
+            {% endif %}
+          </td>
+          <td class="px-4 py-3 text-zinc-600 text-xs hidden sm:table-cell tabular-nums">{{ a.n_detections }}</td>
+          <td class="px-4 py-3 hidden md:table-cell">
+            {% if a.severity and a.severity != 'none' %}
+              <span class="text-[11px] px-2 py-0.5 rounded-full
+                {% if a.severity == 'severe' %}bg-red-900/50 text-red-300
+                {% elif a.severity == 'moderate' %}bg-amber-900/50 text-amber-300
+                {% else %}bg-zinc-800 text-zinc-500{% endif %}">
+                {{ a.severity }}
+              </span>
+            {% else %}
+              <span class="text-zinc-700 text-xs">—</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+AlpacaVision AI — EfficientNet (efficientnet_b2) Evaluation
+Task: eyes | Split: 927/197/197
+Test distribution: {'anomaly': 130, 'normal': 67}
+
+              precision    recall  f1-score   support
+
+     anomaly     0.8248    0.8692    0.8464       130
+      normal     0.7167    0.6418    0.6772        67
+
+    accuracy                         0.7919       197
+   macro avg     0.7707    0.7555    0.7618       197
+weighted avg     0.7880    0.7919    0.7889       197
+
+AUC-ROC:          0.8243  95% CI [0.7623, 0.8821]
+Average Precision: 0.8929
+F1 (anomaly):     0.8461  95% CI [0.7967, 0.8881]
+
+McNemar vs majority: chi2=10.417 p=0.0012

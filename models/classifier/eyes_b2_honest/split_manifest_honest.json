@@ -1,0 +1,121 @@
+{
+  "seed": 42,
+  "test_frac": 0.15,
+  "val_frac": 0.15,
+  "originals_only_eval": true,
+  "classes": [
+    "anomaly",
+    "normal"
+  ],
+  "class_to_idx": {
+    "anomaly": 0,
+    "normal": 1
+  },
+  "n_train": 826,
+  "n_val": 70,
+  "n_test": 70,
+  "per_class": {
+    "anomaly": {
+      "groups": 91,
+      "train": {
+        "orig": 63,
+        "aug": 504
+      },
+      "val": {
+        "orig": 14,
+        "aug": 0
+      },
+      "test": {
+        "orig": 14,
+        "aug": 0
+      }
+    },
+    "normal": {
+      "groups": 371,
+      "train": {
+        "orig": 259,
+        "aug": 0
+      },
+      "val": {
+        "orig": 56,
+        "aug": 0
+      },
+      "test": {
+        "orig": 56,
+        "aug": 0
+      }
+    }
+  },
+  "test_files": [
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-ibscl__41843519132a7748_jpg.rf.d5cafbf126e8893bcc167d045f1d5312_cls2_147_282.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-ibscl__41843519132a7748_jpg.rf.d5cafbf126e8893bcc167d045f1d5312_cls2_339_176.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-5jmfl__b0d90b656c179b75_jpg.rf.43fc1324da8bc88ac518cc8d71d46ce2_cls2_101_205.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\pseudo_inat_120366162_203570475_eye_0_c0.91.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-xqfiw__45e4604794830664_jpg.rf.c11f474c25d4b06a448861375f6827cf_cls2_176_427.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-xqfiw__1031f05ac7676a25_jpg.rf.064693dbd36a50a534d3548b04e95f9f_cls2_378_399.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-xqfiw__45e4604794830664_jpg.rf.8721920375b12558f1e2c0966d249e19_cls2_429_177.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\inat_328350159_594972962_cls2_286_215.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-5jmfl__99cab1085ece4648_jpg.rf.e762f99bf96fd8b27101ad6d5ef977dc_cls2_0_0.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\inat_55134326_87773374_cls2_150_157.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\inat_64557654_103804661_cls2_285_94.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\alpaca-gkbmi__1a407de97211d879_jpg.rf.76ea559cfa802c3d6c719ca611f995a7_cls2_257_244.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\pseudo_inat_45265653_71771272_eye_0_c0.95.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\anomaly\\pseudo_inat_73335332_119710755_eye_1_c0.96.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_264763611_475460046_cls2_142_162.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-ofxv9__58fe0c3cfae4d080_jpg.rf.f10e60dae05fdc6753aa58f4e306607c_cls2_419_471.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_131738238_224232888_cls2_150_125.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_114509805_193331010_cls2_84_77.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_113749085_192154917_cls2_196_160.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_158943101_274617767_cls2_269_91.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-ofxv9__24b9fb051f8cdfa2_jpg.rf.1055b0ac25774f121edb0f0da2ddc6c9_cls2_369_206.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_277723474_498669970_cls2_252_239.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_307057083_553794126_cls2_341_249.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_100941953_168528056_cls2_187_198.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_137064309_234021462_cls2_230_198.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-zehtv__252831997f49eeef_jpg.rf.1355993f192c7d43faf9dedc843a1b86_cls2_439_131.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-xqfiw__678a41eecdcdc1d7_jpg.rf.34360b066eb0a1f51ef62314a1434eab_cls2_371_274.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-5jmfl__257a683950ebc058_jpg.rf.1a421fbe20e52a0ec15e968ffddb5e08_cls2_173_42.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_285765266_513662119_cls2_155_307.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-xqfiw__be3165e447f1caa5_jpg.rf.f84052872cb5efd1f4ed6eda3f22d7ae_cls2_269_171.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_173056684_300492631_cls2_385_195.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-zehtv__b11c644804bf9b9d_jpg.rf.b285ce460d2b19177a1d96676135128f_cls2_255_329.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_200995257_354725654_cls2_120_307.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-gkbmi__0f9c46b29eced4b4_jpg.rf.99bbb1a111e4eda0a8ca26eb25491239_cls2_409_210.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_91971363_152209449_cls2_315_125.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_237400603_422497446_cls2_233_159.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_128217551_217768099_cls2_87_101.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-xqfiw__852773e14323c633_jpg.rf.9758f3fa627ed9f2a9ddbc23f9db98ed_cls2_261_178.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-zehtv__1242ba953cd74e4b_jpg.rf.2a97866d3ea3356b5c7583526527030c_cls2_460_512.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_324305736_586954601_cls2_414_71.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-5jmfl__a61a3457fef5902b_jpg.rf.383f6b3f6dd6c33623e6e03d862c3861_cls2_383_276.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-xqfiw__57337257d10d1c45_jpg.rf.ac92582115a5138d8ae0ec31e06373ec_cls2_338_274.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-5jmfl__fe3446cf48fb8233_jpg.rf.90860ebba9ebefb9d83273fa9c40e6a2_cls2_223_272.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-ofxv9__0b4a78d8d865d5e7_jpg.rf.caa85209a9bd609733a676ef59c78092_cls2_345_169.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-5jmfl__00ad17d214e32d2b_jpg.rf.797eed3d81fc9c9134263aadfa9b344c_cls2_0_198.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_207621774_367264828_cls2_7_183.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-5jmfl__be3165e447f1caa5_jpg.rf.2d729cc0754ae9146fc1b039d1fd56f6_cls2_325_169.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_114509805_193331010_cls2_135_74.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-xqfiw__8030c66a7c2e4db4_jpg.rf.fdbea95ee325b710a2b91c8f3c97ce0a_cls2_127_296.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_221740173_392709830_cls2_306_156.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_142107313_243582838_cls2_241_176.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_131739654_224234807_cls2_181_157.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-xqfiw__8b2acfbdda201cc5_jpg.rf.96a136aec3b3a03964b6c25aeb41dd09_cls2_419_389.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-xqfiw__852773e14323c633_jpg.rf.723b0eed04278b552da08fa913a3f3a1_cls2_423_260.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-zehtv__252831997f49eeef_jpg.rf.a66b903c165a16dd0929939e88f6ed45_cls2_235_130.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_298345766_537392335_cls2_207_265.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-5jmfl__475481b3737b7d38_jpg.rf.5d83f083195a8a6db56d50027f7f0376_cls2_390_6.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_1096642_1378306_cls2_266_119.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_193567862_340049246_cls2_351_96.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_66208915_106677367_cls2_303_286.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-5jmfl__9a8bf2bec0d3c615_jpg.rf.05df5e67f8e57f9c59d7112c9c95eb45_cls2_490_0.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-ofxv9__87c6f20234f49d52_jpg.rf.5b5c0ec674cac8c53501e1f87130a5a3_cls2_174_103.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_191089802_335140964_cls2_200_242.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-epqna__1ba9f11998378ade_jpg.rf.46b682cd442dadaaa4c2b3bbcd4b993a_cls2_197_107.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_281769016_506188831_cls2_293_246.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_134700431_229646273_cls2_155_200.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\alpaca-ibscl__35a1e87701161b4a_jpg.rf.82d63832b367647c80fc4e13c8250249_cls2_122_198.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_233290027_414581261_cls2_275_170.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_191547178_336058390_cls2_335_101.jpg",
+    "D:\\Research-Dev\\AUP_Papers\\05.-alpacavision-ai\\data\\crops\\eyes\\normal\\inat_25902021_40172035_cls2_299_69.jpg"
+  ]
+}

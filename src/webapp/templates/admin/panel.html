@@ -1,0 +1,459 @@
+{% extends "dashboard/layout.html" %}
+{% block page_title %}Admin{% endblock %}
+{% block page_title_mobile %}Admin{% endblock %}
+
+{% block content %}
+<div class="p-5 max-w-4xl mx-auto animate-fade-up" x-data="adminPanel()" x-init="init()">
+
+  {# ── HEADER ───────────────────────────────────────────────────── #}
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <div class="flex items-center gap-2 mb-1.5">
+        <span class="px-2 py-0.5 text-[11px] font-medium rounded-full bg-brand/10 text-brand border border-brand/20">Super Admin</span>
+      </div>
+      <h1 class="text-xl font-semibold text-white">Configuración de Plataforma</h1>
+      <p class="text-zinc-500 text-sm mt-0.5">White-label · personalización del sistema</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <span x-show="saveStatus === 'saved'" x-cloak
+            x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-end="opacity-0"
+            class="flex items-center gap-1 text-xs text-emerald-400 font-medium">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        Guardado
+      </span>
+      <button @click="saveAll()" :disabled="saving"
+              :class="saving ? 'opacity-50 cursor-not-allowed' : 'hover:bg-brand-light hover:-translate-y-px active:translate-y-0'"
+              class="flex items-center gap-1.5 px-4 py-2 bg-brand text-black font-semibold rounded-xl transition-all text-sm shadow-lg shadow-brand/20">
+        <span x-show="!saving" class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          Guardar
+        </span>
+        <span x-show="saving" class="flex items-center gap-1.5">
+          <svg class="animate-spin w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/></svg>
+          Guardando
+        </span>
+      </button>
+    </div>
+  </div>
+
+  {# ── TABS ─────────────────────────────────────────────────────── #}
+  <div class="flex gap-1 p-1 bg-zinc-900 border border-zinc-800 rounded-xl mb-5 overflow-x-auto scrollbar-thin">
+    {% set tabs = [
+      ('brand',  'Marca',       'M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42'),
+      ('home',   'Inicio',      'M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'),
+      ('nav',    'Navegación',  'M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25'),
+      ('footer', 'Footer',      'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z'),
+      ('system', 'Sistema',     'M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z M15 12a3 3 0 11-6 0 3 3 0 016 0z'),
+      ('adv',    'Avanzado',    'M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z'),
+    ] %}
+    {% for id, label, path in tabs %}
+    <button @click="tab='{{ id }}'"
+            :class="tab==='{{ id }}' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-600 hover:text-zinc-300'"
+            class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex-shrink-0">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="{{ path }}"/>
+      </svg>
+      {{ label }}
+    </button>
+    {% endfor %}
+  </div>
+
+  {# ── shared input classes ──#}
+  {# We use a JS variable below and reference via :class for transitions #}
+
+  {# ═══ MARCA ══════════════════════════════════════════════════ #}
+  <div x-show="tab==='brand'" x-cloak
+       x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="space-y-4">
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40">
+          <h2 class="text-sm font-medium text-zinc-300">Identidad visual</h2>
+        </div>
+        <div class="p-5 grid md:grid-cols-2 gap-5">
+          <div class="space-y-4">
+            <div class="space-y-1.5">
+              <label class="text-xs text-zinc-500">Nombre del sitio</label>
+              <input x-model="cfg.site_name" type="text" placeholder="AlpacaVision AI"
+                     class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/20 transition-all"/>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs text-zinc-500">Badge / Iniciales <span class="text-zinc-700">(máx 7 chars)</span></label>
+              <input x-model="cfg.site_badge" type="text" maxlength="7" placeholder="AV"
+                     class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white font-mono placeholder-zinc-600 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/20 transition-all"/>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs text-zinc-500">Tagline</label>
+              <input x-model="cfg.site_tagline" type="text"
+                     class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/20 transition-all"/>
+            </div>
+          </div>
+          {# Live preview #}
+          <div class="flex items-center justify-center p-6 rounded-xl bg-zinc-800/30 border border-zinc-700/40">
+            <div class="text-center space-y-2">
+              <div class="flex items-center gap-2 justify-center">
+                <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-black font-bold text-xs"
+                     x-text="(cfg.site_badge||'AV').slice(0,2)"></div>
+                <span class="text-white font-semibold text-sm" x-text="cfg.site_name||'AlpacaVision AI'"></span>
+              </div>
+              <p class="text-zinc-500 text-xs" x-text="cfg.site_tagline"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40">
+          <h2 class="text-sm font-medium text-zinc-300">Imágenes</h2>
+        </div>
+        <div class="p-5 grid sm:grid-cols-2 gap-4">
+          {% for key, label, hint in [
+            ('logo_url',             'Logo principal',      'PNG/SVG, fondo transparente'),
+            ('favicon_url',          'Favicon',             'ICO o PNG 32×32'),
+            ('institution_logo_url', 'Logo institución',    'Universidad o entidad'),
+            ('cover_image_url',      'Imagen de portada',   'Hero o banner'),
+          ] %}
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">{{ label }}</label>
+            <div class="flex gap-2">
+              <input x-model="cfg.{{ key }}" type="text" placeholder="/static/uploads/..."
+                     class="flex-1 min-w-0 px-3 py-2 rounded-xl bg-zinc-800/60 border border-zinc-700 text-xs text-zinc-400 placeholder-zinc-700 focus:outline-none focus:border-brand transition-all"/>
+              <label class="w-9 h-9 flex items-center justify-center rounded-xl bg-zinc-800 border border-zinc-700 cursor-pointer hover:border-zinc-500 hover:bg-zinc-700 transition-all flex-shrink-0">
+                <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+                <input type="file" accept="image/*" class="hidden" @change="uploadImage($event, '{{ key }}')"/>
+              </label>
+            </div>
+            <p class="text-[10px] text-zinc-700">{{ hint }}</p>
+            <template x-if="cfg.{{ key }}">
+              <img :src="cfg.{{ key }}" class="h-8 rounded-lg object-contain bg-zinc-800/60 p-1 mt-1"/>
+            </template>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ═══ INICIO ══════════════════════════════════════════════════ #}
+  <div x-show="tab==='home'" x-cloak
+       x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="space-y-4">
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40"><h2 class="text-sm font-medium text-zinc-300">Hero</h2></div>
+        <div class="p-5 space-y-4">
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">Badge de estado</label>
+            <input x-model="cfg.hero_badge_text" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/20 transition-all"/>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">Título principal <span class="text-zinc-700">(\n = salto de línea)</span></label>
+            <textarea x-model="cfg.hero_title" rows="2"
+                      class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/20 transition-all resize-none"></textarea>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">Descripción</label>
+            <textarea x-model="cfg.hero_description" rows="3"
+                      class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/20 transition-all resize-none"></textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1.5">
+              <label class="text-xs text-zinc-500">CTA primario</label>
+              <input x-model="cfg.hero_cta_primary" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand transition-all"/>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs text-zinc-500">CTA secundario</label>
+              <input x-model="cfg.hero_cta_secondary" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand transition-all"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40"><h2 class="text-sm font-medium text-zinc-300">Métricas</h2></div>
+        <div class="p-5 grid grid-cols-2 gap-3">
+          {% for n in range(1, 5) %}
+          <div class="flex gap-2">
+            <input x-model="cfg.metric_{{ n }}_value" type="text" placeholder="0.913"
+                   class="w-20 px-3 py-2 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white font-mono focus:outline-none focus:border-brand transition-all flex-shrink-0"/>
+            <input x-model="cfg.metric_{{ n }}_label" type="text" placeholder="Etiqueta"
+                   class="flex-1 min-w-0 px-3 py-2 rounded-xl bg-zinc-800/60 border border-zinc-700 text-xs text-zinc-300 focus:outline-none focus:border-brand transition-all"/>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {# Banner de anuncio #}
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40 flex items-center justify-between">
+          <h2 class="text-sm font-medium text-zinc-300">Banner de anuncio</h2>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <div class="relative">
+              <input type="checkbox" :checked="cfg.announcement_enabled === 'true'"
+                     @change="cfg.announcement_enabled = $event.target.checked ? 'true' : 'false'" class="sr-only"/>
+              <div :class="cfg.announcement_enabled === 'true' ? 'bg-brand' : 'bg-zinc-700'"
+                   class="w-8 h-4 rounded-full transition-colors duration-200"></div>
+              <div :class="cfg.announcement_enabled === 'true' ? 'translate-x-4' : 'translate-x-0.5'"
+                   class="absolute top-0.5 w-3 h-3 bg-white rounded-full shadow-sm transition-transform duration-200"></div>
+            </div>
+            <span class="text-xs text-zinc-500" x-text="cfg.announcement_enabled === 'true' ? 'Activo' : 'Inactivo'"></span>
+          </label>
+        </div>
+        <div class="p-5 space-y-4">
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">Texto del banner</label>
+            <input x-model="cfg.announcement_text" type="text" placeholder="¡Novedad disponible!"
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-brand transition-all"/>
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs text-zinc-500">Color</label>
+            <div class="flex gap-2">
+              {% for c, cls, _ in [('brand','bg-brand',''),('red','bg-red-500',''),('amber','bg-amber-500',''),('blue','bg-blue-500','')] %}
+              <button @click="cfg.announcement_color='{{ c }}'"
+                      :class="cfg.announcement_color==='{{ c }}' ? 'ring-2 ring-white ring-offset-1 ring-offset-zinc-900 scale-110' : ''"
+                      class="{{ cls }} w-6 h-6 rounded-full transition-all duration-150"></button>
+              {% endfor %}
+            </div>
+          </div>
+          <template x-if="cfg.announcement_text">
+            <div :class="{'bg-brand text-black':cfg.announcement_color==='brand','bg-red-500 text-white':cfg.announcement_color==='red','bg-amber-500 text-black':cfg.announcement_color==='amber','bg-blue-500 text-white':cfg.announcement_color==='blue'}"
+                 class="text-center py-1.5 px-4 text-xs font-medium rounded-lg">
+              <span x-text="cfg.announcement_text"></span>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ═══ NAVEGACIÓN ══════════════════════════════════════════════ #}
+  <div x-show="tab==='nav'" x-cloak
+       x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+      <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40 flex items-center justify-between">
+        <h2 class="text-sm font-medium text-zinc-300">Items del menú</h2>
+        <button @click="addNavItem()"
+                class="flex items-center gap-1 text-xs text-brand hover:text-brand-light transition-colors font-medium">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+          Añadir
+        </button>
+      </div>
+      <div class="p-5 space-y-2">
+        <template x-for="(item, i) in navItems" :key="i">
+          <div class="flex items-center gap-2 animate-fade-up">
+            <div class="text-zinc-700 cursor-grab select-none px-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+            </div>
+            <input x-model="item.label" type="text" placeholder="Etiqueta"
+                   class="flex-1 px-3 py-2 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-brand transition-all"/>
+            <input x-model="item.href" type="text" placeholder="#section"
+                   class="flex-1 px-3 py-2 rounded-xl bg-zinc-800/60 border border-zinc-700 text-xs text-zinc-400 font-mono placeholder-zinc-700 focus:outline-none focus:border-brand transition-all"/>
+            <button @click="removeNavItem(i)"
+                    class="w-8 h-8 flex items-center justify-center text-zinc-700 hover:text-red-400 hover:bg-red-950/30 rounded-lg transition-all">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </template>
+        <template x-if="navItems.length === 0">
+          <p class="text-zinc-700 text-sm text-center py-6">Sin items. Haz clic en "+ Añadir".</p>
+        </template>
+      </div>
+    </div>
+  </div>
+
+  {# ═══ FOOTER ══════════════════════════════════════════════════ #}
+  <div x-show="tab==='footer'" x-cloak
+       x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="space-y-4">
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40"><h2 class="text-sm font-medium text-zinc-300">Contenido</h2></div>
+        <div class="p-5 space-y-4">
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">Descripción</label>
+            <textarea x-model="cfg.footer_description" rows="2"
+                      class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand transition-all resize-none"></textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1.5">
+              <label class="text-xs text-zinc-500">Institución</label>
+              <input x-model="cfg.footer_institution" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand transition-all"/>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs text-zinc-500">Contacto</label>
+              <input x-model="cfg.footer_contact" type="text" placeholder="email@ejemplo.com" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand transition-all"/>
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">Copyright</label>
+            <input x-model="cfg.footer_copyright" type="text" placeholder="2025 Mi Organización" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand transition-all"/>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40"><h2 class="text-sm font-medium text-zinc-300">Redes sociales</h2></div>
+        <div class="p-5 grid grid-cols-2 gap-3">
+          {% for key, label, ph in [('social_github','GitHub','https://github.com/...'),('social_twitter','Twitter/X','https://twitter.com/...'),('social_instagram','Instagram','https://instagram.com/...'),('social_facebook','Facebook','https://facebook.com/...')] %}
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">{{ label }}</label>
+            <input x-model="cfg.{{ key }}" type="url" placeholder="{{ ph }}"
+                   class="w-full px-3 py-2 rounded-xl bg-zinc-800/60 border border-zinc-700 text-xs text-zinc-400 placeholder-zinc-700 focus:outline-none focus:border-brand transition-all"/>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ═══ SISTEMA ═════════════════════════════════════════════════ #}
+  <div x-show="tab==='system'" x-cloak
+       x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="space-y-4">
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40 flex items-center justify-between">
+          <div>
+            <h2 class="text-sm font-medium text-zinc-300">Modo mantenimiento</h2>
+            <p class="text-xs text-zinc-600 mt-0.5">Muestra página de mantenimiento a todos los usuarios</p>
+          </div>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <div class="relative">
+              <input type="checkbox" :checked="cfg.maintenance_mode === 'true'"
+                     @change="cfg.maintenance_mode = $event.target.checked ? 'true' : 'false'" class="sr-only"/>
+              <div :class="cfg.maintenance_mode === 'true' ? 'bg-red-500' : 'bg-zinc-700'"
+                   class="w-10 h-5 rounded-full transition-colors duration-200"></div>
+              <div :class="cfg.maintenance_mode === 'true' ? 'translate-x-5' : 'translate-x-0.5'"
+                   class="absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-200"></div>
+            </div>
+            <span class="text-xs font-medium" :class="cfg.maintenance_mode === 'true' ? 'text-red-400' : 'text-zinc-600'"
+                  x-text="cfg.maintenance_mode === 'true' ? 'ACTIVO' : 'Inactivo'"></span>
+          </label>
+        </div>
+        <div class="p-5 space-y-4">
+          <div class="space-y-1.5">
+            <label class="text-xs text-zinc-500">Mensaje</label>
+            <textarea x-model="cfg.maintenance_message" rows="2"
+                      class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white focus:outline-none focus:border-brand transition-all resize-none"></textarea>
+          </div>
+          <template x-if="cfg.maintenance_mode === 'true'">
+            <div class="flex items-center gap-2 p-3 rounded-xl bg-red-950/30 border border-red-900/40">
+              <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+              <p class="text-xs text-red-400">Modo mantenimiento activo — los usuarios no podrán acceder.</p>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/40"><h2 class="text-sm font-medium text-zinc-300">Google Analytics</h2></div>
+        <div class="p-5 space-y-1.5">
+          <label class="text-xs text-zinc-500">ID de medición GA4</label>
+          <input x-model="cfg.ga4_id" type="text" placeholder="G-XXXXXXXXXX"
+                 class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white font-mono placeholder-zinc-600 focus:outline-none focus:border-brand transition-all"/>
+          <p class="text-[10px] text-zinc-700">Deja vacío para deshabilitar el tracking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ═══ AVANZADO ════════════════════════════════════════════════ #}
+  <div x-show="tab==='adv'" x-cloak
+       x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="space-y-4">
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+        <h2 class="text-sm font-medium text-zinc-300 mb-4">Estado del sistema</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl bg-zinc-800/50 border border-zinc-700/30">
+            <div class="text-[11px] text-zinc-600 mb-1">Claves configuradas</div>
+            <div class="text-lg font-bold text-white tabular-nums" x-text="Object.keys(cfg).length"></div>
+          </div>
+          <div class="p-3 rounded-xl bg-zinc-800/50 border border-zinc-700/30">
+            <div class="text-[11px] text-zinc-600 mb-1">Mantenimiento</div>
+            <div class="text-sm font-medium" :class="cfg.maintenance_mode === 'true' ? 'text-red-400' : 'text-emerald-400'"
+                 x-text="cfg.maintenance_mode === 'true' ? 'Activo' : 'Inactivo'"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-red-900/40 bg-red-950/10 overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-red-900/30">
+          <h2 class="text-sm font-medium text-red-400">Zona peligrosa</h2>
+          <p class="text-xs text-zinc-600 mt-0.5">Acciones irreversibles — proceder con cuidado</p>
+        </div>
+        <div class="p-5">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="text-sm font-medium text-zinc-300">Restablecer configuración</div>
+              <p class="text-xs text-zinc-600 mt-0.5 max-w-xs">Elimina todos los valores personalizados y restaura los valores por defecto del sistema.</p>
+            </div>
+            <button @click="resetConfig()"
+                    class="flex-shrink-0 flex items-center gap-1.5 px-3.5 py-2 bg-red-950 border border-red-800/60 text-red-300 text-xs font-medium rounded-xl hover:bg-red-900 transition-all">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+              Restablecer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const CSRF_TOKEN = "{{ csrf_token() }}";
+function adminPanel() {
+  return {
+    tab: 'brand', saving: false, saveStatus: '',
+    cfg: {}, navItems: [],
+
+    async init() {
+      try {
+        const r = await fetch('/admin/api/config/all');
+        this.cfg = await r.json();
+        try { this.navItems = JSON.parse(this.cfg.nav_items || '[]'); } catch { this.navItems = []; }
+      } catch(e) { console.error('Config load error:', e); }
+    },
+    addNavItem() { this.navItems.push({ label: '', href: '' }); },
+    removeNavItem(i) { this.navItems.splice(i, 1); },
+
+    async uploadImage(event, key) {
+      const file = event.target.files[0]; if (!file) return;
+      const fd = new FormData(); fd.append('file', file);
+      try {
+        const r = await fetch(`/admin/api/config/upload/${key}`, {
+          method: 'POST', headers: { 'X-CSRFToken': CSRF_TOKEN }, body: fd,
+        });
+        const d = await r.json();
+        if (d.ok) this.cfg[key] = d.url; else alert(d.error || 'Error subiendo imagen');
+      } catch(e) { alert('Error: ' + e.message); }
+    },
+
+    async saveAll() {
+      if (this.saving) return;
+      this.saving = true; this.saveStatus = '';
+      this.cfg.nav_items = JSON.stringify(this.navItems);
+      try {
+        const r = await fetch('/admin/api/config/bulk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-CSRFToken': CSRF_TOKEN },
+          body: JSON.stringify(this.cfg),
+        });
+        const d = await r.json();
+        if (d.ok) { this.saveStatus = 'saved'; setTimeout(() => this.saveStatus = '', 3000); }
+        else alert('Error al guardar');
+      } catch(e) { alert('Error de red: ' + e.message); }
+      finally { this.saving = false; }
+    },
+
+    async resetConfig() {
+      if (!confirm('¿Seguro? Se eliminarán TODAS las personalizaciones.')) return;
+      try {
+        await fetch('/admin/api/config/reset', {
+          method: 'POST', headers: { 'X-CSRFToken': CSRF_TOKEN }
+        });
+        await this.init();
+        this.saveStatus = 'saved'; setTimeout(() => this.saveStatus = '', 3000);
+      } catch(e) { alert('Error: ' + e.message); }
+    },
+  };
+}
+</script>
+{% endblock %}

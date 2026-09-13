@@ -1,0 +1,1 @@
+{"weights":"models/detector/best_clean.pt","model":"yolo11n","split":"test","mAP50":0.860,"mAP50_95":0.693,"precision":0.913,"recall":0.731}

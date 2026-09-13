@@ -1,0 +1,28 @@
+============================================================
+AlpacaVision AI — Stage 1 Evaluation Report
+============================================================
+
+Model: YOLOv11n (2.58M params, 6.3 GFLOPs)
+Dataset: Stage 1 — 1 clase: alpaca
+  Train: 2164 imágenes | Val: 458 | Test: 466
+
+── Training Results ────────────────────────────────────
+Total Epochs:       80
+Best Epoch:         80
+Best mAP50 (val):   0.9198
+
+── Test Set Results ────────────────────────────────────
+mAP50:              0.9129
+mAP50-95:           0.7769
+Precision:          0.9335
+Recall:             0.8465
+
+── Export ──────────────────────────────────────────────
+best.pt:            models/detector/best.pt
+ONNX:               D:\Research-Dev\AUP_Articulos_Inves\alpacavision-ai\models\detector\best.onnx
+
+── Figures ─────────────────────────────────────────────
+  outputs/figures/stage1_training_curves.png
+  outputs/figures/stage1_test_eval/
+
+============================================================

@@ -1,0 +1,95 @@
+# ---------------------------------------------------------------------------
+# AlpacaVision AI — .gitignore
+# Public repo = code + configs + paper sources + metrics JSON.
+# Heavy artefacts (data, models, venvs) live on Zenodo / GitHub Releases.
+# ---------------------------------------------------------------------------
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments (Windows venv/ and Linux .venv-linux/)
+venv/
+env/
+.conda/
+.venv/
+.venv-linux/
+
+# Secrets — never commit
+.env
+*.key
+kaggle.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Tooling cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Data — all of it is heavy; goes to Zenodo (CC BY 4.0), never to git
+data/
+
+# Trained models & exports — go to GitHub Releases / Hugging Face
+models/**/*.pt
+models/**/*.onnx
+models/**/*.tflite
+models/pretrained/
+
+# Outputs — ignore heavy run data, KEEP figures + metrics JSON for the paper
+outputs/training_runs/
+outputs/predictions/
+outputs/reports/
+outputs/figures/stage1_test_eval/
+!outputs/figures/
+
+# Ultralytics run dirs & logs
+runs/
+logs/
+*.log
+
+# Root-level stray weights / archives
+/*.pt
+/*.onnx
+*.zip
+*.tar.gz
+
+# Paper / manuscript — kept LOCAL only. This is a code repository; the
+# manuscript, figures, cover letter, poster and supplementary do not belong here.
+paper/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local office drafts and reference PDFs (Anexos, accepted-paper samples) — not part of the code repo
+/*.docx
+/*.png
+/*.pdf
+
+# Legacy / archived (superseded files kept locally, not published)
+**/legacy/
+INICIAR.bat
+_local/
+NuevasImagenes/
+
+# Internal / Spanish working docs — kept local, not part of the public English repo
+docs/ESTADO_PAPER.md
+docs/ARRANCAR_SESION.md
+docs/PLAN_SIGUIENTE_NIVEL.md
+docs/PRECRIBADO_IA_batch01.md
+docs/INSTRUCCIONES_VETERINARIO.md
+docs/annotation_guide_stage2.md
+docs/CLASIFICACION_OCULAR_VET.md
+
+# Ultralytics stray download dir
+weights/

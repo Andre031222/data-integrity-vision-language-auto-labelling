@@ -1,0 +1,9 @@
+{
+  "weights": "models/detector/best_clean.pt",
+  "data": "config/dataset_stage1_clean.yaml",
+  "split": "test",
+  "mAP50": 0.8598433162069418,
+  "mAP50_95": 0.6930251483114852,
+  "precision": 0.9125496996453166,
+  "recall": 0.7309236947791165
+}

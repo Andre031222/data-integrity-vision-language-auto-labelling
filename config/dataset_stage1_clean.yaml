@@ -1,0 +1,9 @@
+# AlpacaVision AI -- Etapa 1 LIMPIA (sin duplicados ni leakage)
+path: ./data/annotated_clean
+train: images/train
+val:   images/val
+test:  images/test
+
+nc: 1
+names:
+  0: alpaca

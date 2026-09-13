@@ -1,0 +1,62 @@
+{
+  "plain": {
+    "0": {
+      "pairs": 539,
+      "cross_split": 248,
+      "train_test": 112,
+      "test_contaminated": 105,
+      "test_pct": 34.1
+    },
+    "2": {
+      "pairs": 695,
+      "cross_split": 324,
+      "train_test": 147,
+      "test_contaminated": 130,
+      "test_pct": 42.2
+    },
+    "6": {
+      "pairs": 747,
+      "cross_split": 348,
+      "train_test": 161,
+      "test_contaminated": 134,
+      "test_pct": 43.5
+    },
+    "10": {
+      "pairs": 754,
+      "cross_split": 352,
+      "train_test": 165,
+      "test_contaminated": 135,
+      "test_pct": 43.8
+    }
+  },
+  "dihedral": {
+    "0": {
+      "pairs": 1886,
+      "cross_split": 865,
+      "train_test": 409,
+      "test_contaminated": 223,
+      "test_pct": 72.4
+    },
+    "2": {
+      "pairs": 2600,
+      "cross_split": 1180,
+      "train_test": 534,
+      "test_contaminated": 251,
+      "test_pct": 81.5
+    },
+    "6": {
+      "pairs": 2788,
+      "cross_split": 1260,
+      "train_test": 576,
+      "test_contaminated": 257,
+      "test_pct": 83.4
+    },
+    "10": {
+      "pairs": 2812,
+      "cross_split": 1272,
+      "train_test": 587,
+      "test_contaminated": 258,
+      "test_pct": 83.8
+    }
+  }
+}

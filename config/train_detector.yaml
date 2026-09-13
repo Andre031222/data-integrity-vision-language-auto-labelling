@@ -1,0 +1,38 @@
+# AlpacaVision AI — Hiperparámetros Detector YOLOv11
+
+model: yolo11n.pt          # nano para prototipo rápido; cambiar a yolo11s/m para producción
+data: config/dataset.yaml
+epochs: 100
+patience: 20
+batch: 16                  # Reducir a 8 si hay OOM en GPU
+imgsz: 640
+device: 0                  # 0 = GPU; 'cpu' si no hay GPU
+workers: 4
+project: outputs/training_runs
+name: detector_v1
+save: true
+save_period: 10
+val: true
+plots: true
+
+# Aumentación
+augment: true
+hsv_h: 0.015
+hsv_s: 0.7
+hsv_v: 0.4
+degrees: 10.0
+translate: 0.1
+scale: 0.5
+flipud: 0.0
+fliplr: 0.5
+mosaic: 1.0
+mixup: 0.1
+copy_paste: 0.1
+
+# Optimizador
+optimizer: AdamW
+lr0: 0.001
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3.0

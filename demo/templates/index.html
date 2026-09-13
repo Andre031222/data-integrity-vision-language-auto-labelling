@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>paqocha vision</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b5e43' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><path d='M6.3 21l-.5-8.6c-.05-.9-.5-1.4-1.1-1.8-.8-.5-1-1.6-.4-2.3.3-.4.9-.6 1.4-.4l.2-3.2c.03-.5.6-.7 1-.3l.9 1 .9-1c.4-.4 1-.2 1 .3l.2 3.5c1.6.3 2.7 1.7 2.8 3.4'/><path d='M12.7 12.3l3.2.2c1.8.1 3.1 1.6 3.2 3.4l.3 4.9'/><path d='M9.5 14.4 9.9 21'/><path d='M15.7 16.2 16 21'/></svg>">
+<style>
+  :root{
+    --paper:#faf9f5; --card:#ffffff; --ink:#1b201c; --muted:#6a7770; --faint:#8b978f;
+    --line:#e6e6dd; --line2:#f0f0e9;
+    --accent:#1b5e43; --accent-2:#2f8a62; --accent-soft:#eaf3ee; --accent-ink:#164e39;
+    --bar:#12241c; --barink:#e9f3ee;
+    --amber-bg:#fbf7ee; --amber-line:#ecdfc4; --amber-ink:#7c6326; --amber-ic:#b8860b;
+    --serif:"Iowan Old Style","Palatino Linotype","Palatino","Charter","Georgia","Times New Roman",serif;
+    --sans:"Inter","SF Pro Text",system-ui,-apple-system,"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","Menlo","Consolas",ui-monospace,monospace;
+    --r:10px;
+  }
+  :root[data-theme="dark"]{
+    --paper:#0f1311; --card:#151b17; --ink:#e7efe9; --muted:#93a29a; --faint:#6f7d75;
+    --line:#242e28; --line2:#1a221d;
+    --accent:#43c088; --accent-2:#5fd3a0; --accent-soft:#12241c; --accent-ink:#8ee3bd;
+    --bar:#0b120e; --barink:#dcefe4;
+    --amber-bg:#1b1710; --amber-line:#372d19; --amber-ink:#d3b579; --amber-ic:#e0a733;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:var(--sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+       color:var(--ink);background:var(--paper);line-height:1.55;font-size:16px}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .ico{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+  /* institutional strip */
+  .instbar{background:var(--bar);color:var(--barink)}
+  .instbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;
+       padding:7px 24px;font-size:11.5px;letter-spacing:.02em}
+  .instbar .aff{opacity:.9;text-transform:uppercase;letter-spacing:.08em;font-size:10.5px}
+  .tg{display:flex;gap:7px;align-items:center}
+  .tg button{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--barink);cursor:pointer;
+       background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:6px;
+       height:26px;min-width:26px;padding:0 8px;display:inline-flex;align-items:center;justify-content:center}
+  .tg button:hover{background:rgba(255,255,255,.16)}
+  .tg .ico{width:14px;height:14px;stroke:currentColor}
+
+  /* masthead */
+  header{border-bottom:1px solid var(--line);background:var(--card)}
+  header .wrap{padding:26px 24px 24px}
+  .brand{display:flex;align-items:center;gap:15px}
+  .mark{width:46px;height:46px;border-radius:11px;background:var(--accent-soft);
+        border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line));
+        display:flex;align-items:center;justify-content:center;color:var(--accent)}
+  .mark .ico{width:27px;height:27px;stroke-width:1.55}
+  h1.title{margin:0;font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-0.01em;line-height:1}
+  .brand .sub{margin:5px 0 0;color:var(--muted);font-size:14px}
+  .lead{margin:16px 0 0;max-width:660px;color:var(--muted);font-size:15px}
+  .lead strong{color:var(--ink)}
+
+  /* model-card metric strip */
+  .metrics{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);
+           border-radius:var(--r);overflow:hidden;margin-top:20px;background:var(--line)}
+  .metric{background:var(--card);padding:12px 15px}
+  .metric+.metric{border-left:1px solid var(--line)}
+  .metric .k{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  .metric .v{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--ink);margin-top:4px}
+  .metric .v small{font-size:12px;color:var(--muted);font-weight:500}
+
+  main{padding:24px 0 56px}
+  .grid{display:grid;grid-template-columns:0.92fr 1.08fr;gap:20px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+  .phead{display:flex;align-items:center;gap:8px;padding:13px 18px;border-bottom:1px solid var(--line2)}
+  .phead .t{font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:.01em}
+  .phead .n{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--accent);
+       background:var(--accent-soft);border-radius:20px;padding:2px 10px}
+  .pbody{padding:18px}
+
+  .drop{border:1.5px dashed color-mix(in srgb,var(--accent) 26%,var(--line));border-radius:var(--r);
+        padding:32px 18px;text-align:center;cursor:pointer;transition:.16s;
+        background:color-mix(in srgb,var(--card) 60%,var(--paper));color:var(--muted)}
+  .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+  .drop .ico{width:30px;height:30px;stroke-width:1.5;margin-bottom:6px}
+  .drop p{margin:6px 0 0;font-size:14px}
+  .drop .hint{font-size:12px;color:var(--faint)}
+  .drop.has-img{padding:12px}
+  #preview{margin-top:12px}
+  #preview img{width:100%;border-radius:8px;border:1px solid var(--line);max-height:240px;object-fit:cover;display:block}
+  #preview .fname{margin:8px 0 0;font-size:11.5px;font-family:var(--mono);color:var(--muted);word-break:break-all;text-align:center}
+
+  .controls{margin-top:18px}
+  .controls .lab{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;
+       text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:600}
+  .controls .lab .val{font-family:var(--mono);font-size:16px;color:var(--accent);letter-spacing:0}
+  input[type=range]{width:100%;accent-color:var(--accent);height:4px;margin-top:10px}
+  button.primary{margin-top:18px;width:100%;background:var(--accent);color:#fff;border:0;border-radius:9px;
+       padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;
+       display:inline-flex;align-items:center;justify-content:center;gap:9px;letter-spacing:.01em}
+  button.primary .ico{width:18px;height:18px;stroke-width:2}
+  button.primary:hover{background:var(--accent-ink)} button.primary:disabled{opacity:.45;cursor:not-allowed}
+
+  .result img{width:100%;border-radius:8px;border:1px solid var(--line);display:block}
+  .placeholder{padding:46px 16px;text-align:center;color:var(--muted)}
+  .placeholder .ico{width:34px;height:34px;stroke-width:1.4;opacity:.5}
+  .placeholder p{margin:10px 0 0;font-size:13.5px}
+  .placeholder.spin .ico{display:none}
+  .spinner{width:24px;height:24px;border:2.5px solid var(--line);border-top-color:var(--accent);
+           border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .readout{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);
+           border-radius:8px;overflow:hidden;margin-top:16px;background:var(--line)}
+  .cell{background:var(--card);padding:11px 14px}
+  .cell+.cell{border-left:1px solid var(--line)}
+  .cell .k{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  .cell .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink);margin-top:2px}
+  table.det{width:100%;border-collapse:collapse;margin-top:16px;font-family:var(--mono);font-size:12px}
+  table.det th{text-align:left;color:var(--faint);font-weight:600;font-size:10px;text-transform:uppercase;
+       letter-spacing:.05em;padding:7px 8px;border-bottom:1.5px solid var(--line)}
+  table.det td{padding:7px 8px;border-bottom:1px solid var(--line2);color:var(--ink)}
+  table.det td .badge{background:var(--accent-soft);color:var(--accent-ink);border-radius:4px;padding:1px 7px;font-weight:600}
+
+  .err{display:flex;align-items:flex-start;gap:9px;background:color-mix(in srgb,#c0392b 10%,var(--card));
+       border:1px solid color-mix(in srgb,#c0392b 32%,var(--line));color:#b0392b;border-radius:8px;padding:10px 12px;font-size:13px;margin-top:12px}
+  .err .ico{width:17px;height:17px;stroke-width:2;margin-top:1px}
+  .aidesc{margin-top:16px;background:var(--amber-bg);border:1px solid var(--amber-line);border-radius:9px;padding:12px 14px}
+  .aidesc .head{display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;
+       text-transform:uppercase;letter-spacing:.06em;color:var(--amber-ink)}
+  .aidesc .head .ico{width:14px;height:14px;stroke-width:2;color:var(--amber-ic)}
+  .aidesc p{margin:8px 0 0;font-size:14px;color:var(--ink);line-height:1.5}
+  .aidesc .dis{margin-top:6px;font-size:11.5px;color:var(--muted);font-style:italic}
+
+  .note{margin-top:22px;padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--accent);
+       border-radius:8px;background:var(--card);font-size:13.5px;color:var(--muted);display:flex;gap:11px;align-items:flex-start}
+  .note .ico{width:17px;height:17px;stroke-width:1.8;margin-top:2px;color:var(--accent)}
+  .note strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);margin-top:8px;padding:22px 0;color:var(--muted);font-size:12.5px;text-align:center}
+  footer strong{color:var(--ink)}
+  img{max-width:100%;height:auto}
+
+  @media(max-width:820px){ .grid{grid-template-columns:1fr} .metrics{grid-template-columns:repeat(2,1fr)}
+    .metric:nth-child(2n){border-left:1px solid var(--line)} .instbar .aff{display:none} }
+  @media(max-width:460px){ h1.title{font-size:28px} .metric .v{font-size:18px} }
+</style>
+</head>
+<body>
+<div class="instbar">
+  <div class="wrap">
+    <span class="aff">Universidad Nacional del Altiplano de Puno · Ing. Estadística e Informática</span>
+    <div class="tg">
+      <button id="langBtn" title="Language">ES</button>
+      <button id="themeBtn" title="Theme"><svg class="ico" id="themeIco" viewBox="0 0 24 24"></svg></button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <div class="brand htop">
+      <div class="mark">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M6.3 21l-.5-8.6c-.05-.9-.5-1.4-1.1-1.8-.8-.5-1-1.6-.4-2.3.3-.4.9-.6 1.4-.4l.2-3.2c.03-.5.6-.7 1-.3l.9 1 .9-1c.4-.4 1-.2 1 .3l.2 3.5c1.6.3 2.7 1.7 2.8 3.4"/><path d="M12.7 12.3l3.2.2c1.8.1 3.1 1.6 3.2 3.4l.3 4.9"/><path d="M9.5 14.4 9.9 21"/><path d="M15.7 16.2 16 21"/></svg>
+      </div>
+      <div>
+        <h1 class="title">paqocha vision</h1>
+        <p class="sub" data-i18n="sub">AlpacaVision · scene-deduplicated YOLOv11n detector</p>
+      </div>
+    </div>
+    <p class="lead" data-i18n="lead">A reproducible research demo: upload a photograph of an alpaca
+      (<em>Vicugna pacos</em>) and a compact detector localises the animal, trained on a curated,
+      licence-audited dataset of <strong>742 distinct scenes</strong> from the Peruvian Altiplano.</p>
+    <div class="metrics">
+      <div class="metric"><div class="k">mAP@0.5</div><div class="v">0.698</div></div>
+      <div class="metric"><div class="k">mAP@.5:.95</div><div class="v">0.485</div></div>
+      <div class="metric"><div class="k" data-i18n="m_params">params</div><div class="v">2.58<small>M</small></div></div>
+      <div class="metric"><div class="k" data-i18n="m_weights">weights</div><div class="v">5.3<small>MB</small></div></div>
+      <div class="metric"><div class="k" data-i18n="m_test">test set</div><div class="v">248<small> img</small></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <div class="panel">
+      <div class="phead"><span class="t" data-i18n="p_input">Input</span> <span class="n">01</span></div>
+      <div class="pbody">
+        <div class="drop" id="drop">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>
+          <p data-i18n="drop">Click to choose or drop an alpaca photo</p>
+          <p class="hint" data-i18n="drop_hint">JPG / PNG · ≤16MB · runs automatically</p>
+          <div id="preview" hidden><img id="previewImg" alt="selected photo"><p class="fname" id="fname"></p></div>
+        </div>
+        <input type="file" id="file" accept="image/*" hidden>
+        <div class="controls">
+          <div class="lab"><span data-i18n="conf">Confidence threshold</span><span class="val" id="confVal">0.40</span></div>
+          <input type="range" id="conf" min="0.05" max="0.9" step="0.05" value="0.4">
+        </div>
+        <button class="primary" id="run" disabled>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M4 7V5a1 1 0 0 1 1-1h2"/><path d="M17 4h2a1 1 0 0 1 1 1v2"/><path d="M20 17v2a1 1 0 0 1-1 1h-2"/><path d="M7 20H5a1 1 0 0 1-1-1v-2"/></svg>
+          <span data-i18n="run">Run detection</span>
+        </button>
+        <div id="err"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="phead"><span class="t" data-i18n="p_output">Detection output</span> <span class="n" id="statusN">idle</span></div>
+      <div class="pbody"><div id="out"></div></div>
+    </div>
+  </div>
+
+  <p class="note">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+    <span data-i18n="note"></span>
+  </p>
+</main>
+
+<footer class="wrap">
+  <p style="margin:0 0 5px"><span data-i18n="dev">Developed by</span> <strong>Richar Andre Vilca-Solorzano</strong> · <span data-i18n="role">Lead author &amp; developer</span></p>
+  Semillero de Investigación John J. Hopfield —
+  <a href="https://github.com/Andre031222/data-integrity-vision-language-auto-labelling" target="_blank" rel="noopener" data-i18n="lk_code">code &amp; dataset</a> ·
+  <a href="https://doi.org/10.5281/zenodo.21134001" target="_blank" rel="noopener">Zenodo</a>
+</footer>
+
+<script>
+  const L={
+    en:{ sub:"AlpacaVision · scene-deduplicated YOLOv11n detector",
+      lead:"A reproducible research demo: upload a photograph of an alpaca (<em>Vicugna pacos</em>) and a compact detector localises the animal, trained on a curated, licence-audited dataset of <strong>742 distinct scenes</strong> from the Peruvian Altiplano.",
+      m_params:"params", m_weights:"weights", m_test:"test set",
+      p_input:"Input", p_output:"Detection output",
+      drop:"<strong>Click to choose</strong> or drop an alpaca photo", drop_hint:"JPG / PNG · ≤16MB · runs automatically",
+      conf:"Confidence threshold", run:"Run detection",
+      placeholder:"The annotated result and detections will appear here.",
+      running:"Running the detector…", wrong:"Something went wrong.",
+      st_idle:"idle", st_run:"running", st_err:"error", st_found:"found",
+      c_alpacas:"alpacas", c_top:"top conf", c_thr:"threshold",
+      t_class:"class", t_conf:"conf", ai:"AI description · experimental",
+      ai_dis:"Generated locally by a vision–language model. Not a veterinary diagnosis.",
+      ai_wait:"Generating a local description…",
+      note:"<strong>Scope:</strong> this demo serves only the body detector. The ocular anomaly classifier is <em>not</em> deployed — it performs at chance (AUC-ROC = 0.506, against 0.997 for the same pipeline on expert-labelled data) and is reported in the paper as a negative result, not a diagnostic tool.",
+      dev:"Developed by", role:"Lead author & developer", lk_code:"code & dataset" },
+    es:{ sub:"AlpacaVision · detector YOLOv11n sin escenas repetidas",
+      lead:"Un demo de investigación reproducible: sube una foto de una alpaca (<em>Vicugna pacos</em>) y un detector compacto la localiza, entrenado con un conjunto curado y auditado de <strong>742 escenas distintas</strong> del Altiplano peruano.",
+      m_params:"parámetros", m_weights:"pesos", m_test:"conjunto test",
+      p_input:"Entrada", p_output:"Salida de detección",
+      drop:"<strong>Elige</strong> o suelta una foto de alpaca", drop_hint:"JPG / PNG · ≤16MB · automático",
+      conf:"Umbral de confianza", run:"Detectar",
+      placeholder:"El resultado anotado y las detecciones aparecerán aquí.",
+      running:"Ejecutando el detector…", wrong:"Algo salió mal.",
+      st_idle:"inactivo", st_run:"procesando", st_err:"error", st_found:"halladas",
+      c_alpacas:"alpacas", c_top:"conf. máx", c_thr:"umbral",
+      t_class:"clase", t_conf:"conf", ai:"Descripción IA · experimental",
+      ai_dis:"Generada localmente por un modelo de visión-lenguaje. No es un diagnóstico veterinario.",
+      ai_wait:"Generando una descripción local…",
+      note:"<strong>Alcance honesto:</strong> este demo sirve solo el detector corporal. El clasificador ocular <em>no</em> está desplegado — bajo un protocolo sin fuga rinde al azar (AUC-ROC = 0.506) y en el artículo se reporta como resultado negativo, no como herramienta de diagnóstico.",
+      dev:"Desarrollado por", role:"Autor principal y desarrollador", lk_code:"código y datos" }
+  };
+  const SUN='<circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>';
+  const MOON='<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>';
+
+  let lang = (localStorage.getItem('lang') || (navigator.language||'en').slice(0,2)) === 'es' ? 'es':'en';
+  let theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  let lastData=null, lastDesc=null, describing=false;
+
+  const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+  const statusN=$('#statusN'), out=$('#out'), err=$('#err');
+
+  function applyTheme(){
+    document.documentElement.setAttribute('data-theme',theme);
+    $('#themeIco').innerHTML = theme==='dark'?SUN:MOON;
+    localStorage.setItem('theme',theme);
+  }
+  function applyLang(){
+    document.documentElement.lang=lang;
+    $$('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(L[lang][k]!=null) el.innerHTML=L[lang][k]; });
+    $('#langBtn').textContent = lang==='es'?'EN':'ES';
+    localStorage.setItem('lang',lang);
+    if(lastData) render(lastData); else showPlaceholder();
+    if(statusN.dataset.state) statusN.textContent = L[lang]['st_'+statusN.dataset.state] + (statusN.dataset.extra||'');
+  }
+  const t=k=>L[lang][k];
+
+  function showPlaceholder(){
+    setStatus('idle');
+    out.innerHTML='<div class="placeholder"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg><p>'+t('placeholder')+'</p></div>';
+  }
+  function setStatus(state,extra){ statusN.dataset.state=state; statusN.dataset.extra=extra||''; statusN.textContent=t('st_'+state)+(extra||''); }
+  function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+
+  const fileInput=$('#file'), drop=$('#drop'), run=$('#run'), conf=$('#conf'),
+        confVal=$('#confVal'), preview=$('#preview'), previewImg=$('#previewImg'), fname=$('#fname'),
+        dropIcon=drop.querySelector('.ico'), dropText=drop.querySelectorAll(':scope > p');
+  let chosen=null;
+
+  $('#themeBtn').onclick=()=>{ theme=theme==='dark'?'light':'dark'; applyTheme(); };
+  $('#langBtn').onclick=()=>{ lang=lang==='es'?'en':'es'; applyLang(); };
+  conf.addEventListener('input',()=>confVal.textContent=parseFloat(conf.value).toFixed(2));
+  conf.addEventListener('change',()=>{ if(chosen) detect(); });
+  drop.onclick=()=>fileInput.click();
+  fileInput.onchange=e=>pick(e.target.files[0]);
+  ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag')}));
+  drop.addEventListener('drop',e=>pick(e.dataTransfer.files[0]));
+
+  function pick(f){
+    if(!f || !f.type.startsWith('image/')) return;
+    chosen=f; err.innerHTML=''; run.disabled=false;
+    previewImg.src=URL.createObjectURL(f); fname.textContent=f.name; preview.hidden=false;
+    drop.classList.add('has-img'); dropIcon.style.display='none'; dropText.forEach(p=>p.style.display='none');
+    detect();
+  }
+
+  function render(d){
+    let rows=d.detections.map((x,i)=>'<tr><td>'+(i+1)+'</td><td><span class="badge">'+esc(x.class_name)+'</span></td><td>'+(x.confidence*100).toFixed(1)+'%</td><td>['+x.bbox.join(', ')+']</td></tr>').join('');
+    out.innerHTML=
+      '<img src="data:image/jpeg;base64,'+d.image_b64+'" alt="detections">'+
+      '<div class="readout">'+
+        '<div class="cell"><div class="k">'+t('c_alpacas')+'</div><div class="v">'+d.n_detections+'</div></div>'+
+        '<div class="cell"><div class="k">'+t('c_top')+'</div><div class="v">'+(d.max_confidence*100).toFixed(0)+'%</div></div>'+
+        '<div class="cell"><div class="k">'+t('c_thr')+'</div><div class="v">'+d.confidence_used.toFixed(2)+'</div></div>'+
+      '</div>'+
+      (rows?'<table class="det"><thead><tr><th>#</th><th>'+t('t_class')+'</th><th>'+t('t_conf')+'</th><th>bbox&nbsp;[x1,y1,x2,y2]</th></tr></thead><tbody>'+rows+'</tbody></table>':'')+
+      aiSection();
+  }
+  const AI_ICO='<svg class="ico" viewBox="0 0 24 24"><path d="M12 3v2"/><path d="M12 19v2"/><path d="M5 12H3"/><path d="M21 12h-2"/><circle cx="12" cy="12" r="4"/></svg>';
+  function aiSection(){
+    if(describing) return '<div class="aidesc"><div class="head">'+AI_ICO+t('ai')+'</div><p class="dis">'+t('ai_wait')+'</p></div>';
+    if(lastDesc)   return '<div class="aidesc"><div class="head">'+AI_ICO+t('ai')+'</div><p>'+esc(lastDesc)+'</p><p class="dis">'+t('ai_dis')+'</p></div>';
+    return '';
+  }
+
+  async function detect(){
+    if(!chosen) return;
+    err.innerHTML=''; run.disabled=true; setStatus('run');
+    out.innerHTML='<div class="placeholder spin"><div class="spinner"></div><p>'+t('running')+'</p></div>';
+    const fd=new FormData(); fd.append('image',chosen); fd.append('confidence',conf.value);
+    try{
+      const r=await fetch('/api/predict',{method:'POST',body:fd});
+      const d=await r.json();
+      if(!r.ok){throw new Error(d.error||'Request failed')}
+      lastData=d; lastDesc=null; describing=false; render(d); setStatus('found',' '+d.n_detections);
+      describeAsync();
+    }catch(e){
+      setStatus('err'); out.innerHTML='<div class="placeholder"><p>'+t('wrong')+'</p></div>';
+      err.innerHTML='<div class="err"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><span>'+esc(e.message)+'</span></div>';
+    }finally{ run.disabled=false; }
+  }
+
+  async function describeAsync(){
+    if(!chosen || !lastData) return;
+    describing=true; lastDesc=null; render(lastData);
+    try{
+      const fd=new FormData(); fd.append('image',chosen);
+      const r=await fetch('/api/describe',{method:'POST',body:fd});
+      const j=await r.json(); lastDesc=j.description||null;
+    }catch(e){ lastDesc=null; }
+    describing=false; render(lastData);
+  }
+  run.onclick=detect;
+
+  applyTheme(); applyLang();
+</script>
+</body>
+</html>

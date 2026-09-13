@@ -1,0 +1,20 @@
+{
+  "crops_total": 462,
+  "not_assessable": 434,
+  "not_assessable_pct": 93.9,
+  "decidable": 28,
+  "confusion": {
+    "normal|normal": 16,
+    "normal|anomaly": 11,
+    "anomaly|normal": 0,
+    "anomaly|anomaly": 1
+  },
+  "observed_agreement": 0.6071,
+  "expected_agreement": 0.5663,
+  "cohens_kappa": 0.0941,
+  "quality": {
+    "mala": 367,
+    "limitada": 92,
+    "nitida": 3
+  }
+}

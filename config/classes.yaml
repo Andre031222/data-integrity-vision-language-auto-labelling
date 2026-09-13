@@ -1,0 +1,33 @@
+# AlpacaVision AI — Esquema de Clases
+# Actualizado: 2025
+
+# ─── Clases del Detector (YOLOv11) ────────────────────────────────────────────
+detector_classes:
+  0: alpaca               # Cuerpo completo
+  1: alpaca_head          # Cabeza (incluye cuello superior)
+  2: alpaca_eye           # Región del ojo
+  3: alpaca_leg_front     # Extremidad delantera (desde rodilla)
+  4: alpaca_leg_rear      # Extremidad trasera (desde rodilla)
+  5: alpaca_body          # Cuerpo sin cabeza ni extremidades
+
+# ─── Clasificador — Ojos ──────────────────────────────────────────────────────
+eye_classifier_classes:
+  0: eye_normal           # Ojo sin anomalía visible
+  1: eye_cataract         # Opacidad del cristalino (catarata)
+  2: eye_opacity          # Opacidad corneal / nubosidad
+  3: eye_discharge        # Secreción / epifora anormal
+  4: eye_inflammation     # Inflamación / enrojecimiento evidente
+
+# ─── Clasificador — Extremidades ──────────────────────────────────────────────
+leg_classifier_classes:
+  0: leg_normal           # Extremidad sin anomalía
+  1: leg_angular          # Deformidad angular (valgus / varus)
+  2: leg_hoof_abnormal    # Pezuña con crecimiento anormal o lesión
+  3: leg_swelling         # Inflamación articular evidente
+  4: leg_posture_abnormal # Postura anormal al apoyar
+
+# ─── Notas ────────────────────────────────────────────────────────────────────
+# - Bounding box más ajustado posible a la región.
+# - Casos ambiguos: anotar como la clase más conservadora + registrar en docs/.
+# - Mínimo 2 revisores por imagen ambigua.
+# - Etiquetas eye_* / leg_* se asignan DESPUÉS de recortar con el detector.

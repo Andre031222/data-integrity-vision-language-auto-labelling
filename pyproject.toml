@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "alpacavision-ai"
+version = "1.0.0"
+description = "Detección automática de anomalías morfológicas en alpacas del altiplano peruano"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Vilca Solorzano, Richar Andre" },
+    { name = "Yana Yucra, Dina Maribel" },
+]
+keywords = ["computer-vision", "deep-learning", "alpaca", "yolo", "efficientnet"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es" id="html-root">
+<!-- Anti-FOUC: set theme class BEFORE any CSS renders -->
+<script>
+  (function(){
+    var t = localStorage.getItem('av-theme') || 'dark';
+    document.getElementById('html-root').className = t;
+  })();
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}AlpacaVision AI{% endblock %}</title>
+  {% if site_config.favicon_url %}
+  <link rel="icon" href="{{ site_config.favicon_url }}" />
+  {% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: { DEFAULT: '#22c55e', dark: '#16a34a', light: '#4ade80' },
+            surface: { DEFAULT: '#18181b', 1: '#27272a', 2: '#3f3f46' },
+          },
+          keyframes: {
+            fadeUp:   { from: { opacity: '0', transform: 'translateY(12px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            fadeIn:   { from: { opacity: '0' }, to: { opacity: '1' } },
+            slideIn:  { from: { opacity: '0', transform: 'translateX(-10px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+            pulse2:   { '0%,100%': { opacity: '1' }, '50%': { opacity: '.4' } },
+          },
+          animation: {
+            'fade-up':  'fadeUp 0.35s ease both',
+            'fade-in':  'fadeIn 0.25s ease both',
+            'slide-in': 'slideIn 0.3s ease both',
+          },
+        }
+      }
+    }
+  </script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    /* ─── UTILS ─────────────────────────────────────────────────── */
+    [x-cloak] { display: none !important; }
+    body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
+    .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 9999px; }
+
+    /* ─── PAGE TRANSITIONS ──────────────────────────────────────── */
+    main, .page-content { animation: fadeUp 0.35s ease both; }
+    .card-enter { animation: fadeUp 0.3s ease both; }
+    .stagger-1 { animation-delay: .05s; }
+    .stagger-2 { animation-delay: .10s; }
+    .stagger-3 { animation-delay: .15s; }
+    .stagger-4 { animation-delay: .20s; }
+
+    /* ─── LIGHT THEME OVERRIDES ─────────────────────────────────── */
+    html.light body { background-color: #f9fafb; color: #18181b; }
+
+    /* Backgrounds */
+    html.light .bg-zinc-950 { background-color: #ffffff !important; }
+    html.light .bg-zinc-900 { background-color: #f3f4f6 !important; }
+    html.light .bg-zinc-800 { background-color: #e5e7eb !important; }
+    html.light [class*="bg-zinc-950/"] { background-color: rgba(255,255,255,0.88) !important; }
+    html.light [class*="bg-zinc-900/"] { background-color: rgba(243,244,246,0.95) !important; }
+    html.light [class*="bg-zinc-800/"] { background-color: rgba(229,231,235,0.8) !important; }
+
+    /* Text */
+    html.light .text-white   { color: #111827 !important; }
+    html.light .text-zinc-100 { color: #1f2937 !important; }
+    html.light .text-zinc-200 { color: #374151 !important; }
+    html.light .text-zinc-300 { color: #4b5563 !important; }
+    html.light .text-zinc-400 { color: #6b7280 !important; }
+    html.light .text-zinc-500 { color: #9ca3af !important; }
+    html.light .text-zinc-600 { color: #d1d5db !important; }
+
+    /* Borders */
+    html.light .border-zinc-800 { border-color: #d1d5db !important; }
+    html.light .border-zinc-700 { border-color: #e5e7eb !important; }
+    html.light [class*="border-zinc-800/"] { border-color: rgba(209,213,219,0.6) !important; }
+
+    /* Sidebar / nav */
+    html.light aside { background-color: #f9fafb !important; border-color: #e5e7eb !important; }
+    html.light header { background-color: rgba(249,250,251,0.9) !important; border-color: #e5e7eb !important; }
+
+    /* Inputs */
+    html.light input, html.light textarea, html.light select {
+      background-color: #f9fafb !important;
+      border-color: #d1d5db !important;
+      color: #111827 !important;
+    }
+    html.light input::placeholder, html.light textarea::placeholder { color: #9ca3af !important; }
+
+    /* Tables */
+    html.light thead tr { background-color: rgba(243,244,246,0.8) !important; }
+    html.light tbody tr:hover { background-color: rgba(243,244,246,0.6) !important; }
+
+    /* Scrollbar */
+    html.light .scrollbar-thin::-webkit-scrollbar-thumb { background: #d1d5db; }
+
+    /* Brand stays the same in both themes */
+    html.light .text-brand, html.dark .text-brand { color: #16a34a !important; }
+    html.light .bg-brand  { background-color: #22c55e !important; }
+    html.light .border-brand { border-color: #22c55e !important; }
+    html.light [class*="bg-brand/"] { filter: brightness(1.2); }
+    html.light [class*="border-brand/"] { border-color: rgba(34,197,94,0.3) !important; }
+    html.light [class*="shadow-brand/"] { box-shadow: none !important; }
+
+    /* Dark/light toggle icon visibility */
+    html.dark  .icon-sun  { display: inline-flex !important; }
+    html.dark  .icon-moon { display: none    !important; }
+    html.light .icon-sun  { display: none    !important; }
+    html.light .icon-moon { display: inline-flex !important; }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased min-h-screen">
+
+  {# ── ANNOUNCEMENT BANNER ──────────────────────────────────────── #}
+  {% if site_config.announcement_enabled == 'true' and site_config.announcement_text %}
+  <div class="w-full text-center py-2 px-4 text-xs font-medium
+    {% if site_config.announcement_color == 'red' %}bg-red-600 text-white
+    {% elif site_config.announcement_color == 'amber' %}bg-amber-500 text-black
+    {% elif site_config.announcement_color == 'blue' %}bg-blue-600 text-white
+    {% else %}bg-brand text-black{% endif %}">
+    {{ site_config.announcement_text }}
+  </div>
+  {% endif %}
+
+  {# ── FLASH MESSAGES ───────────────────────────────────────────── #}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div id="flash-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2" x-data>
+        {% for category, message in messages %}
+          <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)"
+               x-transition:enter="transition ease-out duration-300"
+               x-transition:enter-start="opacity-0 translate-x-8"
+               x-transition:enter-end="opacity-100 translate-x-0"
+               x-transition:leave="transition ease-in duration-200"
+               x-transition:leave-start="opacity-100 translate-x-0"
+               x-transition:leave-end="opacity-0 translate-x-8"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium shadow-xl border
+                      {% if category == 'error' %}bg-red-950 border-red-800 text-red-200
+                      {% elif category == 'success' %}bg-emerald-950 border-emerald-800 text-emerald-200
+                      {% else %}bg-zinc-900 border-zinc-700 text-zinc-200{% endif %}">
+            <span>{% if category == 'error' %}✕{% elif category == 'success' %}✓{% else %}ℹ{% endif %}</span>
+            <span>{{ message }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block body %}{% endblock %}
+
+  {# ── THEME TOGGLE + ANALYTICS ─────────────────────────────────── #}
+  {% if site_config.ga4_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site_config.ga4_id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date()); gtag('config', '{{ site_config.ga4_id }}');
+  </script>
+  {% endif %}
+
+  <script>
+    function toggleTheme() {
+      var root = document.getElementById('html-root');
+      var isLight = root.className === 'light';
+      root.className = isLight ? 'dark' : 'light';
+      localStorage.setItem('av-theme', root.className);
+    }
+  </script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

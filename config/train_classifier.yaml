@@ -1,0 +1,40 @@
+# AlpacaVision AI — Hiperparámetros Clasificador EfficientNet-B0
+
+# Configuración común para ambos clasificadores (ojos y extremidades)
+# Sobrescribir 'task' y rutas al llamar el script de entrenamiento.
+
+model_name: efficientnet_b0   # timm model name
+pretrained: true
+num_classes: 5                # 5 clases para ojos; 5 para extremidades
+input_size: 224               # EfficientNet-B0 usa 224x224
+
+# Rutas (sobrescribir por línea de comandos)
+data_dir: data/crops/eyes     # o data/crops/legs
+output_dir: outputs/training_runs
+run_name: classifier_eyes_v1  # o classifier_legs_v1
+
+# Entrenamiento
+epochs: 50
+batch_size: 32
+patience: 10
+num_workers: 4
+seed: 42
+
+# Optimizador
+optimizer: adamw
+lr: 0.0003
+weight_decay: 0.01
+scheduler: cosine             # cosine annealing
+
+# Aumentación (albumentations)
+augmentation:
+  horizontal_flip: true
+  vertical_flip: false
+  rotation_limit: 15
+  brightness_contrast: true
+  clahe: true                 # Mejora para condiciones de altiplano
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+
+# Pesos de clases (compensar desbalance — actualizar con stats reales)
+class_weights: null           # null = automático; o lista [w0, w1, ...]

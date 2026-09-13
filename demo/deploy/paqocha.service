@@ -1,0 +1,16 @@
+[Unit]
+Description=paqocha - AlpacaVision detector demo (Gunicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/paqocha/alpacavision-altiplano
+Environment="PATH=/opt/paqocha/alpacavision-altiplano/.venv-demo/bin"
+ExecStart=/opt/paqocha/alpacavision-altiplano/.venv-demo/bin/gunicorn -c demo/gunicorn_conf.py demo.app:app
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

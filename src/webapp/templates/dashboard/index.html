@@ -1,0 +1,316 @@
+{% extends "dashboard/layout.html" %}
+{% block page_title %}Analizar{% endblock %}
+{% block page_title_mobile %}Analizar{% endblock %}
+
+{% block content %}
+<div class="p-5 max-w-7xl mx-auto animate-fade-up" x-data="analyzer()">
+
+  {# ── HEADER ──────────────────────────────────────────────────── #}
+  <div class="mb-6">
+    <h1 class="text-xl font-semibold text-white">Análisis de alpacas</h1>
+    <p class="text-zinc-500 text-sm mt-0.5">Sube una imagen para detectar anomalías morfológicas</p>
+  </div>
+
+  {# ── STATS ───────────────────────────────────────────────────── #}
+  <div class="grid grid-cols-3 gap-3 mb-6">
+    {% set stats_data = [
+      (stats.total,   'Análisis totales', 'text-white'),
+      (stats.anomaly, 'Con anomalías',    'text-red-400'),
+      (stats.animals, 'Animales',         'text-brand'),
+    ] %}
+    {% for val, lbl, cls in stats_data %}
+    <div class="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 transition-colors">
+      <div class="text-2xl font-bold {{ cls }} tabular-nums">{{ val }}</div>
+      <div class="text-xs text-zinc-600 mt-0.5">{{ lbl }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-5">
+
+    {# ── UPLOAD PANEL ────────────────────────────────────────────── #}
+    <div class="space-y-3">
+
+      {# Drop zone #}
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-4 py-3 border-b border-zinc-800">
+          <h2 class="text-sm font-medium text-zinc-300">Imagen</h2>
+        </div>
+        <div class="p-4">
+          <label for="img-input"
+                 @dragover.prevent="dragging=true"
+                 @dragleave="dragging=false"
+                 @drop.prevent="handleDrop($event)"
+                 :class="dragging ? 'border-brand bg-brand/5 scale-[0.99]' : 'border-zinc-700/60 hover:border-zinc-600'"
+                 class="block border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200">
+            <template x-if="!previewUrl">
+              <div class="space-y-3">
+                <div class="flex justify-center">
+                  <div class="w-12 h-12 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm text-zinc-400">Arrastra una imagen o <span class="text-brand font-medium">selecciona</span></p>
+                  <p class="text-xs text-zinc-600 mt-1">JPG · PNG · máx 16 MB</p>
+                </div>
+              </div>
+            </template>
+            <template x-if="previewUrl">
+              <div class="relative">
+                <img :src="previewUrl" class="max-h-52 mx-auto rounded-lg object-contain" />
+                <div class="mt-2 text-xs text-zinc-500 flex items-center justify-center gap-1">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                  Clic para cambiar imagen
+                </div>
+              </div>
+            </template>
+            <input id="img-input" type="file" accept="image/jpeg,image/png" class="hidden" @change="handleFile($event)" />
+          </label>
+        </div>
+      </div>
+
+      {# Options #}
+      <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 space-y-4">
+        <div>
+          <label class="text-xs text-zinc-500 mb-1.5 block">Número de arete <span class="text-zinc-700">(opcional)</span></label>
+          <input x-model="animalId" type="text" placeholder="ALP-001"
+                 class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/60 border border-zinc-700 text-sm text-white placeholder-zinc-600
+                        focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/20 transition-all" />
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs text-zinc-500">Umbral de confianza</label>
+            <span class="text-xs font-mono text-brand bg-brand/10 px-1.5 py-0.5 rounded-md" x-text="(conf*100).toFixed(0)+'%'"></span>
+          </div>
+          <input x-model.number="conf" type="range" min="0.2" max="0.9" step="0.05"
+                 class="w-full h-1.5 rounded-full accent-brand cursor-pointer" />
+          <div class="flex justify-between text-[10px] text-zinc-700 mt-1">
+            <span>20%</span><span>90%</span>
+          </div>
+        </div>
+        <label class="flex items-center gap-2.5 cursor-pointer group">
+          <div class="relative">
+            <input x-model="genReport" type="checkbox" id="gen-report" class="sr-only" />
+            <div :class="genReport ? 'bg-brand' : 'bg-zinc-700'"
+                 class="w-8 h-4 rounded-full transition-colors duration-200"></div>
+            <div :class="genReport ? 'translate-x-4' : 'translate-x-0.5'"
+                 class="absolute top-0.5 w-3 h-3 bg-white rounded-full shadow-sm transition-transform duration-200"></div>
+          </div>
+          <span class="text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">Generar reporte veterinario</span>
+        </label>
+      </div>
+
+      {# Analyze button #}
+      <button @click="analyze()"
+              :disabled="!file || busy"
+              :class="(!file || busy) ? 'opacity-40 cursor-not-allowed' : 'hover:bg-brand-light hover:shadow-brand/30 hover:-translate-y-px active:translate-y-0'"
+              class="w-full py-3 bg-brand text-black font-semibold rounded-xl transition-all duration-200 text-sm shadow-lg shadow-brand/20">
+        <span x-show="!busy" class="flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Analizar imagen
+        </span>
+        <span x-show="busy" class="flex items-center justify-center gap-2">
+          <svg class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+          </svg>
+          Analizando...
+        </span>
+      </button>
+    </div>
+
+    {# ── RESULTS PANEL ───────────────────────────────────────────── #}
+    <div>
+      {# Empty state #}
+      <template x-if="!result">
+        <div class="h-full min-h-72 rounded-xl border border-dashed border-zinc-800 flex flex-col items-center justify-center p-8 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-zinc-800/60 border border-zinc-700 flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+            </svg>
+          </div>
+          <p class="text-zinc-500 text-sm font-medium">Sin resultados</p>
+          <p class="text-zinc-700 text-xs mt-1">El diagnóstico aparecerá aquí después del análisis</p>
+        </div>
+      </template>
+
+      {# Results #}
+      <template x-if="result">
+        <div class="space-y-3 animate-fade-up">
+
+          {# Annotated image #}
+          <div class="rounded-xl overflow-hidden border border-zinc-800">
+            <img :src="'data:image/jpeg;base64,'+result.image_b64" class="w-full" />
+          </div>
+
+          {# Verdict #}
+          <div class="rounded-xl border p-4 flex items-center gap-4 transition-all"
+               :class="result.has_anomaly ? 'border-red-800/60 bg-red-950/20' : 'border-emerald-800/60 bg-emerald-950/20'">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                 :class="result.has_anomaly ? 'bg-red-900/40' : 'bg-emerald-900/40'">
+              <svg x-show="result.has_anomaly" class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+              </svg>
+              <svg x-show="!result.has_anomaly" class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-sm" :class="result.has_anomaly ? 'text-red-300' : 'text-emerald-300'"
+                   x-text="result.has_anomaly ? 'Anomalía detectada' : 'Sin anomalías detectadas'"></div>
+              <div class="text-xs text-zinc-500 mt-0.5"
+                   x-text="result.n_detections + ' detecciones · ' + (result.severity && result.severity !== 'none' ? 'Severidad: '+result.severity : 'Normal')"></div>
+            </div>
+          </div>
+
+          {# Eye results #}
+          <template x-if="result.eye_results && result.eye_results.length > 0">
+            <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
+              <h3 class="text-[11px] font-medium text-zinc-500 uppercase tracking-widest mb-3">Clasificador ocular</h3>
+              <template x-for="(er, i) in result.eye_results" :key="i">
+                <div class="flex items-center justify-between py-2 border-b border-zinc-800/50 last:border-0">
+                  <div class="text-sm text-zinc-300" x-text="er.class_name || 'Región ocular'"></div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-24 h-1 rounded-full bg-zinc-700/60">
+                      <div class="h-full rounded-full transition-all duration-500"
+                           :class="er.classification.is_anomaly ? 'bg-red-400' : 'bg-brand'"
+                           :style="'width:'+Math.round(er.classification.anomaly_prob*100)+'%'"></div>
+                    </div>
+                    <span class="text-xs font-mono text-zinc-500 w-8 text-right" x-text="Math.round(er.classification.anomaly_prob*100)+'%'"></span>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </template>
+
+          {# Groq findings #}
+          <template x-if="result.vision_detail && result.vision_detail.length > 0">
+            <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
+              <h3 class="text-[11px] font-medium text-zinc-500 uppercase tracking-widest mb-3">Análisis visual</h3>
+              <template x-for="(f, i) in result.vision_detail" :key="i">
+                <div class="py-2.5 border-b border-zinc-800/50 last:border-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-sm font-medium text-zinc-200" x-text="f.type || f.condition"></span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full font-medium"
+                          :class="f.severity==='severe'?'bg-red-900/60 text-red-300':f.severity==='moderate'?'bg-amber-900/60 text-amber-300':'bg-zinc-800 text-zinc-400'"
+                          x-text="f.severity"></span>
+                  </div>
+                  <p class="text-xs text-zinc-600 leading-relaxed" x-text="f.description"></p>
+                </div>
+              </template>
+            </div>
+          </template>
+
+          {# Vet report #}
+          <template x-if="result.vet_report">
+            <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
+              <h3 class="text-[11px] font-medium text-zinc-500 uppercase tracking-widest mb-3">Reporte veterinario</h3>
+              <div class="text-sm text-zinc-300 leading-relaxed whitespace-pre-wrap" x-text="result.vet_report"></div>
+            </div>
+          </template>
+
+        </div>
+      </template>
+    </div>
+  </div>
+
+  {# ── RECENT ──────────────────────────────────────────────────── #}
+  {% if recent %}
+  <div class="mt-8">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-xs font-medium text-zinc-500 uppercase tracking-widest">Análisis recientes</h2>
+      <a href="{{ url_for('dashboard.history') }}" class="text-xs text-brand hover:text-brand-light transition-colors flex items-center gap-1">
+        Ver historial
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+        </svg>
+      </a>
+    </div>
+    <div class="rounded-xl border border-zinc-800 overflow-hidden">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-zinc-800 text-[11px] text-zinc-600 bg-zinc-900/40">
+            <th class="text-left px-4 py-2.5 font-medium">Fecha</th>
+            <th class="text-left px-4 py-2.5 font-medium hidden md:table-cell">Animal</th>
+            <th class="text-left px-4 py-2.5 font-medium">Resultado</th>
+            <th class="text-left px-4 py-2.5 font-medium hidden sm:table-cell">Det.</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in recent %}
+          <tr class="border-b border-zinc-800/40 last:border-0 hover:bg-zinc-900/40 transition-colors">
+            <td class="px-4 py-3 text-zinc-500 text-xs">{{ a.timestamp.strftime('%d/%m %H:%M') }}</td>
+            <td class="px-4 py-3 text-zinc-400 text-xs hidden md:table-cell font-mono">
+              {{ a.animal.arete if a.animal else '—' }}
+            </td>
+            <td class="px-4 py-3">
+              {% if a.has_anomaly %}
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] bg-red-950/60 text-red-300 border border-red-900/60">
+                  <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9.303 3.376c.866 1.5-.217 3.374-1.948 3.374H4.645c-1.73 0-2.813-1.874-1.948-3.374L10.051 3.378c.866-1.5 3.032-1.5 3.898 0l6.354 12.748z"/></svg>
+                  Anomalía
+                </span>
+              {% else %}
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] bg-emerald-950/60 text-emerald-300 border border-emerald-900/60">
+                  <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                  Normal
+                </span>
+              {% endif %}
+            </td>
+            <td class="px-4 py-3 text-zinc-600 text-xs hidden sm:table-cell tabular-nums">{{ a.n_detections }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function analyzer() {
+  return {
+    file: null, previewUrl: null, dragging: false,
+    animalId: '', conf: 0.4, genReport: false,
+    busy: false, result: null,
+
+    handleFile(e) {
+      const f = e.target.files[0];
+      if (f) { this.file = f; this.previewUrl = URL.createObjectURL(f); this.result = null; }
+    },
+    handleDrop(e) {
+      this.dragging = false;
+      const f = e.dataTransfer.files[0];
+      if (f && (f.type === 'image/jpeg' || f.type === 'image/png')) {
+        this.file = f; this.previewUrl = URL.createObjectURL(f); this.result = null;
+      }
+    },
+    async analyze() {
+      if (!this.file || this.busy) return;
+      this.busy = true; this.result = null;
+      const fd = new FormData();
+      fd.append('image', this.file);
+      fd.append('confidence', this.conf);
+      fd.append('animal_id', this.animalId);
+      fd.append('gen_report', this.genReport ? 'true' : 'false');
+      try {
+        const r = await fetch('/api/v1/predict', { method: 'POST', body: fd });
+        const data = await r.json();
+        if (!r.ok) { alert(data.error || 'Error en el análisis'); return; }
+        this.result = data;
+      } catch (e) {
+        alert('Error de red: ' + e.message);
+      } finally {
+        this.busy = false;
+      }
+    }
+  }
+}
+</script>
+{% endblock %}

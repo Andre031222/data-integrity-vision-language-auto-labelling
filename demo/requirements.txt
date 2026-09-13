@@ -1,0 +1,11 @@
+# paqocha demo — minimal inference stack (CPU).
+# Install torch CPU first from the PyTorch index, then the rest:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r demo/requirements.txt
+flask>=3.0
+gunicorn>=21.2
+ultralytics>=8.4
+opencv-python-headless>=4.9
+pillow>=10.0
+numpy>=1.26
+python-dotenv>=1.0

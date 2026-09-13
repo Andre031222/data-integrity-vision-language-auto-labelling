@@ -1,0 +1,13 @@
+AlpacaVision AI — Clasificador de ojos (HONESTO, sin leakage) [efficientnet_b2]
+Split group-aware | train=826 val=70 test=70
+Test distribution (solo originales): {'anomaly': 14, 'normal': 56}
+Umbral de decision: 0.880 | TTA: True
+
+Accuracy:         0.5857
+AUC-ROC:          0.5059  95% CI [0.3678, 0.6451]
+Average Precision: 0.2122
+F1 (anomaly):     0.0611  95% CI [0.0000, 0.1935]
+Anomaly  P/R/F1:  0.059 / 0.071 / 0.065
+Normal   P/R/F1:  0.755 / 0.714 / 0.734
+McNemar vs majority: chi2=13.235 p=0.0003
+Confusion (filas=real [normal,anomaly]): [[40, 16], [13, 1]]

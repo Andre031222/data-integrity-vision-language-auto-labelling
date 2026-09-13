@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "If you use this dataset or code, please cite it as below."
+title: "AlpacaVision: Data Integrity in Vision-Language Auto-Labelling Pipelines"
+abstract: >-
+  An open, curated, leakage-free alpaca (Vicugna pacos) detection dataset from the
+  Peruvian Altiplano, a compact YOLOv11n detector (mAP@0.5 = 0.860), a reproducible
+  data-integrity methodology for auto-labelling pipelines, and an honest negative
+  result on vision-language auto-labelled ocular anomaly classification.
+type: software
+authors:
+  - family-names: "Vilca-Solorzano"
+    given-names: "Richar Andre"
+    orcid: "https://orcid.org/0009-0003-2385-5263"
+  - family-names: "Yana-Yucra"
+    given-names: "Dina Maribel"
+    orcid: "https://orcid.org/0009-0003-6218-2735"
+  - family-names: "Ccopa-Acero"
+    given-names: "Cristian Daniel"
+    orcid: "https://orcid.org/0009-0005-7176-5849"
+  - family-names: "Aleman-Gonzales"
+    given-names: "Leonid"
+    orcid: "https://orcid.org/0000-0002-4072-6370"
+repository-code: "https://github.com/Andre031222/data-integrity-vision-language-auto-labelling"
+license: MIT
+year: 2026
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21134001"
+    description: "AlpacaVision curated detection dataset (Zenodo)"
+preferred-citation:
+  type: article
+  title: >-
+    Data Integrity in Vision-Language Auto-Labelling Pipelines: An Open Alpaca
+    Detection Dataset, a Compact Detector, and a Reproducible Methodology
+  authors:
+    - family-names: "Vilca-Solorzano"
+      given-names: "Richar Andre"
+    - family-names: "Yana-Yucra"
+      given-names: "Dina Maribel"
+    - family-names: "Ccopa-Acero"
+      given-names: "Cristian Daniel"
+    - family-names: "Aleman-Gonzales"
+      given-names: "Leonid"
+  journal: "Informatica"
+  year: 2026
+  notes: "Manuscript under review"
