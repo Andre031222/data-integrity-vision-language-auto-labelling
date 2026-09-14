@@ -35,7 +35,7 @@ Three filters then apply, each for a different reason:
 
 | Filter | Removed | Reason |
 |---|---:|---|
-| Licence | 915 images | source declares `License: undefined` |
+| Licence | 593 images | source declares `License: undefined` |
 | Annotation target | 322 images | source annotates **heads** (median box area 0.071 vs 0.19–0.22) |
 | Content | 3 images | one scene depicts **sheep**, found by human review |
 
@@ -70,7 +70,7 @@ annotated_v3_final/
 | `alpaca-nrzos` | 29 | retained, CC BY 4.0 |
 | `alpaca-epqna` | 7 | retained, CC BY 4.0 |
 | **Total retained** | **1,460** | **CC BY 4.0** |
-| `alpaca-xqfiw` | 915 | excluded: licence undefined |
+| `alpaca-xqfiw` | 593 | excluded: licence undefined |
 | `alpaca-lls3s` | 322 | excluded: annotates heads, not whole animals |
 | (one scene) | 3 | excluded: depicts sheep |
 

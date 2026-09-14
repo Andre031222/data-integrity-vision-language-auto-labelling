@@ -58,7 +58,7 @@ methodology that detects and corrects them.
 </p>
 
 <p align="center"><em>
-  (A) Reduction funnel: 3,419 consolidated files → 1,041 exact duplicates → 1,240 excluded
+  (A) Reduction funnel: 3,419 consolidated files → 1,041 exact duplicates → 918 excluded
   by licence, annotation target or content → 1,460 images resolving to
   <strong>628 distinct scenes</strong>.
   (B) Split over scene groups. (C) Real, non-augmented ocular-crop inventory.
@@ -237,7 +237,7 @@ flowchart TD
     P -->|"1,001 polygon boxes recovered"| M["Cryptographic hashing"]
     M -->|"1,041 exact duplicates removed"| U["2,378 unique files"]
     U --> L["Per-source licence filter"]
-    L -->|"591 dropped: licence undefined"| K["1,460 images"]
+    L -->|"918 dropped: licence, annotation target, content"| K["1,460 images"]
     K --> D["Dihedral-invariant pHash<br/>(8 rotations and flips)"]
     D --> S["628 distinct scenes"]
     S --> G["Group-aware split<br/>(whole scene groups, never split)"]
@@ -302,12 +302,12 @@ explicitly.
 | Field | Value |
 |---|---|
 | DOI | [10.5281/zenodo.21134001](https://doi.org/10.5281/zenodo.21134001) |
-| Images | 1,460 (3,419 consolidated − 1,041 exact duplicates − 1,240 excluded) |
+| Images | 1,460 (3,419 consolidated − 1,041 exact duplicates − 918 excluded) |
 | Distinct scenes | 628 (dihedral-invariant pHash, τ = 6) |
 | Format | YOLO (single class `alpaca`) |
 | Split | Scene groups 440 / 93 / 95 → images 1,022 / 214 / 224 |
 | Sources | Eight public Roboflow Universe projects, all CC BY 4.0 |
-| Excluded | One project (591 images) declaring `License: undefined`; iNaturalist imagery was explored but contributes **zero** images |
+| Excluded | 918 images: one project (593) declaring `License: undefined`, one project (322) annotating heads rather than whole animals, and one scene (3) depicting sheep. iNaturalist imagery was explored but contributes **zero** images |
 | License | CC BY 4.0 |
 
 See [`docs/DATASET_CARD.md`](docs/DATASET_CARD.md) for full provenance, preprocessing and
