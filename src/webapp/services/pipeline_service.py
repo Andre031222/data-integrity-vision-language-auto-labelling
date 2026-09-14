@@ -10,7 +10,7 @@ import numpy as np
 log = logging.getLogger(__name__)
 
 ROOT          = Path(__file__).parent.parent.parent.parent  # project root
-DETECTOR_PATH = ROOT / "models" / "detector" / "best_clean.pt"          # honest, leakage-free
+DETECTOR_PATH = ROOT / "models" / "detector" / "best_v3_n.pt"           # stage-5 protocol, seed 0
 EYE_CLF_PATH  = ROOT / "models" / "classifier" / "eyes_b2_honest" / "best.pt"
 
 _pipeline = None

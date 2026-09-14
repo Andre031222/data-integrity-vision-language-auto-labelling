@@ -47,7 +47,7 @@ for r, (lp, pp) in enumerate(batches):
     axes[r, 0].set_ylabel(f"Batch {r + 1}", fontsize=12, fontweight="bold",
                           labelpad=8, color=DARK)
 
-fig.suptitle("YOLOv11n Body Detection: Ground Truth vs. Predictions (leakage-free test set)",
+fig.suptitle("YOLOv11n Body Detection: Ground Truth vs. Predictions (scene-level test set)",
              fontsize=13.5, fontweight="bold", y=0.995)
 fig.text(0.5, 0.045,
          "mAP@0.5 = 0.860  |  Precision = 0.913  |  Recall = 0.731   "

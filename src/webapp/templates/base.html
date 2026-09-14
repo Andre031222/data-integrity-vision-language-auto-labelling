@@ -148,7 +148,7 @@
                       {% if category == 'error' %}bg-red-950 border-red-800 text-red-200
                       {% elif category == 'success' %}bg-emerald-950 border-emerald-800 text-emerald-200
                       {% else %}bg-zinc-900 border-zinc-700 text-zinc-200{% endif %}">
-            <span>{% if category == 'error' %}✕{% elif category == 'success' %}✓{% else %}ℹ{% endif %}</span>
+            <span>{% if category == 'error' %}x{% elif category == 'success' %}OK{% else %}ℹ{% endif %}</span>
             <span>{{ message }}</span>
           </div>
         {% endfor %}

@@ -57,7 +57,7 @@ def fig3_detector():
     ax.set_xlim(0, 1.05)
     ax.set_xlabel("Score")
     ax.invert_yaxis()
-    ax.set_title("YOLOv11n Stage-1 Detector -- Clean Test Set\n(n=308 images, leakage-free)",
+    ax.set_title("YOLOv11n Stage-1 Detector -- Scene-Level Test Set\n(n=224 images, 95 scene groups)",
                  fontsize=10.5, fontweight="bold")
     ax.grid(True, alpha=0.25, axis="x")
     ax.spines[["top", "right"]].set_visible(False)
