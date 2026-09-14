@@ -8,20 +8,51 @@
     "access_right": "open",
     "description": "<p>An openly licensed object-detection benchmark of alpacas (<em>Vicugna pacos</em>) from the Peruvian Altiplano: <strong>1,460 images resolving to 628 distinct scenes</strong>, single class <code>alpaca</code>, YOLO format.</p><p><strong>Version 3.0 supersedes earlier versions after an annotation audit.</strong> Two source projects export segmentation polygons rather than boxes, and the original consolidation read the first four values of each line as (cx, cy, w, h). This corrupted 1,001 annotations and caused a sound source to be rejected by a quality screen that was in fact measuring the parser. Parsing polygons as their enclosing box recovers every annotation.</p><p>Three filters then apply, each for a distinct reason: one source declares an undefined licence (915 images), one annotates heads rather than whole animals (322 images, median box area 0.071 against 0.19-0.22 elsewhere), and one scene depicting sheep was removed after human review (3 images).</p><p>Splits are drawn over <strong>scene groups</strong> rather than images, using a perceptual hash minimised over the eight transforms of the dihedral group. This matters: on a per-image split of this corpus, 40.5% of test images have a near-duplicate in training under a conventional perceptual hash, and 79.5% under the dihedral-invariant one, despite zero exact duplicates. Train / validation / test = 440 / 93 / 95 scene groups, or 1,022 / 214 / 224 images.</p><p>Reference benchmark: a compact YOLOv11n detector reaches mAP@0.5 = 0.814 +/- 0.021 over three seeds on the held-out test set.</p><p>Every retained image derives from a Roboflow Universe project declaring CC BY 4.0. Per-source provenance, exclusions and the build manifest are included in the archive. Code: https://github.com/Andre031222/data-integrity-vision-language-auto-labelling</p>",
     "keywords": [
-      "object detection", "data integrity", "near-duplicate detection",
-      "perceptual hashing", "dataset curation", "data leakage",
-      "precision livestock farming", "alpaca", "Vicugna pacos", "YOLO"
+      "object detection",
+      "data integrity",
+      "near-duplicate detection",
+      "perceptual hashing",
+      "dataset curation",
+      "data leakage",
+      "precision livestock farming",
+      "alpaca",
+      "Vicugna pacos",
+      "YOLO"
     ],
     "creators": [
-      {"name": "Yana-Yucra, Dina Maribel", "affiliation": "Universidad Nacional del Altiplano, Puno, Peru", "orcid": "0009-0003-6218-2735"},
-      {"name": "Vilca-Solorzano, Richar Andre", "affiliation": "Universidad Nacional del Altiplano, Puno, Peru", "orcid": "0009-0003-2385-5263"},
-      {"name": "Ibanez-Quispe, Vladimiro", "affiliation": "Universidad Nacional del Altiplano, Puno, Peru", "orcid": "0000-0002-0277-4945"},
-      {"name": "Aleman-Gonzales, Leonid", "affiliation": "Universidad Nacional del Altiplano, Puno, Peru", "orcid": "0000-0002-4072-6370"},
-      {"name": "Ccopa-Acero, Cristian Daniel", "affiliation": "Universidad Nacional del Altiplano, Puno, Peru", "orcid": "0009-0005-7176-5849"}
+      {
+        "name": "Yana-Yucra, Dina Maribel",
+        "affiliation": "Universidad Nacional del Altiplano, Puno, Peru",
+        "orcid": "0009-0003-6218-2735"
+      },
+      {
+        "name": "Vilca-Solorzano, Richar Andre",
+        "affiliation": "Universidad Nacional del Altiplano, Puno, Peru",
+        "orcid": "0009-0003-2385-5263"
+      },
+      {
+        "name": "Aleman-Gonzales, Leonid",
+        "affiliation": "Universidad Nacional del Altiplano, Puno, Peru",
+        "orcid": "0000-0002-4072-6370"
+      },
+      {
+        "name": "Ccopa-Acero, Cristian Daniel",
+        "affiliation": "Universidad Nacional del Altiplano, Puno, Peru",
+        "orcid": "0009-0005-7176-5849"
+      },
+      {
+        "name": "Ibanez-Quispe, Vladimiro",
+        "affiliation": "Universidad Nacional del Altiplano, Puno, Peru",
+        "orcid": "0000-0002-0277-4945"
+      }
     ],
     "related_identifiers": [
-      {"identifier": "https://github.com/Andre031222/data-integrity-vision-language-auto-labelling",
-       "relation": "isSupplementTo", "resource_type": "software", "scheme": "url"}
+      {
+        "identifier": "https://github.com/Andre031222/data-integrity-vision-language-auto-labelling",
+        "relation": "isSupplementTo",
+        "resource_type": "software",
+        "scheme": "url"
+      }
     ]
   }
 }
