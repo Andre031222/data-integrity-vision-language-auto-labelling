@@ -8,46 +8,52 @@ TEX = ROOT / "paper/manuscript_ieee_access/manuscript.tex"
 DOCS = [d for d in (ROOT / "README.md", ROOT / "docs/DATASET_CARD.md", TEX,
                     ROOT / "paper/manuscript_ieee_access/cover_letter.tex") if d.exists()]
 
-# Ground truth straight from the released JSON artefacts.
-n = json.loads((ROOT / "outputs/figures/detector_v2_n_metrics.json").read_text())["summary"]
-s = json.loads((ROOT / "outputs/figures/detector_v2_s_metrics.json").read_text())["summary"]
-nd = json.loads((ROOT / "outputs/figures/neardup_dihedral_audit.json").read_text())
-sd = json.loads((ROOT / "outputs/figures/classifier_seed_distribution.json").read_text())
-abl = {k: json.loads((ROOT / f"outputs/figures/detector_abl_{k}_metrics.json").read_text())
-       ["summary"]["mAP50"] for k in ("raw", "md5", "nohash", "phash")}
-vlm = json.loads((ROOT / "outputs/figures/intervlm_agreement.json").read_text())
-f1 = json.loads((ROOT / "outputs/figures/stage1_fundus_metrics.json").read_text())
-man = json.loads((ROOT / "data/annotated_v2/build_manifest.json").read_text())
+# Ground truth straight from the released JSON artefacts and the dataset itself.
+def load(name):
+    return json.loads((ROOT / "outputs/figures" / name).read_text())
+
+abl = {k: load(f"detector_v3_{k}_metrics.json")["summary"]
+       for k in ("s1raw", "s2md5", "s3src", "s4phash", "s5dihedral", "s5_yolo11s")}
+nd = load("neardup_audit_v3.json")["results"]
+vlm = load("intervlm_agreement.json")
+f1 = load("stage1_fundus_metrics.json")
+sd = load("classifier_seed_distribution.json")
+
+EXT = {".jpg", ".jpeg", ".png"}
+DS = ROOT / "data/annotated_v3_final/images"
+counts = {sp: sum(1 for f in (DS / sp).iterdir() if f.suffix.lower() in EXT)
+          for sp in ("train", "val", "test")} if DS.exists() else {}
+scenes = json.loads((ROOT / "data/annotated_v3_final/build_manifest.json").read_text()
+                    )["groups"] - 1 if (ROOT / "data/annotated_v3_final").exists() else None
 
 truth = {
-    "mAP n mean":        f"{n['mAP50']['mean']:.3f}",
-    "mAP n sd":          f"{n['mAP50']['std']:.3f}",
-    "mAP s mean":        f"{s['mAP50']['mean']:.3f}",
-    "test contam pHash": f"{nd['plain']['6']['test_pct']}",
-    "test contam dihed": f"{nd['dihedral']['6']['test_pct']}",
-    "pairs pHash":       str(nd['plain']['6']['pairs']),
+    "mAP stage 1":       f"{abl['s1raw']['mAP50']['mean']:.4f}",
+    "mAP stage 2":       f"{abl['s2md5']['mAP50']['mean']:.4f}",
+    "mAP stage 3":       f"{abl['s3src']['mAP50']['mean']:.4f}",
+    "mAP stage 4":       f"{abl['s4phash']['mAP50']['mean']:.4f}",
+    "mAP stage 5":       f"{abl['s5dihedral']['mAP50']['mean']:.4f}",
+    "mAP stage 5 sd":    f"{abl['s5dihedral']['mAP50']['std']:.4f}",
+    "mAP yolo11s":       f"{abl['s5_yolo11s']['mAP50']['mean']:.4f}",
+    "test contam pHash": f"{nd['perceptual']['6']['pct']}",
+    "test contam dihed": f"{nd['dihedral']['6']['pct']}",
+    "pairs pHash":       str(nd['perceptual']['6']['pairs']),
     "pairs dihedral":    str(nd['dihedral']['6']['pairs']),
     "kappa":             f"{vlm['cohens_kappa']:.2f}",
     "not assessable %":  f"{vlm['not_assessable_pct']}",
     "fundus AUC":        f"{f1['auc_roc']:.3f}",
-    "images":            str(man['images']),
-    "groups":            str(man['groups']),
-    "train img":         str(man['per_split_images']['train']),
-    "test img":          str(man['per_split_images']['test']),
     "clf AUC mean":      f"{sd['auc_mean']:.3f}",
     "clf AUC sd":        f"{sd['auc_std']:.3f}",
-    "abl raw":           f"{abl['raw']['mean']:.3f}",
-    "abl md5":           f"{abl['md5']['mean']:.3f}",
-    "abl nohash":        f"{abl['nohash']['mean']:.3f}",
-    "abl phash":         f"{abl['phash']['mean']:.3f}",
+    "images released":   str(sum(counts.values())) if counts else "?",
+    "scenes released":   str(scenes),
+    "train / val / test": " / ".join(str(counts[k]) for k in ("train","val","test")) if counts else "?",
 }
 print("=== reference values, read from the metrics JSON ===")
 for k, v in truth.items():
     print(f"  {k:<20} {v}")
 
 # Numbers that must appear in the prose, and numbers that must NOT.
-MUST = ["0.698", "0.024", "83.4", "43.5", "742", "1460", "0.997", "0.09", "93.9",
-        "0.736", "0.089"]
+MUST = ["0.814", "0.936", "79.5", "40.5", "628", "1460", "0.997", "0.09", "93.9",
+        "0.736", "0.089", "1001"]
 FORBIDDEN = {
     "leakage-free": r"leakage-free",
     "TODO/FIXME/XXX": r"\b(TODO|FIXME|XXX|placeholder|TBD)\b",
@@ -65,9 +71,9 @@ for doc in DOCS:
     missing = [m for m in MUST if not present(m)]
     label = doc.relative_to(ROOT)
     if doc.name == "cover_letter.tex":
-        missing = [m for m in missing if m not in ("0.09", "1460", "0.024", "0.089")]
+        missing = [m for m in missing if m not in ("0.09", "1460", "0.089", "93.9")]
     if doc.name == "DATASET_CARD.md":
-        missing = [m for m in missing if m not in ("0.997", "0.09", "93.9", "0.736", "0.089")]
+        missing = [m for m in missing if m not in ("0.997", "0.09", "0.736", "0.089", "93.9", "1001")]
     print(f"  {str(label):<45} missing: {missing or 'none'}")
     if missing:
         bad += 1

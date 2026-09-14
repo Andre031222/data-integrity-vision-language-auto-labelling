@@ -8,7 +8,8 @@ anomaly classification.
 
 This repository documents an audit of our own work. Three successive notions of what makes
 two images duplicates each certified a data split that the next one invalidated, and the
-detector score fell from 0.913 to 0.698 along the way.
+detector score fell from 0.936 to 0.814 along the way, and a label-format fault had
+silently corrupted 1,001 boxes before any of that.
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21134001-1d4ed8?style=flat-square)](https://doi.org/10.5281/zenodo.21134001)
 [![Journal](https://img.shields.io/badge/target-IEEE_Access-00629b?style=flat-square)](https://ieeeaccess.ieee.org/)
@@ -57,24 +58,29 @@ methodology that detects and corrects them.
 </p>
 
 <p align="center"><em>
-  (A) Reduction funnel: 3,088 raw files → 1,037 exact duplicates removed → 591 dropped for
-  an undefined licence → 1,460 images resolving to <strong>742 distinct scenes</strong>.
+  (A) Reduction funnel: 3,419 consolidated files → 1,041 exact duplicates → 1,240 excluded
+  by licence, annotation target or content → 1,460 images resolving to
+  <strong>628 distinct scenes</strong>.
   (B) Split over scene groups. (C) Real, non-augmented ocular-crop inventory.
 </em></p>
 
 **Contributions**
 
 - An **openly licensed, curated detection benchmark** for a previously unaddressed species:
-  1,460 images resolving to **742 distinct scenes**, every one under CC BY 4.0.
+  1,460 images resolving to **628 distinct scenes**, every one under CC BY 4.0.
 - A **reproducible data-integrity methodology** — cryptographic deduplication, per-source
   licence filtering, group-aware splitting, label-conflict resolution and a
   **dihedral-invariant** near-duplicate pass — released as code that asserts its own guarantee.
 - **Evidence that hash-based deduplication is a moving floor.** Cryptographic deduplication
-  left 43.5% of our test set with a training twin; making the perceptual hash invariant to the
-  eight dihedral transforms raised that to **83.4%**, because several public projects
+  left 40.5% of our test set with a training twin; making the perceptual hash invariant to the
+  eight dihedral transforms raised that to **79.5%**, because several public projects
   redistribute flipped and rotated copies.
-- A **compact YOLOv11n detector** at mAP@0.5 = **0.698 ± 0.024** over three seeds under the
-  scene-level protocol, against the 0.913 the same pipeline first reported.
+- **Evidence that a quality criterion can measure the pipeline instead of the data**: reading
+  segmentation polygons as boxes corrupted 1,001 annotations and made a sound source look
+  degenerate, so it was excluded by hand as low quality. Repairing the parser recovered every
+  box and reversed the rejection.
+- A **compact YOLOv11n detector** at mAP@0.5 = **0.814 ± 0.021** over three seeds under the
+  scene-level protocol, against the 0.936 the same pipeline reports on the raw corpus.
 - A **case study on why an above-chance score can still be meaningless**: a classifier on
   vision-language auto-labels reaches AUC-ROC = 0.736 ± 0.089 over ten retrainings, which
   reads as a working model, while an independent model judged 93.9% of the same crops **not
@@ -89,8 +95,8 @@ groups, 248 images), averaged over **three seeds**.
 
 | Model | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall | Params | Size |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **YOLOv11n** (deployed) | **0.698 ± 0.024** | 0.485 ± 0.018 | 0.746 ± 0.010 | 0.631 ± 0.050 | 2.58 M | 5.3 MB |
-| YOLOv11s (ablation) | 0.704 ± 0.019 | 0.489 ± 0.026 | 0.735 ± 0.014 | 0.653 ± 0.020 | 9.43 M | 18.3 MB |
+| **YOLOv11n** (deployed) | **0.814 ± 0.021** | 0.611 ± 0.011 | 0.849 ± 0.017 | 0.741 ± 0.012 | 2.58 M | 5.3 MB |
+| YOLOv11s (ablation) | 0.835 ± 0.009 | 0.614 ± 0.018 | 0.829 ± 0.036 | 0.769 ± 0.018 | 9.43 M | 18.3 MB |
 
 <p align="center">
   <img src="assets/fig_detector.png" alt="Capacity ablation with per-seed variance" width="94%">
@@ -98,7 +104,7 @@ groups, 248 images), averaged over **three seeds**.
 
 The 3.7× larger YOLOv11s differs by 0.006 mAP@0.5 — about a quarter of the seed-to-seed
 standard deviation of either model, so the two are **not distinguishable at this sample
-size**. We deploy the compact one. With 742 distinct scenes, the data, not the backbone, is
+size**. We deploy the compact one. With 628 distinct scenes, the data, not the backbone, is
 the binding constraint.
 
 <p align="center">
@@ -117,11 +123,11 @@ Each audit we ran invalidated the guarantee the previous one appeared to provide
 
 | Stage | Train | Test | mAP@0.5 | Δ |
 |---|:---:|:---:|:---:|:---:|
-| 1. Raw | 2,164 | 466 | 0.930 ± 0.002 | — |
-| 2. + cryptographic deduplication | 1,435 | 308 | 0.882 ± 0.006 | −0.048 |
-| 3. + licence filter | 1,021 | 220 | 0.901 ± 0.008 | **+0.019** |
-| 4. + perceptual hash | 1,018 | 226 | 0.823 ± 0.008 | −0.079 |
-| **5. + dihedral invariance** | 1,011 | 248 | **0.698 ± 0.024** | **−0.124** |
+| 1. Raw | 2,393 | 513 | 0.9361 ± 0.0015 | — |
+| 2. + cryptographic deduplication | 1,664 | 358 | 0.9023 ± 0.0040 | −0.034 |
+| 3. + source filters | 1,024 | 220 | 0.9203 ± 0.0022 | **+0.018** |
+| 4. + perceptual hash | 1,023 | 227 | 0.8802 ± 0.0057 | −0.040 |
+| **5. + dihedral invariance** | 1,022 | 224 | **0.8143 ± 0.0213** | **−0.066** |
 
 Three seeds per stage. The dihedral pass alone removes more inflation than the exact and
 conventional-perceptual passes combined, so a practitioner applying today's good practice —
@@ -135,15 +141,15 @@ three notions of duplicate identity:
 | Notion of duplicate | Contaminated test images |
 |---|:---:|
 | Cryptographic (MD5) | 0.0% — by construction |
-| Perceptual (pHash) | 43.5% |
-| **Dihedral-invariant pHash** | **83.4%** |
+| Perceptual (pHash) | 40.5% |
+| **Dihedral-invariant pHash** | **79.5%** |
 
 Only about one test image in six was genuinely unseen. The cause is mundane: public projects
 re-encode images on export, which defeats cryptographic hashing, and several of them ship
 three flipped or rotated copies of every image, which defeats a plain perceptual hash.
 
 > One confound we cannot remove: the scene-level protocol also trains on fewer images
-> (1,011 vs 1,435), so its last step mixes removed contamination with reduced training data.
+> (1,022 vs 2,393), so the cumulative drop mixes removed contamination with reduced training data.
 > A matched-size control is future work.
 
 ### Ocular classifier — an above-chance score that means nothing
@@ -227,14 +233,15 @@ for real-time field inference.
 
 ```mermaid
 flowchart TD
-    R["3,088 raw files<br/>(10 public projects)"] --> M["Cryptographic hashing"]
-    M -->|"1,037 exact duplicates removed"| U["2,051 unique files"]
+    R["3,419 consolidated files<br/>(10 public projects)"] --> P["Label-format<br/>normalisation"]
+    P -->|"1,001 polygon boxes recovered"| M["Cryptographic hashing"]
+    M -->|"1,041 exact duplicates removed"| U["2,378 unique files"]
     U --> L["Per-source licence filter"]
     L -->|"591 dropped: licence undefined"| K["1,460 images"]
     K --> D["Dihedral-invariant pHash<br/>(8 rotations and flips)"]
-    D --> S["742 distinct scenes"]
+    D --> S["628 distinct scenes"]
     S --> G["Group-aware split<br/>(whole scene groups, never split)"]
-    G --> T["Train 519 · Val 111 · Test 112 groups<br/>1,011 · 201 · 248 images"]
+    G --> T["Train 440 · Val 93 · Test 95 groups<br/>1,022 · 214 · 224 images"]
 ```
 
 We hash every file cryptographically, drop sources whose licence does not permit
@@ -243,7 +250,7 @@ minimised over the eight transforms of the dihedral group — the identity, thre
 and each composed with a flip. Whole groups are assigned to a partition, and the build script
 **asserts** that no near-duplicate pair crosses a split boundary.
 
-Without the dihedral step the audit finds 747 near-duplicate pairs; with it, 2,788. Three of
+Without the dihedral step the audit finds 433 near-duplicate pairs; with it, 1,137. Three of
 the source projects ship three geometrically augmented copies of every image, and a plain
 perceptual hash maps those to unrelated codes.
 
@@ -288,17 +295,17 @@ regenerated from the JSON in `outputs/figures/` by `scripts/gen_figures_ggplot.R
 
 ## Data
 
-The curated benchmark (**1,460 images / 742 distinct scenes**, YOLO format) is released
+The curated benchmark (**1,460 images / 628 distinct scenes**, YOLO format) is released
 under **CC BY 4.0** and deposited on Zenodo. Every retained source declares CC BY 4.0
 explicitly.
 
 | Field | Value |
 |---|---|
 | DOI | [10.5281/zenodo.21134001](https://doi.org/10.5281/zenodo.21134001) |
-| Images | 1,460 (3,088 raw − 1,037 exact duplicates − 591 undefined licence) |
-| Distinct scenes | 742 (dihedral-invariant pHash, τ = 6) |
+| Images | 1,460 (3,419 consolidated − 1,041 exact duplicates − 1,240 excluded) |
+| Distinct scenes | 628 (dihedral-invariant pHash, τ = 6) |
 | Format | YOLO (single class `alpaca`) |
-| Split | Scene groups 519 / 111 / 112 → images 1,011 / 201 / 248 |
+| Split | Scene groups 440 / 93 / 95 → images 1,022 / 214 / 224 |
 | Sources | Eight public Roboflow Universe projects, all CC BY 4.0 |
 | Excluded | One project (591 images) declaring `License: undefined`; iNaturalist imagery was explored but contributes **zero** images |
 | License | CC BY 4.0 |
@@ -332,11 +339,11 @@ source .venv-linux/bin/activate
 
 # Rebuild the benchmark from the raw corpus (licence filter + dihedral dedup)
 python scripts/build_dataset_v2.py
-# -> 1,460 images, 742 scene groups, asserts 0 cross-split near-duplicate pairs
+# -> 1,460 images, 628 scene groups, asserts 0 cross-split near-duplicate pairs
 
 # Detector — train and evaluate over three seeds under the scene-level protocol
 python scripts/train_detector_v2.py --seeds 0 1 2 --tag v2_n
-# -> mAP@0.5 = 0.698 +/- 0.024 (YOLOv11n) ; --weights yolo11s.pt -> 0.704 +/- 0.019
+# -> mAP@0.5 = 0.814 +/- 0.021 (YOLOv11n) ; --weights yolo11s.pt -> 0.835 +/- 0.009
 
 # Stage-1 fundus reference metric
 python scripts/eval_stage1_fundus.py                       # -> AUC-ROC ~ 0.997
@@ -417,12 +424,12 @@ The dataset has its own citable record:
 - The classifier's evaluation set holds **70 images with 14 positives**, too small for a
   stable AUC. We report the distribution over ten retrainings; even that mean is indicative,
   and no conclusion here rests on its exact magnitude.
-- The scene-level detector trains on fewer images than the original (1,011 vs 1,435), so the
+- Each ablation stage trains on fewer images than the one before (2,393 down to 1,022), so the
   final step of the drop **mixes removed contamination with reduced training data**. The
   three-seed spread bounds seed variance but not this confound; a matched-size control is
   future work.
 - Our near-duplicate criterion is invariant to the **dihedral group only**. Cropping, scaling
-  and photometric edits would evade it, so **742 scenes is an upper bound** on the number of
+  and photometric edits would evade it, so **628 scenes is an upper bound** on the number of
   distinct depictions. Embedding-based retrieval would likely find more.
 - The gap between predicting the labels and detecting the disease is consistent with
   (i) vision–language auto-labels without veterinary validation and (ii) a resolution ceiling

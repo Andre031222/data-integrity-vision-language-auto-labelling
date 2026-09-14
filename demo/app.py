@@ -21,7 +21,7 @@ try:                                    # load GROQ_API_KEY from a local .env if
 except Exception:                       # noqa: BLE001
     pass
 
-DETECTOR_PATH = ROOT / "models" / "detector" / "best_v2_n.pt"  # scene-level protocol, seed 0
+DETECTOR_PATH = ROOT / "models" / "detector" / "best_v3_n.pt"  # stage-5 protocol, seed 0
 
 # Local vision model via Ollama -- ONLY a plain-language description, never a diagnosis.
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")

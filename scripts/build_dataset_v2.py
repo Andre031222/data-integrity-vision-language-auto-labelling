@@ -9,9 +9,18 @@ from PIL import Image
 import imagehash
 
 EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
-# alpaca-xqfiw declares "License: undefined" on Roboflow Universe and cannot be
-# redistributed under CC BY 4.0, so it is excluded from the released dataset.
-EXCLUDED_SOURCES = {"alpaca-xqfiw"}
+# Two sources are excluded, for unrelated reasons.
+#   alpaca-xqfiw declares "License: undefined" on Roboflow Universe, so it cannot be
+#     redistributed under CC BY 4.0.
+#   alpaca-lls3s annotates heads rather than whole animals: its median box area is
+#     0.071 against 0.19-0.22 for every other source, so it labels a different target
+#     under the same single class.
+EXCLUDED_SOURCES = {"alpaca-xqfiw", "alpaca-lls3s"}
+
+# Human review of every distinct scene of alpaca-zehtv found one depicting sheep
+# rather than alpacas. It is excluded by source-image id, which covers all three
+# of its geometrically augmented copies.
+EXCLUDED_SCENES = {"alpaca-zehtv_01ad3ff1d94eb557"}
 
 
 def source_of(name):
@@ -103,13 +112,28 @@ def main():
     # Ablation: "none" groups nothing, "phash" ignores rotations and flips.
     ap.add_argument("--hash", choices=("none", "phash", "dihedral"), default="dihedral")
     ap.add_argument("--keep-all-sources", action="store_true",
-                    help="skip the licence filter (ablation only, not for release)")
+                    help="skip the source filters (ablation only, not for release)")
+    ap.add_argument("--no-md5", dest="md5", action="store_false",
+                    help="skip exact deduplication (ablation only)")
     ap.add_argument("--seed", type=int, default=42)
     a = ap.parse_args()
 
     src_root, out_root = Path(a.src), Path(a.out)
     recs = collect(src_root)
     print(f"images in source split      : {len(recs)}")
+
+    if a.md5:
+        seen, unique = {}, []
+        for r in recs:
+            h = hashlib.md5(r["path"].read_bytes()).hexdigest()
+            if h not in seen:
+                seen[h] = r["name"]
+                unique.append(r)
+        print(f"after cryptographic dedup   : {len(unique)}  "
+              f"(removed {len(recs) - len(unique)} byte-identical files)")
+        recs = unique
+    else:
+        print("cryptographic dedup         : skipped (ablation)")
 
     if a.keep_all_sources:
         kept = list(recs)
@@ -118,6 +142,12 @@ def main():
         kept = [r for r in recs if r["source"] not in EXCLUDED_SOURCES]
         print(f"after licence filter        : {len(kept)}  "
               f"(removed {len(recs) - len(kept)} from {sorted(EXCLUDED_SOURCES)})")
+    before = len(kept)
+    kept = [r for r in kept
+            if not any(r["name"].startswith(x) for x in EXCLUDED_SCENES)]
+    if before != len(kept):
+        print(f"after mislabelled-scene drop: {len(kept)}  "
+              f"(removed {before - len(kept)}: depicts sheep, not alpacas)")
 
     if a.hash == "none":
         dist = np.full((len(kept), len(kept)), 127, np.int16)
@@ -180,7 +210,7 @@ def main():
     (out_root / "data.yaml").write_text(
         f"path: {out_root.resolve()}\ntrain: images/train\nval: images/val\n"
         f"test: images/test\n\nnc: 1\nnames:\n  0: alpaca\n")
-    json.dump({"tau": a.tau, "hash": a.hash, "seed": a.seed,
+    json.dump({"tau": a.tau, "hash": a.hash, "md5": a.md5, "seed": a.seed,
                "excluded_sources": [] if a.keep_all_sources else sorted(EXCLUDED_SOURCES),
                "images": sum(counts.values()), "groups": len(order),
                "per_split_groups": {s: len(g) for s, g in assign.items()},

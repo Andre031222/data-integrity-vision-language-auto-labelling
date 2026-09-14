@@ -1,0 +1,65 @@
+{
+  "root": "data/annotated_v3_srcfilter",
+  "images": 1463,
+  "per_split": {
+    "train": 1024,
+    "val": 219,
+    "test": 220
+  },
+  "exact_duplicate_groups": 0,
+  "n_test": 220,
+  "results": {
+    "perceptual": {
+      "0": {
+        "pairs": 387,
+        "train_test_pairs": 80,
+        "contaminated_test": 80,
+        "pct": 36.4
+      },
+      "2": {
+        "pairs": 428,
+        "train_test_pairs": 89,
+        "contaminated_test": 89,
+        "pct": 40.5
+      },
+      "6": {
+        "pairs": 433,
+        "train_test_pairs": 89,
+        "contaminated_test": 89,
+        "pct": 40.5
+      },
+      "10": {
+        "pairs": 435,
+        "train_test_pairs": 89,
+        "contaminated_test": 89,
+        "pct": 40.5
+      }
+    },
+    "dihedral": {
+      "0": {
+        "pairs": 1081,
+        "train_test_pairs": 223,
+        "contaminated_test": 167,
+        "pct": 75.9
+      },
+      "2": {
+        "pairs": 1128,
+        "train_test_pairs": 234,
+        "contaminated_test": 175,
+        "pct": 79.5
+      },
+      "6": {
+        "pairs": 1137,
+        "train_test_pairs": 235,
+        "contaminated_test": 175,
+        "pct": 79.5
+      },
+      "10": {
+        "pairs": 1144,
+        "train_test_pairs": 239,
+        "contaminated_test": 177,
+        "pct": 80.5
+      }
+    }
+  }
+}

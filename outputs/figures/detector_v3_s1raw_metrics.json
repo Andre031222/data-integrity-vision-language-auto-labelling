@@ -1,0 +1,63 @@
+{
+  "dataset": "data/annotated_v3/data.yaml",
+  "weights": "models/pretrained/yolo11n.pt",
+  "epochs": 80,
+  "per_seed": {
+    "0": {
+      "mAP50": 0.9362,
+      "mAP50_95": 0.8318,
+      "precision": 0.9378,
+      "recall": 0.8877
+    },
+    "1": {
+      "mAP50": 0.9378,
+      "mAP50_95": 0.8394,
+      "precision": 0.944,
+      "recall": 0.8779
+    },
+    "2": {
+      "mAP50": 0.9342,
+      "mAP50_95": 0.8362,
+      "precision": 0.9368,
+      "recall": 0.8891
+    }
+  },
+  "summary": {
+    "mAP50": {
+      "mean": 0.9361,
+      "std": 0.0015,
+      "values": [
+        0.9362,
+        0.9378,
+        0.9342
+      ]
+    },
+    "mAP50_95": {
+      "mean": 0.8358,
+      "std": 0.0031,
+      "values": [
+        0.8318,
+        0.8394,
+        0.8362
+      ]
+    },
+    "precision": {
+      "mean": 0.9395,
+      "std": 0.0032,
+      "values": [
+        0.9378,
+        0.944,
+        0.9368
+      ]
+    },
+    "recall": {
+      "mean": 0.8849,
+      "std": 0.005,
+      "values": [
+        0.8877,
+        0.8779,
+        0.8891
+      ]
+    }
+  }
+}

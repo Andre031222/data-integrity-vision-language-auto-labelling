@@ -1,46 +1,52 @@
 # AlpacaVision AI — Curated Alpaca Detection Dataset (v1.0)
 
-**A curated, licence-audited, scene-deduplicated object-detection dataset of Peruvian
-Altiplano alpacas (*Vicugna pacos*).**
+**A curated, licence-audited, geometry-audited and scene-deduplicated object-detection
+dataset of Peruvian Altiplano alpacas (*Vicugna pacos*).**
 
-- **Version:** 2.0
+- **Version:** 3.0
 - **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
 - **Format:** YOLO (images + `.txt` bounding-box labels), single class `alpaca`
-- **Total:** 1,460 images resolving to 742 distinct scenes · 1 class
-- **Split (scene groups):** 519 / 111 / 112 → **images** 1,011 / 201 / 248
+- **Total:** 1,460 images resolving to 628 distinct scenes · 1 class
+- **Split (scene groups):** 440 / 93 / 95 → **images** 1,022 / 214 / 224
 
 ---
 
 ## Summary
 
 This dataset consolidates alpaca imagery from public Roboflow Universe projects into a
-deduplicated, licence-audited detection benchmark for the species. It was produced for the
-AlpacaVision study (Universidad Nacional del Altiplano de Puno, Peru).
+deduplicated, licence-audited detection benchmark. It was produced for the AlpacaVision
+study (Universidad Nacional del Altiplano de Puno, Peru).
 
-Version 2.0 supersedes v1.0 after an audit found that v1.0 was **not** free of leakage,
-despite containing zero exact duplicates. Three corrections were applied:
+Version 3.0 supersedes 2.0 after an annotation audit found a **label-format fault**. Two
+source projects export segmentation polygons rather than boxes, and the consolidation read
+the first four values of every line as `(cx, cy, w, h)`. For a polygon those values are two
+arbitrary vertices, so the resulting box is meaningless. The fault had two consequences:
 
-1. **Licence filter.** One source project (591 images) declares `License: undefined` on
-   Roboflow Universe. Absence of an express licence is not a grant of permission, so those
-   images are removed. Every image in v2.0 comes from a source declaring CC BY 4.0.
-2. **Perceptual deduplication.** Public projects re-encode images on export, so the same
-   photograph appears under different byte content and survives cryptographic hashing.
-3. **Dihedral invariance.** Three source projects ship three geometrically augmented copies
-   (flips, 90-degree rotations) of every image. A plain perceptual hash maps these to
-   unrelated codes, so the hash is minimised over the eight transforms of the dihedral group.
+1. One source (294 images, 523 boxes) entered v2.0 with boxes that do not contain the
+   animal — 84.5% of them fail a geometry audit, against 0–2% for every box-format source.
+2. The other polygon source had been **excluded by hand as "very low quality"**, because a
+   screen that discarded projects with mean box area below 1% was in fact measuring the
+   parser's garbage output. Its annotations are sound.
 
-Under the v1.0 split, 43.5% of test images had a perceptual near-duplicate in training; under
-the dihedral-invariant criterion the figure was **83.4%**. Users of v1.0 should treat any
-metric computed on it as inflated.
+Parsing polygons as their enclosing box recovers **1,001 annotations** across the two
+sources, none discarded.
+
+Three filters then apply, each for a different reason:
+
+| Filter | Removed | Reason |
+|---|---:|---|
+| Licence | 915 images | source declares `License: undefined` |
+| Annotation target | 322 images | source annotates **heads** (median box area 0.071 vs 0.19–0.22) |
+| Content | 3 images | one scene depicts **sheep**, found by human review |
 
 ## Contents & structure
 
 ```
-annotated_v2/
+annotated_v3_final/
 ├── images/
-│   ├── train/   1,011 images  (519 scene groups)
-│   ├── val/       201 images  (111 scene groups)
-│   └── test/      248 images  (112 scene groups)
+│   ├── train/   1,022 images  (440 scene groups)
+│   ├── val/       214 images  ( 93 scene groups)
+│   └── test/      224 images  ( 95 scene groups)
 ├── labels/                     one YOLO .txt per image
 ├── data.yaml
 └── build_manifest.json         thresholds, seed, provenance, exclusions
@@ -53,44 +59,66 @@ annotated_v2/
 
 ## Provenance and licensing
 
-| Source project | Images | Pre-augmented | Licence |
-|---|:---:|:---:|---|
-| `alpaca-ofxv9` | 681 | yes (3x) | CC BY 4.0 |
-| `alpaca-5jmfl` | 312 | no | CC BY 4.0 |
-| `alpaca-lls3s` | 294 | no | CC BY 4.0 |
-| `alpaca-ibscl` | 64 | no | CC BY 4.0 |
-| `alpaca-gkbmi` | 43 | yes (3x) | CC BY 4.0 |
-| `alpaca-8baig` | 30 | no | CC BY 4.0 |
-| `alpaca-nrzos` | 29 | no | CC BY 4.0 |
-| `alpaca-epqna` | 7 | no | CC BY 4.0 |
-| **Total retained** | **1,460** | | **CC BY 4.0** |
-| `alpaca-xqfiw` | 591 | yes (3x) | **undefined — excluded** |
-| `alpaca-zehtv` | — | yes (3x) | excluded, quality screening |
+| Source project | Images | Disposition |
+|---|---:|---|
+| `alpaca-ofxv9` | 684 | retained, CC BY 4.0 |
+| `alpaca-5jmfl` | 313 | retained, CC BY 4.0 |
+| `alpaca-zehtv` | 291 | retained, CC BY 4.0, **labels repaired from polygons** |
+| `alpaca-ibscl` | 63 | retained, CC BY 4.0 |
+| `alpaca-gkbmi` | 43 | retained, CC BY 4.0 |
+| `alpaca-8baig` | 30 | retained, CC BY 4.0 |
+| `alpaca-nrzos` | 29 | retained, CC BY 4.0 |
+| `alpaca-epqna` | 7 | retained, CC BY 4.0 |
+| **Total retained** | **1,460** | **CC BY 4.0** |
+| `alpaca-xqfiw` | 915 | excluded: licence undefined |
+| `alpaca-lls3s` | 322 | excluded: annotates heads, not whole animals |
+| (one scene) | 3 | excluded: depicts sheep |
 
-`alpaca-zehtv` was excluded before deduplication after quality screening (mean bounding-box
-area ratio < 0.01). Supplementary imagery from iNaturalist (taxon 319688, *Vicugna pacos*,
-Peruvian observations) was explored but never annotated and contributes **zero images**.
+Supplementary imagery from iNaturalist (taxon 319688, *Vicugna pacos*, Peru) was explored but
+never annotated and contributes **zero images**.
+
+**Residual class noise:** human review of all 141 distinct scenes of `alpaca-zehtv` found one
+depicting sheep (0.7%). It is excluded. We report the rate rather than implying the review
+found nothing.
+
+## Why scene groups, and not images
+
+Splitting per image is not safe on this corpus. Audited at Hamming threshold 6 on the
+deduplicated, source-filtered split (1,463 images, 220 test), which contains **zero** exact
+duplicates:
+
+| Notion of duplicate | Pairs | Test images with a training twin |
+|---|---:|---:|
+| Cryptographic (MD5) | — | 0 (0.0%) by construction |
+| Perceptual (pHash) | 433 | 89 (**40.5%**) |
+| **Dihedral-invariant pHash** | 1,137 | 175 (**79.5%**) |
+
+Public projects re-encode images on export, which defeats cryptographic hashing, and three
+of them ship three flipped or rotated copies of every image, which defeats a plain
+perceptual hash. Only about one test image in five was genuinely unseen. Any metric computed
+on a per-image split of this corpus should be treated as inflated.
 
 ## Curation & preprocessing
 
-1. **Cryptographic deduplication** — exact byte-level duplicates removed (1,037 of 3,088).
-2. **Per-source licence filter** — 591 images removed (undefined licence).
-3. **CLAHE** — applied to compensate for high ultraviolet irradiance and atmospheric haze
-   typical of Andean altiplano photography.
-4. **Dihedral-invariant perceptual grouping** — 1,460 images resolved into 742 scene groups
-   at Hamming threshold τ = 6.
-5. **Group-aware split** — whole groups assigned to a partition, seed = 42.
+1. **Label-format normalisation** — polygons reduced to their enclosing box (1,001 recovered).
+2. **Geometry audit** — coordinates in range, non-zero sides, box inside the image, aspect
+   ratio below 10:1.
+3. **Cryptographic deduplication** — 1,041 byte-identical files removed of 3,419.
+4. **Source filters** — licence, annotation target, content.
+5. **CLAHE** — compensates the high ultraviolet irradiance and haze of Andean photography.
+6. **Dihedral-invariant perceptual grouping** — 1,460 images into 628 scene groups at τ = 6.
+7. **Group-aware split** — whole groups assigned to a partition, seed = 42.
 
-Reproduce with `scripts/build_dataset_v2.py` in the accompanying repository.
+Reproduce with `scripts/consolidate_dataset.py` then `scripts/build_dataset_v2.py`.
 
 ## Benchmark (reference)
 
 A compact YOLOv11n detector (2.58M parameters) trained on this dataset reaches
-**mAP@0.5 = 0.698 ± 0.024** over three seeds on the held-out test set; a larger YOLOv11s
-reaches 0.704 ± 0.019, a difference smaller than the seed-to-seed spread.
+**mAP@0.5 = 0.814 ± 0.021** over three seeds on the held-out test set; a larger YOLOv11s
+reaches 0.835 ± 0.009.
 
-> These figures are lower than those published with v1.0 (0.860). The difference is the
-> removed contamination plus a smaller training set, not a regression in the model.
+> Under a five-stage ablation the same detector scores 0.936 ± 0.002 on the raw corpus. The
+> difference is removed contamination plus a smaller training set, not a regression.
 
 ## Intended use & limitations
 
