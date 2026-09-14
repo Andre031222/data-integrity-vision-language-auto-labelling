@@ -4,8 +4,8 @@ AlpacaVision AI -- División estratificada del dataset (70/15/15).
 Uso:
     python src/data/split_dataset.py \
         --images data/processed \
-        --labels data/annotated/labels_raw \
-        --output data/annotated
+        --labels data/annotated_v3/labels_raw \
+        --output data/annotated_v3
 """
 
 import argparse
@@ -73,8 +73,8 @@ def split_dataset(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--images", type=str, default="data/processed")
-    parser.add_argument("--labels", type=str, default="data/annotated/labels_raw")
-    parser.add_argument("--output", type=str, default="data/annotated")
+    parser.add_argument("--labels", type=str, default="data/annotated_v3/labels_raw")
+    parser.add_argument("--output", type=str, default="data/annotated_v3")
     parser.add_argument("--train", type=float, default=0.70)
     parser.add_argument("--val",   type=float, default=0.15)
     parser.add_argument("--test",  type=float, default=0.15)

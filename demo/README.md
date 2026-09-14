@@ -26,7 +26,7 @@ pip install -r demo/requirements.txt
 python demo/app.py            # http://localhost:5070
 ```
 
-The detector weights (`models/detector/best_clean.pt`) must be present locally
+The detector weights (`models/detector/best_v3_n.pt`) must be present locally
 (distributed via GitHub Releases / Zenodo).
 
 ## Optional: local image description (Ollama)
@@ -57,7 +57,7 @@ cd data-integrity-vision-language-auto-labelling
 python -m venv .venv-demo && . .venv-demo/bin/activate
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 pip install -r demo/requirements.txt
-# place best_clean.pt in models/detector/ (from Zenodo / Releases)
+# place best_v3_n.pt in models/detector/ (from Zenodo / Releases)
 
 # 2) systemd service (Gunicorn on 127.0.0.1:9060)
 sudo cp demo/deploy/paqocha.service /etc/systemd/system/

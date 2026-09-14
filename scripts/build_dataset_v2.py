@@ -106,8 +106,8 @@ def group_by_distance(d, tau):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", default="data/annotated_clean")
-    ap.add_argument("--out", default="data/annotated_v2")
+    ap.add_argument("--src", default="data/annotated_v3")
+    ap.add_argument("--out", default="data/annotated_v3_final")
     ap.add_argument("--tau", type=int, default=6)
     # Ablation: "none" groups nothing, "phash" ignores rotations and flips.
     ap.add_argument("--hash", choices=("none", "phash", "dihedral"), default="dihedral")

@@ -19,8 +19,8 @@ echo ""
 echo "-- PASO 2: Dividiendo dataset -------------"
 python src/data/split_dataset.py \
     --images data/processed \
-    --labels data/annotated/labels_raw \
-    --output data/annotated
+    --labels data/annotated_v3/labels_raw \
+    --output data/annotated_v3
 
 echo ""
 echo "-- PASO 3: Entrenando detector YOLOv11 ----"
@@ -30,7 +30,7 @@ echo ""
 echo "-- PASO 4: Extrayendo recortes ROI --------"
 python src/data/crop_regions.py \
     --detector outputs/training_runs/detector_v1/weights/best.pt \
-    --images data/annotated/images/train \
+    --images data/annotated_v3/images/train \
     --output data/crops
 
 echo ""

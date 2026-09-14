@@ -30,7 +30,7 @@ def summarise(runs):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="data/annotated_v2/data.yaml")
+    ap.add_argument("--data", default="data/annotated_v3_final/data.yaml")
     ap.add_argument("--weights", default="models/pretrained/yolo11n.pt")
     ap.add_argument("--tag", default="v2_n")
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])

@@ -8,9 +8,9 @@ EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", default="data/annotated_clean")
+    ap.add_argument("--src", default="data/annotated_v3_md5")
     ap.add_argument("--out", default="data/annotated_size_control")
-    ap.add_argument("--n-train", type=int, default=1011)
+    ap.add_argument("--n-train", type=int, default=1022)
     ap.add_argument("--seed", type=int, default=42)
     a = ap.parse_args()
 

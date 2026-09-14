@@ -1,5 +1,5 @@
 # Stage 1 detector dataset, raw consolidation (single class)
-path: ./data/annotated
+path: ./data/annotated_v3
 train: images/train
 val:   images/val
 test:  images/test

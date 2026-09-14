@@ -106,7 +106,7 @@ def contact_sheet(root, split, out, n, cols, tile, seed):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--root", default="data/annotated_v2")
+    ap.add_argument("--root", default="data/annotated_v3_final")
     ap.add_argument("--splits", nargs="+", default=["train", "val", "test"])
     ap.add_argument("--nc", type=int, default=1)
     ap.add_argument("--sample", type=int, default=60)

@@ -1,5 +1,5 @@
 # Stage 1 detector dataset after cryptographic deduplication
-path: ./data/annotated_clean
+path: ./data/annotated_v3_final
 train: images/train
 val:   images/val
 test:  images/test

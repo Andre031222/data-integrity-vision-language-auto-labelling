@@ -281,8 +281,8 @@ the study.
 ├── src/           data/ models/ training/ evaluation/ webapp/ (Flask app)
 ├── outputs/       figures/  (metrics and prediction JSON)
 ├── docs/          DATASET_CARD.md (dataset provenance, preprocessing and licensing)
-├── models/        detector/best_clean*.pt  (git-ignored; see Releases / Zenodo)
-├── data/          (git-ignored; deposited to Zenodo) annotated_clean/ = curated dataset
+├── models/        detector/best_v3_n.pt  (git-ignored; see Releases / Zenodo)
+├── data/          (git-ignored; deposited to Zenodo) annotated_v3_final/ = the benchmark
 ├── requirements.txt
 └── LICENSE
 ```
@@ -375,12 +375,13 @@ python run_webapp.py            # http://localhost:5000
 Informatics Engineering, John J. Hopfield Research Seedbed.
 Listed in the order of the manuscript.
 
-| Author | Role | ORCID |
-|---|---|---|
-| Richar Andre Vilca-Solorzano | Author (corresponding) | [0009-0003-2385-5263](https://orcid.org/0009-0003-2385-5263) |
-| Dina Maribel Yana-Yucra | Author | [0009-0003-6218-2735](https://orcid.org/0009-0003-6218-2735) |
-| Cristian Daniel Ccopa-Acero | Author | [0009-0005-7176-5849](https://orcid.org/0009-0005-7176-5849) |
-| Leonid Aleman-Gonzales | Advisor | [0000-0002-4072-6370](https://orcid.org/0000-0002-4072-6370) |
+| # | Author | Role | ORCID |
+|---|---|---|---|
+| 1 | Dina Maribel Yana-Yucra | Author | [0009-0003-6218-2735](https://orcid.org/0009-0003-6218-2735) |
+| 2 | Richar Andre Vilca-Solorzano | Author (corresponding) | [0009-0003-2385-5263](https://orcid.org/0009-0003-2385-5263) |
+| 3 | Leonid Aleman-Gonzales | Advisor | [0000-0002-4072-6370](https://orcid.org/0000-0002-4072-6370) |
+| 4 | Cristian Daniel Ccopa-Acero | Author | [0009-0005-7176-5849](https://orcid.org/0009-0005-7176-5849) |
+| 5 | Vladimiro Ibanez-Quispe | Senior author, advisor | [0000-0002-0277-4945](https://orcid.org/0000-0002-0277-4945) |
 
 * * *
 
@@ -389,14 +390,15 @@ Listed in the order of the manuscript.
 If you use this dataset or code, please cite (details to be updated on acceptance):
 
 ```bibtex
-@article{vilcasolorzano2026alpacavision,
+@article{yanayucra2026alpacavision,
   title   = {Data Integrity in Vision--Language Auto-Labelling Pipelines: An Open Alpaca
              Detection Dataset, a Compact Detector, and a Reproducible Methodology},
-  author  = {Vilca-Solorzano, Richar Andre and Yana-Yucra, Dina Maribel and
-             Ccopa-Acero, Cristian Daniel and Alem\'an-Gonzales, Leonid},
-  journal = {Informatica},
+  author  = {Yana-Yucra, Dina Maribel and Vilca-Solorzano, Richar Andre and
+             Aleman-Gonzales, Leonid and Ccopa-Acero, Cristian Daniel and
+             Iba{\~n}ez-Quispe, Vladimiro},
+  journal = {IEEE Access},
   year    = {2026},
-  note    = {Manuscript under review}
+  note    = {Manuscript prepared for submission}
 }
 ```
 

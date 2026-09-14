@@ -8,7 +8,7 @@ clasificadores de anomalías.
 Uso:
     python src/data/crop_regions.py \
         --detector models/detector/best.pt \
-        --images data/annotated/images/train \
+        --images data/annotated_v3/images/train \
         --output data/crops \
         --conf 0.5
 """
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extraer recortes ROI con detector entrenado")
     parser.add_argument("--detector", type=str, required=True,
                         help="Ruta al modelo detector: models/detector/best.pt")
-    parser.add_argument("--images", type=str, default="data/annotated/images/train")
+    parser.add_argument("--images", type=str, default="data/annotated_v3/images/train")
     parser.add_argument("--output", type=str, default="data/crops")
     parser.add_argument("--conf", type=float, default=0.5)
     args = parser.parse_args()
