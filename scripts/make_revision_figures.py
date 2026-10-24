@@ -37,7 +37,7 @@ def save(fig, out):
     print(f"wrote {out}")
 
 
-def hbar_labels(ax, bars, values, fmt="{:,}"):
+def hbar_labels(ax, bars, values, fmt="{}"):
     for b, v in zip(bars, values):
         ax.text(b.get_width() + ax.get_xlim()[1] * 0.01, b.get_y() + b.get_height() / 2,
                 fmt.format(v), va="center", fontsize=6.5, color=INK)
@@ -134,7 +134,7 @@ def fig_dataset(s, out, manifest):
     ax.set_xlabel("Count")
     for b, (_, v, c) in zip(bars, steps):
         sign = "−" if c == RED else ""
-        ax.text(b.get_width() + 60, b.get_y() + b.get_height() / 2, f"{sign}{v:,}", va="center",
+        ax.text(b.get_width() + 60, b.get_y() + b.get_height() / 2, f"{sign}{v}", va="center",
                 fontsize=6.5, color=INK)
     panel(ax, "A", "From files to photographs")
 
@@ -191,6 +191,8 @@ def fig_classifier(s, out, runs):
     fundus = s["fundus"]["tta_flip"]["auc_roc"]
     ax.scatter([2], [fundus], s=18, marker="D", color=GREEN, zorder=3)
     ax.text(2, fundus - 0.05, f"{fundus:.3f}", ha="center", fontsize=6.5, color=INK)
+    ax.axvline(1.5, color=GREY, lw=0.6)
+    ax.text(2, 0.43, "different task:\nnot comparable", ha="center", fontsize=5.5, color=MUTED)
     ax.axhline(0.5, color=GREY, lw=0.8, ls="--")
     ax.text(2.45, 0.505, "chance", fontsize=6, color=MUTED, ha="right", va="bottom")
     ax.set_xticks([0, 1, 2], ["Fixed split,\n10 seeds", "10 different\nsplits", "Human fundus\n(control)"])

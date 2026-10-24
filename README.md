@@ -17,8 +17,8 @@ at *IEEE Access*). The manuscript itself is not mirrored here.
 ## Summary
 
 Datasets built from public image repositories, and labelled by machines, are cheap to make but
-hard to evaluate. We audited our own pipeline and found that each standard check certified a
-split that the next one showed to be contaminated:
+hard to evaluate. We audited our own pipeline and found that each wider notion of image identity
+revealed contamination that the previous one had missed:
 
 | Notion of identity used to split | Test images with a copy in training |
 |---|:---:|
@@ -34,8 +34,10 @@ Shares measured on a random image-level split of the deduplicated, source-filter
 
 A YOLOv11n detector trained on six progressively stricter versions of the dataset falls from
 mAP@0.5 = 0.941 to 0.852. Controls for training-set size, split variance and test composition
-show that about half of the fall is the smaller training set and half is leakage; within each
-leaky stage, test images with a training copy score 0.04 to 0.17 higher than images without one.
+show that both contamination and the smaller training set are associated with the fall. Within
+each leaky stage, test images with a training copy score 0.04 to 0.17 higher than images without
+one, and on identical test images, losing a training copy costs 0.09 against 0.03 for the smaller
+training set alone.
 
 | Stage | Train | Test | mAP@0.5 | mAP@0.5:0.95 |
 |---|:---:|:---:|:---:|:---:|
@@ -63,7 +65,8 @@ them after pre-training on public human fundus photographs (cataract versus norm
 <p align="center"><img src="assets/fig_transfer.png" width="94%" alt="Two-stage classifier and label check"></p>
 
 The classifier recovers the auto-labels above chance (AUC-ROC 0.654 ± 0.054 over ten seeds on
-one split; 0.741 ± 0.049 over ten splits). Three authors then rated all 462 crops blind to the
+one split; 0.741 ± 0.049 over ten splits), but crop size alone predicts the same labels with an
+AUC of 0.77. Three authors then rated all 462 crops blind to the
 labels: a majority found 92.4% of them not assessable (Fleiss' κ = 0.39), and of the 91 crops
 labelled anomalous only 2 show a visible sign. No crop below 32 px was assessable, and the
 largest crops do not frame an eye at all. The score measures agreement with the labeller, not
@@ -109,6 +112,7 @@ scripts/run_revision.sh
 | `audit_near_duplicates.py` | share of test images with a training copy under each notion of identity |
 | `run_revision.sh` | every detector, classifier and benchmark run behind the manuscript |
 | `analyse_contamination.py` | contaminated versus clean test images, group bootstrap intervals |
+| `analyse_revision_extra.py` | paired comparisons on identical test images; shortcut checks for the eye-crop labels |
 | `analyse_assessability.py` | agreement of the blind ratings of the eye crops |
 | `compare_dedup_methods.py` | pHash versus CLIP: cost and recovery of known copies |
 | `benchmark_latency.py` | CPU, GPU and ONNX latency |
@@ -135,8 +139,7 @@ Ccopa-Acero and Vladimiro Ibañez-Quispe.
 
 ```bibtex
 @dataset{yanayucra2026alpacavision_v31,
-  title     = {AlpacaVision: a curated, licence-audited alpaca detection benchmark
-               (Peruvian Altiplano), v3.1},
+  title     = {AlpacaVision: a curated, licence-audited alpaca detection benchmark, v3.1},
   author    = {Yana-Yucra, Dina Maribel and Vilca-Solorzano, Richar Andre and
                Aleman-Gonzales, Leonid and Ccopa-Acero, Cristian Daniel and
                Iba{\~n}ez-Quispe, Vladimiro},

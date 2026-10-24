@@ -49,11 +49,11 @@ def main():
     xs = [0.04, 1.04, 2.04, 3.04]
     box(ax, xs[0], y, w, h, MUTED, "Initialisation",
         ["EfficientNet-B2", "7.7M parameters", "ImageNet weights"])
-    box(ax, xs[1], y, w, h, GREEN, "Stage 1: human fundus",
+    box(ax, xs[1], y, w, h, GREEN, "Pre-training: human fundus",
         ["1896 public photographs", "cataract 937 / normal 959", "full fine-tuning, 80/20 split",
          f"held-out AUC {fundus['auc_roc']:.3f}", f"[{fundus['auc_ci95'][0]:.3f}, "
          f"{fundus['auc_ci95'][1]:.3f}], n = 379"])
-    box(ax, xs[2], y, w, h, ORANGE, "Stage 2: alpaca eye crops",
+    box(ax, xs[2], y, w, h, ORANGE, "Fine-tuning: alpaca eye crops",
         ["462 crops, labels by a VLM", "(371 normal / 91 anomaly)", "no expert review",
          "focal loss, group-aware split", f"AUC vs labels {fx['auc_mean']:.2f}–{sp['auc_mean']:.2f}"])
     box(ax, xs[3], y, w, h, BLUE, "Check of the labels",

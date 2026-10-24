@@ -98,8 +98,7 @@ Counts are after exact deduplication. Every retained project declares CC BY 4.0.
 Please cite the dataset and the accompanying article:
 
 D. M. Yana-Yucra, R. A. Vilca-Solorzano, L. Aleman-Gonzales, C. D. Ccopa-Acero and
-V. Ibañez-Quispe, "AlpacaVision: a curated, licence-audited alpaca detection benchmark
-(Peruvian Altiplano), v3.1," Zenodo, 2026.
+V. Ibañez-Quispe, "AlpacaVision: a curated, licence-audited alpaca detection benchmark, v3.1," Zenodo, 2026.
 
 Code: https://github.com/Andre031222/data-integrity-vision-language-auto-labelling
 

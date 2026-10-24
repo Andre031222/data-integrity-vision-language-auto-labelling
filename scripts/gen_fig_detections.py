@@ -17,7 +17,7 @@ GT, PRED, MISS = "#009E73", "#E69F00", "#D55E00"
 PANELS = [
     (37, "Three animals behind a fence"),
     (5, "Single animal"),
-    (4, "Distant animal missed"),
+    (4, "Animal at the border missed"),
     (17, "Resting group, overlapping"),
     (14, "Calf and adult in one box"),
     (70, "Sheep boxed as alpaca by the source"),
