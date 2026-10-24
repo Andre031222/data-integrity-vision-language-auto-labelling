@@ -89,7 +89,7 @@ ocular pathology. Per-crop labels and ratings are in `outputs/figures/v31/ocular
 | Class | `alpaca`; the sources also label llamas and some wild camelids as alpaca |
 | Licence | CC BY 4.0 |
 
-Version 3.1 corrects version 3.0 (DOI 10.5281/zenodo.21134001); see
+Version 3.1 corrects version 3.0 (DOI 10.5281/zenodo.22741553); see
 [`docs/release/CHANGELOG.md`](docs/release/CHANGELOG.md).
 
 ## Reproducing the study
