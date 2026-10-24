@@ -1,0 +1,344 @@
+{
+  "tau": 6,
+  "photo_id": true,
+  "reps": 1000,
+  "reference": "s6photoid",
+  "stages": {
+    "s1raw": {
+      "own_test": {
+        "map50": 0.9407,
+        "ci95": [
+          0.9138,
+          0.9632
+        ],
+        "images": 513,
+        "scene_groups": 353
+      },
+      "contaminated": {
+        "map50": 0.9484,
+        "ci95": [
+          0.9214,
+          0.9701
+        ],
+        "images": 463,
+        "scene_groups": 305
+      },
+      "clean": {
+        "map50": 0.839,
+        "ci95": [
+          0.7672,
+          0.9095
+        ],
+        "images": 50,
+        "scene_groups": 48
+      },
+      "per_seed_own_test": [
+        0.939,
+        0.9442,
+        0.9388
+      ],
+      "reference_test_unseen": {
+        "map50": 0.995,
+        "ci95": [
+          0.995,
+          0.995
+        ],
+        "images": 1,
+        "scene_groups": 1
+      }
+    },
+    "s2sha": {
+      "own_test": {
+        "map50": 0.9151,
+        "ci95": [
+          0.8855,
+          0.9426
+        ],
+        "images": 358,
+        "scene_groups": 280
+      },
+      "contaminated": {
+        "map50": 0.9254,
+        "ci95": [
+          0.895,
+          0.9516
+        ],
+        "images": 312,
+        "scene_groups": 238
+      },
+      "clean": {
+        "map50": 0.8401,
+        "ci95": [
+          0.7239,
+          0.9327
+        ],
+        "images": 46,
+        "scene_groups": 42
+      },
+      "per_seed_own_test": [
+        0.9155,
+        0.9201,
+        0.9096
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8105,
+        "ci95": [
+          0.7376,
+          0.9278
+        ],
+        "images": 10,
+        "scene_groups": 6
+      }
+    },
+    "s3src": {
+      "own_test": {
+        "map50": 0.8984,
+        "ci95": [
+          0.8432,
+          0.9518
+        ],
+        "images": 220,
+        "scene_groups": 183
+      },
+      "contaminated": {
+        "map50": 0.9162,
+        "ci95": [
+          0.8525,
+          0.9713
+        ],
+        "images": 181,
+        "scene_groups": 155
+      },
+      "clean": {
+        "map50": 0.8204,
+        "ci95": [
+          0.7337,
+          0.9228
+        ],
+        "images": 39,
+        "scene_groups": 28
+      },
+      "per_seed_own_test": [
+        0.8956,
+        0.8994,
+        0.9002
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8692,
+        "ci95": [
+          0.7913,
+          0.995
+        ],
+        "images": 15,
+        "scene_groups": 9
+      }
+    },
+    "s4phash": {
+      "own_test": {
+        "map50": 0.8772,
+        "ci95": [
+          0.8096,
+          0.9345
+        ],
+        "images": 224,
+        "scene_groups": 141
+      },
+      "contaminated": {
+        "map50": 0.9358,
+        "ci95": [
+          0.8999,
+          0.9697
+        ],
+        "images": 145,
+        "scene_groups": 100
+      },
+      "clean": {
+        "map50": 0.7629,
+        "ci95": [
+          0.6412,
+          0.9149
+        ],
+        "images": 79,
+        "scene_groups": 41
+      },
+      "per_seed_own_test": [
+        0.8727,
+        0.8803,
+        0.8788
+      ],
+      "reference_test_unseen": {
+        "map50": 0.9768,
+        "ci95": [
+          0.9495,
+          0.995
+        ],
+        "images": 26,
+        "scene_groups": 13
+      }
+    },
+    "s5dihedral": {
+      "own_test": {
+        "map50": 0.8216,
+        "ci95": [
+          0.7624,
+          0.8826
+        ],
+        "images": 228,
+        "scene_groups": 92
+      },
+      "contaminated": {
+        "map50": 0.8479,
+        "ci95": [
+          0.7568,
+          0.9367
+        ],
+        "images": 62,
+        "scene_groups": 23
+      },
+      "clean": {
+        "map50": 0.8089,
+        "ci95": [
+          0.7278,
+          0.8886
+        ],
+        "images": 166,
+        "scene_groups": 69
+      },
+      "per_seed_own_test": [
+        0.8318,
+        0.7965,
+        0.8364
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8977,
+        "ci95": [
+          0.8322,
+          0.9675
+        ],
+        "images": 54,
+        "scene_groups": 23
+      }
+    },
+    "s6photoid": {
+      "own_test": {
+        "map50": 0.8533,
+        "ci95": [
+          0.8021,
+          0.9084
+        ],
+        "images": 211,
+        "scene_groups": 79
+      },
+      "contaminated": null,
+      "clean": {
+        "map50": 0.8533,
+        "ci95": [
+          0.8,
+          0.9083
+        ],
+        "images": 211,
+        "scene_groups": 79
+      },
+      "per_seed_own_test": [
+        0.868,
+        0.8569,
+        0.8349
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8533,
+        "ci95": [
+          0.8001,
+          0.9132
+        ],
+        "images": 211,
+        "scene_groups": 79
+      }
+    },
+    "s1raw_n1035": {
+      "own_test": {
+        "map50": 0.8956,
+        "ci95": [
+          0.8605,
+          0.9276
+        ],
+        "images": 513,
+        "scene_groups": 353
+      },
+      "contaminated": {
+        "map50": 0.9098,
+        "ci95": [
+          0.871,
+          0.9462
+        ],
+        "images": 379,
+        "scene_groups": 255
+      },
+      "clean": {
+        "map50": 0.8442,
+        "ci95": [
+          0.7682,
+          0.9071
+        ],
+        "images": 134,
+        "scene_groups": 98
+      },
+      "per_seed_own_test": [
+        0.8976,
+        0.8899,
+        0.8993
+      ],
+      "reference_test_unseen": {
+        "map50": 0.9125,
+        "ci95": [
+          0.8115,
+          0.9843
+        ],
+        "images": 23,
+        "scene_groups": 12
+      }
+    },
+    "s2sha_n1035": {
+      "own_test": {
+        "map50": 0.8826,
+        "ci95": [
+          0.8489,
+          0.9158
+        ],
+        "images": 358,
+        "scene_groups": 280
+      },
+      "contaminated": {
+        "map50": 0.9006,
+        "ci95": [
+          0.8674,
+          0.9384
+        ],
+        "images": 278,
+        "scene_groups": 212
+      },
+      "clean": {
+        "map50": 0.8077,
+        "ci95": [
+          0.7309,
+          0.8776
+        ],
+        "images": 80,
+        "scene_groups": 68
+      },
+      "per_seed_own_test": [
+        0.8833,
+        0.8803,
+        0.8842
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8884,
+        "ci95": [
+          0.8261,
+          0.9647
+        ],
+        "images": 28,
+        "scene_groups": 14
+      }
+    }
+  }
+}

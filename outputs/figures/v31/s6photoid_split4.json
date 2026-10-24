@@ -1,0 +1,43 @@
+{
+  "dataset": "data/v3.1/splits/s6photoid_split4/data.yaml",
+  "weights": "models/pretrained/yolo11n.pt",
+  "epochs": 80,
+  "per_seed": {
+    "0": {
+      "mAP50": 0.7673,
+      "mAP50_95": 0.5739,
+      "precision": 0.8261,
+      "recall": 0.7165
+    }
+  },
+  "summary": {
+    "mAP50": {
+      "mean": 0.7673,
+      "std": 0.0,
+      "values": [
+        0.7673
+      ]
+    },
+    "mAP50_95": {
+      "mean": 0.5739,
+      "std": 0.0,
+      "values": [
+        0.5739
+      ]
+    },
+    "precision": {
+      "mean": 0.8261,
+      "std": 0.0,
+      "values": [
+        0.8261
+      ]
+    },
+    "recall": {
+      "mean": 0.7165,
+      "std": 0.0,
+      "values": [
+        0.7165
+      ]
+    }
+  }
+}

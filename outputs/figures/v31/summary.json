@@ -1,0 +1,926 @@
+{
+  "ablation": {
+    "s1raw": {
+      "train_images": 2393,
+      "test_images": 513,
+      "map50": [
+        0.9406,
+        0.0025
+      ],
+      "map50_95": [
+        0.8383,
+        0.0043
+      ],
+      "precision": 0.9324,
+      "recall": 0.8912
+    },
+    "s2sha": {
+      "train_images": 1664,
+      "test_images": 358,
+      "map50": [
+        0.9153,
+        0.004
+      ],
+      "map50_95": [
+        0.7612,
+        0.0017
+      ],
+      "precision": 0.9181,
+      "recall": 0.8549
+    },
+    "s3src": {
+      "train_images": 1022,
+      "test_images": 220,
+      "map50": [
+        0.8984,
+        0.002
+      ],
+      "map50_95": [
+        0.8005,
+        0.0091
+      ],
+      "precision": 0.936,
+      "recall": 0.8618
+    },
+    "s4phash": {
+      "train_images": 1022,
+      "test_images": 224,
+      "map50": [
+        0.8772,
+        0.0033
+      ],
+      "map50_95": [
+        0.7113,
+        0.015
+      ],
+      "precision": 0.9109,
+      "recall": 0.7946
+    },
+    "s5dihedral": {
+      "train_images": 1023,
+      "test_images": 228,
+      "map50": [
+        0.8219,
+        0.0174
+      ],
+      "map50_95": [
+        0.6028,
+        0.0242
+      ],
+      "precision": 0.8761,
+      "recall": 0.7268
+    },
+    "s6photoid": {
+      "train_images": 1035,
+      "test_images": 211,
+      "map50": [
+        0.852,
+        0.0155
+      ],
+      "map50_95": [
+        0.6362,
+        0.0074
+      ],
+      "precision": 0.9106,
+      "recall": 0.7598
+    }
+  },
+  "split_variance": {
+    "s3src": {
+      "values": [
+        0.8956,
+        0.9123,
+        0.9036,
+        0.9235,
+        0.9433
+      ],
+      "mean": 0.9157,
+      "sd": 0.0186,
+      "range": [
+        0.8956,
+        0.9433
+      ]
+    },
+    "s4phash": {
+      "values": [
+        0.8727,
+        0.8852,
+        0.8587,
+        0.8957,
+        0.8905
+      ],
+      "mean": 0.8806,
+      "sd": 0.0149,
+      "range": [
+        0.8587,
+        0.8957
+      ]
+    },
+    "s5dihedral": {
+      "values": [
+        0.8318,
+        0.8148,
+        0.8073,
+        0.7606,
+        0.8239
+      ],
+      "mean": 0.8077,
+      "sd": 0.0279,
+      "range": [
+        0.7606,
+        0.8318
+      ]
+    },
+    "s6photoid": {
+      "values": [
+        0.868,
+        0.8148,
+        0.7877,
+        0.8315,
+        0.7673
+      ],
+      "mean": 0.8139,
+      "sd": 0.039,
+      "range": [
+        0.7673,
+        0.868
+      ]
+    }
+  },
+  "size_control": {
+    "s1raw": {
+      "tag": "s1raw_n1035",
+      "map50": [
+        0.8954,
+        0.0041
+      ],
+      "map50_95": [
+        0.7507,
+        0.0022
+      ]
+    },
+    "s2sha": {
+      "tag": "s2sha_n1035",
+      "map50": [
+        0.8826,
+        0.0017
+      ],
+      "map50_95": [
+        0.718,
+        0.0099
+      ]
+    }
+  },
+  "capacity": {
+    "yolo11n": {
+      "mAP50": [
+        0.852,
+        0.0155
+      ],
+      "mAP50_95": [
+        0.6362,
+        0.0074
+      ],
+      "precision": [
+        0.9106,
+        0.0202
+      ],
+      "recall": [
+        0.7598,
+        0.0089
+      ],
+      "per_seed": {
+        "0": {
+          "mAP50": 0.868,
+          "mAP50_95": 0.6259,
+          "precision": 0.9351,
+          "recall": 0.7691
+        },
+        "1": {
+          "mAP50": 0.8569,
+          "mAP50_95": 0.6425,
+          "precision": 0.8856,
+          "recall": 0.7626
+        },
+        "2": {
+          "mAP50": 0.8311,
+          "mAP50_95": 0.6403,
+          "precision": 0.911,
+          "recall": 0.7478
+        }
+      }
+    },
+    "yolo11s": {
+      "mAP50": [
+        0.841,
+        0.0145
+      ],
+      "mAP50_95": [
+        0.6521,
+        0.0256
+      ],
+      "precision": [
+        0.875,
+        0.0146
+      ],
+      "recall": [
+        0.7813,
+        0.0352
+      ],
+      "per_seed": {
+        "0": {
+          "mAP50": 0.8469,
+          "mAP50_95": 0.6698,
+          "precision": 0.8593,
+          "recall": 0.8157
+        },
+        "1": {
+          "mAP50": 0.821,
+          "mAP50_95": 0.6159,
+          "precision": 0.8713,
+          "recall": 0.7329
+        },
+        "2": {
+          "mAP50": 0.855,
+          "mAP50_95": 0.6707,
+          "precision": 0.8945,
+          "recall": 0.7953
+        }
+      }
+    }
+  },
+  "contamination": {
+    "s1raw": {
+      "own_test": {
+        "map50": 0.9407,
+        "ci95": [
+          0.9138,
+          0.9632
+        ],
+        "images": 513,
+        "scene_groups": 353
+      },
+      "contaminated": {
+        "map50": 0.9484,
+        "ci95": [
+          0.9214,
+          0.9701
+        ],
+        "images": 463,
+        "scene_groups": 305
+      },
+      "clean": {
+        "map50": 0.839,
+        "ci95": [
+          0.7672,
+          0.9095
+        ],
+        "images": 50,
+        "scene_groups": 48
+      },
+      "per_seed_own_test": [
+        0.939,
+        0.9442,
+        0.9388
+      ],
+      "reference_test_unseen": {
+        "map50": 0.995,
+        "ci95": [
+          0.995,
+          0.995
+        ],
+        "images": 1,
+        "scene_groups": 1
+      }
+    },
+    "s2sha": {
+      "own_test": {
+        "map50": 0.9151,
+        "ci95": [
+          0.8855,
+          0.9426
+        ],
+        "images": 358,
+        "scene_groups": 280
+      },
+      "contaminated": {
+        "map50": 0.9254,
+        "ci95": [
+          0.895,
+          0.9516
+        ],
+        "images": 312,
+        "scene_groups": 238
+      },
+      "clean": {
+        "map50": 0.8401,
+        "ci95": [
+          0.7239,
+          0.9327
+        ],
+        "images": 46,
+        "scene_groups": 42
+      },
+      "per_seed_own_test": [
+        0.9155,
+        0.9201,
+        0.9096
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8105,
+        "ci95": [
+          0.7376,
+          0.9278
+        ],
+        "images": 10,
+        "scene_groups": 6
+      }
+    },
+    "s3src": {
+      "own_test": {
+        "map50": 0.8984,
+        "ci95": [
+          0.8432,
+          0.9518
+        ],
+        "images": 220,
+        "scene_groups": 183
+      },
+      "contaminated": {
+        "map50": 0.9162,
+        "ci95": [
+          0.8525,
+          0.9713
+        ],
+        "images": 181,
+        "scene_groups": 155
+      },
+      "clean": {
+        "map50": 0.8204,
+        "ci95": [
+          0.7337,
+          0.9228
+        ],
+        "images": 39,
+        "scene_groups": 28
+      },
+      "per_seed_own_test": [
+        0.8956,
+        0.8994,
+        0.9002
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8692,
+        "ci95": [
+          0.7913,
+          0.995
+        ],
+        "images": 15,
+        "scene_groups": 9
+      }
+    },
+    "s4phash": {
+      "own_test": {
+        "map50": 0.8772,
+        "ci95": [
+          0.8096,
+          0.9345
+        ],
+        "images": 224,
+        "scene_groups": 141
+      },
+      "contaminated": {
+        "map50": 0.9358,
+        "ci95": [
+          0.8999,
+          0.9697
+        ],
+        "images": 145,
+        "scene_groups": 100
+      },
+      "clean": {
+        "map50": 0.7629,
+        "ci95": [
+          0.6412,
+          0.9149
+        ],
+        "images": 79,
+        "scene_groups": 41
+      },
+      "per_seed_own_test": [
+        0.8727,
+        0.8803,
+        0.8788
+      ],
+      "reference_test_unseen": {
+        "map50": 0.9768,
+        "ci95": [
+          0.9495,
+          0.995
+        ],
+        "images": 26,
+        "scene_groups": 13
+      }
+    },
+    "s5dihedral": {
+      "own_test": {
+        "map50": 0.8216,
+        "ci95": [
+          0.7624,
+          0.8826
+        ],
+        "images": 228,
+        "scene_groups": 92
+      },
+      "contaminated": {
+        "map50": 0.8479,
+        "ci95": [
+          0.7568,
+          0.9367
+        ],
+        "images": 62,
+        "scene_groups": 23
+      },
+      "clean": {
+        "map50": 0.8089,
+        "ci95": [
+          0.7278,
+          0.8886
+        ],
+        "images": 166,
+        "scene_groups": 69
+      },
+      "per_seed_own_test": [
+        0.8318,
+        0.7965,
+        0.8364
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8977,
+        "ci95": [
+          0.8322,
+          0.9675
+        ],
+        "images": 54,
+        "scene_groups": 23
+      }
+    },
+    "s6photoid": {
+      "own_test": {
+        "map50": 0.8533,
+        "ci95": [
+          0.8021,
+          0.9084
+        ],
+        "images": 211,
+        "scene_groups": 79
+      },
+      "contaminated": null,
+      "clean": {
+        "map50": 0.8533,
+        "ci95": [
+          0.8,
+          0.9083
+        ],
+        "images": 211,
+        "scene_groups": 79
+      },
+      "per_seed_own_test": [
+        0.868,
+        0.8569,
+        0.8349
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8533,
+        "ci95": [
+          0.8001,
+          0.9132
+        ],
+        "images": 211,
+        "scene_groups": 79
+      }
+    },
+    "s1raw_n1035": {
+      "own_test": {
+        "map50": 0.8956,
+        "ci95": [
+          0.8605,
+          0.9276
+        ],
+        "images": 513,
+        "scene_groups": 353
+      },
+      "contaminated": {
+        "map50": 0.9098,
+        "ci95": [
+          0.871,
+          0.9462
+        ],
+        "images": 379,
+        "scene_groups": 255
+      },
+      "clean": {
+        "map50": 0.8442,
+        "ci95": [
+          0.7682,
+          0.9071
+        ],
+        "images": 134,
+        "scene_groups": 98
+      },
+      "per_seed_own_test": [
+        0.8976,
+        0.8899,
+        0.8993
+      ],
+      "reference_test_unseen": {
+        "map50": 0.9125,
+        "ci95": [
+          0.8115,
+          0.9843
+        ],
+        "images": 23,
+        "scene_groups": 12
+      }
+    },
+    "s2sha_n1035": {
+      "own_test": {
+        "map50": 0.8826,
+        "ci95": [
+          0.8489,
+          0.9158
+        ],
+        "images": 358,
+        "scene_groups": 280
+      },
+      "contaminated": {
+        "map50": 0.9006,
+        "ci95": [
+          0.8674,
+          0.9384
+        ],
+        "images": 278,
+        "scene_groups": 212
+      },
+      "clean": {
+        "map50": 0.8077,
+        "ci95": [
+          0.7309,
+          0.8776
+        ],
+        "images": 80,
+        "scene_groups": 68
+      },
+      "per_seed_own_test": [
+        0.8833,
+        0.8803,
+        0.8842
+      ],
+      "reference_test_unseen": {
+        "map50": 0.8884,
+        "ci95": [
+          0.8261,
+          0.9647
+        ],
+        "images": 28,
+        "scene_groups": 14
+      }
+    }
+  },
+  "neardup_audit": {
+    "perceptual": {
+      "0": {
+        "pairs": 411,
+        "train_test_pairs": 74,
+        "contaminated_test": 74,
+        "pct": 33.6
+      },
+      "2": {
+        "pairs": 454,
+        "train_test_pairs": 81,
+        "contaminated_test": 81,
+        "pct": 36.8
+      },
+      "6": {
+        "pairs": 459,
+        "train_test_pairs": 83,
+        "contaminated_test": 81,
+        "pct": 36.8
+      },
+      "10": {
+        "pairs": 461,
+        "train_test_pairs": 85,
+        "contaminated_test": 82,
+        "pct": 37.3
+      }
+    },
+    "dihedral": {
+      "0": {
+        "pairs": 1106,
+        "train_test_pairs": 229,
+        "contaminated_test": 161,
+        "pct": 73.2
+      },
+      "2": {
+        "pairs": 1155,
+        "train_test_pairs": 236,
+        "contaminated_test": 167,
+        "pct": 75.9
+      },
+      "6": {
+        "pairs": 1164,
+        "train_test_pairs": 240,
+        "contaminated_test": 167,
+        "pct": 75.9
+      },
+      "10": {
+        "pairs": 1174,
+        "train_test_pairs": 242,
+        "contaminated_test": 168,
+        "pct": 76.4
+      }
+    },
+    "photo_id_or_dihedral": {
+      "0": {
+        "pairs": 1663,
+        "train_test_pairs": 353,
+        "contaminated_test": 181,
+        "pct": 82.3
+      },
+      "2": {
+        "pairs": 1663,
+        "train_test_pairs": 353,
+        "contaminated_test": 181,
+        "pct": 82.3
+      },
+      "6": {
+        "pairs": 1672,
+        "train_test_pairs": 357,
+        "contaminated_test": 181,
+        "pct": 82.3
+      },
+      "10": {
+        "pairs": 1680,
+        "train_test_pairs": 357,
+        "contaminated_test": 181,
+        "pct": 82.3
+      }
+    }
+  },
+  "assessability": {
+    "crops": 462,
+    "raters": [
+      "VIQ",
+      "DMYY",
+      "RAVS"
+    ],
+    "per_rater": {
+      "VIQ": {
+        "assessable": 16,
+        "assessable_pct": 3.5,
+        "visible_sign": 3
+      },
+      "DMYY": {
+        "assessable": 41,
+        "assessable_pct": 8.9,
+        "visible_sign": 3
+      },
+      "RAVS": {
+        "assessable": 87,
+        "assessable_pct": 18.8,
+        "visible_sign": 1
+      }
+    },
+    "pairwise_kappa": {
+      "VIQ-DMYY": {
+        "kappa": 0.501,
+        "ci95": [
+          0.327,
+          0.651
+        ],
+        "raw_agreement": 0.942
+      },
+      "VIQ-RAVS": {
+        "kappa": 0.268,
+        "ci95": [
+          0.158,
+          0.375
+        ],
+        "raw_agreement": 0.846
+      },
+      "DMYY-RAVS": {
+        "kappa": 0.467,
+        "ci95": [
+          0.352,
+          0.572
+        ],
+        "raw_agreement": 0.87
+      }
+    },
+    "fleiss_kappa": {
+      "kappa": 0.388,
+      "ci95": [
+        0.279,
+        0.489
+      ]
+    },
+    "consensus": {
+      "assessable_by_all": 15,
+      "assessable_by_majority": 35,
+      "assessable_by_none": 368,
+      "not_assessable_by_majority_pct": 92.4,
+      "visible_sign_by_any": 5,
+      "visible_sign_by_majority": 2
+    },
+    "vlm_anomaly_labels": {
+      "total": 91,
+      "assessable_by_majority": 16,
+      "visible_sign_by_any_rater": 4,
+      "visible_sign_by_majority": 2
+    },
+    "by_crop_side_px": {
+      "0-32": {
+        "crops": 232,
+        "assessable_by_majority": 0
+      },
+      "32-64": {
+        "crops": 150,
+        "assessable_by_majority": 25
+      },
+      "64-100": {
+        "crops": 42,
+        "assessable_by_majority": 10
+      },
+      "100-max": {
+        "crops": 38,
+        "assessable_by_majority": 0
+      }
+    },
+    "median_side_px": 31.0,
+    "median_side_px_assessable_by_majority": 50.0,
+    "vs_ai_prescreen": {
+      "ai_assessable": 28,
+      "kappa_ai_vs_majority": 0.404,
+      "ci95": [
+        0.235,
+        0.563
+      ]
+    }
+  },
+  "classifier": {
+    "fixed_split": {
+      "runs": 10,
+      "auc_mean": 0.654,
+      "auc_sd": 0.054,
+      "auc_range": [
+        0.568,
+        0.744
+      ],
+      "mean_ci_width": 0.281,
+      "f1_range": [
+        0.095,
+        0.471
+      ]
+    },
+    "split_sweep": {
+      "runs": 10,
+      "auc_mean": 0.741,
+      "auc_sd": 0.049,
+      "auc_range": [
+        0.63,
+        0.825
+      ],
+      "mean_ci_width": 0.273,
+      "f1_range": [
+        0.167,
+        0.513
+      ]
+    }
+  },
+  "fundus": {
+    "n": 379,
+    "n_anomaly": 182,
+    "auc_roc": 0.997,
+    "auc_ci95": [
+      0.9934,
+      0.9996
+    ],
+    "f1_anomaly": 0.9573,
+    "accuracy": 0.9604,
+    "tta_flip": {
+      "auc_roc": 0.9968,
+      "auc_ci95": [
+        0.9926,
+        0.9996
+      ],
+      "f1_anomaly": 0.9456,
+      "accuracy": 0.9499
+    }
+  },
+  "dedup_cost": {
+    "images": 1461,
+    "pairs": 1066530,
+    "photo_id_pairs": 1663,
+    "cpu": "x86_64",
+    "torch_threads": 12,
+    "phash_dihedral": {
+      "seconds_total": 50.45,
+      "ms_per_image": 34.53,
+      "seconds_all_pairs": 1.003,
+      "bytes_per_image": 64,
+      "photo_id_pairs_found": 1155,
+      "other_pairs_flagged": 9
+    },
+    "clip_vit_b32": {
+      "cpu": {
+        "seconds_total": 49.57,
+        "ms_per_image": 33.93
+      },
+      "cuda": {
+        "seconds_total": 12.18,
+        "ms_per_image": 8.33,
+        "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+      },
+      "bytes_per_image": 2048,
+      "threshold_sweep": {
+        "0.9": {
+          "photo_id_pairs_found": 1313,
+          "other_pairs_flagged": 7716,
+          "photo_id_pairs_missed_by_hash_found": 290
+        },
+        "0.92": {
+          "photo_id_pairs_found": 1258,
+          "other_pairs_flagged": 1647,
+          "photo_id_pairs_missed_by_hash_found": 236
+        },
+        "0.94": {
+          "photo_id_pairs_found": 1160,
+          "other_pairs_flagged": 253,
+          "photo_id_pairs_missed_by_hash_found": 140
+        },
+        "0.95": {
+          "photo_id_pairs_found": 1103,
+          "other_pairs_flagged": 106,
+          "photo_id_pairs_missed_by_hash_found": 84
+        },
+        "0.96": {
+          "photo_id_pairs_found": 1043,
+          "other_pairs_flagged": 53,
+          "photo_id_pairs_missed_by_hash_found": 31
+        },
+        "0.97": {
+          "photo_id_pairs_found": 991,
+          "other_pairs_flagged": 26,
+          "photo_id_pairs_missed_by_hash_found": 5
+        },
+        "0.98": {
+          "photo_id_pairs_found": 875,
+          "other_pairs_flagged": 9,
+          "photo_id_pairs_missed_by_hash_found": 0
+        }
+      }
+    },
+    "photo_id_pairs_missed_by_hash": 508
+  },
+  "latency": {
+    "cpu": "x86_64",
+    "cpu_threads": 4,
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "imgsz": 640,
+    "batch": 1,
+    "models": {
+      "s6photoid_seed0": {
+        "size_mb": 5.24,
+        "pytorch_cpu": {
+          "median_ms": 55.14,
+          "p90_ms": 58.48
+        },
+        "pytorch_gpu": {
+          "median_ms": 7.66,
+          "p90_ms": 8.22
+        },
+        "onnx_size_mb": 10.11,
+        "onnx_cpu": {
+          "median_ms": 70.41,
+          "p90_ms": 94.7
+        }
+      },
+      "s6photoid_yolo11s_seed0": {
+        "size_mb": 18.32,
+        "pytorch_cpu": {
+          "median_ms": 120.19,
+          "p90_ms": 125.21
+        },
+        "pytorch_gpu": {
+          "median_ms": 12.5,
+          "p90_ms": 13.0
+        },
+        "onnx_size_mb": 36.17,
+        "onnx_cpu": {
+          "median_ms": 107.77,
+          "p90_ms": 130.47
+        }
+      }
+    }
+  }
+}

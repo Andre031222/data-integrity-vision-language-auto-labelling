@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "title": "AlpacaVision: a curated, licence-audited alpaca detection benchmark (Peruvian Altiplano), v3.0",
+    "title": "AlpacaVision: a curated, licence-audited alpaca detection benchmark (Peruvian Altiplano), v3.1",
     "upload_type": "dataset",
-    "version": "3.0",
+    "version": "3.1",
     "language": "eng",
     "license": "cc-by-4.0",
     "access_right": "open",
-    "description": "<p>An openly licensed object-detection benchmark of alpacas (<em>Vicugna pacos</em>) from the Peruvian Altiplano: <strong>1,460 images resolving to 628 distinct scenes</strong>, single class <code>alpaca</code>, YOLO format.</p><p><strong>Version 3.0 supersedes earlier versions after an annotation audit.</strong> Two source projects export segmentation polygons rather than boxes, and the original consolidation read the first four values of each line as (cx, cy, w, h). This corrupted 1,001 annotations and caused a sound source to be rejected by a quality screen that was in fact measuring the parser. Parsing polygons as their enclosing box recovers every annotation.</p><p>Three filters then apply, each for a distinct reason: one source declares an undefined licence (915 images), one annotates heads rather than whole animals (322 images, median box area 0.071 against 0.19-0.22 elsewhere), and one scene depicting sheep was removed after human review (3 images).</p><p>Splits are drawn over <strong>scene groups</strong> rather than images, using a perceptual hash minimised over the eight transforms of the dihedral group. This matters: on a per-image split of this corpus, 40.5% of test images have a near-duplicate in training under a conventional perceptual hash, and 79.5% under the dihedral-invariant one, despite zero exact duplicates. Train / validation / test = 440 / 93 / 95 scene groups, or 1,022 / 214 / 224 images.</p><p>Reference benchmark: a compact YOLOv11n detector reaches mAP@0.5 = 0.814 +/- 0.021 over three seeds on the held-out test set.</p><p>Every retained image derives from a Roboflow Universe project declaring CC BY 4.0. Per-source provenance, exclusions and the build manifest are included in the archive. Code: https://github.com/Andre031222/data-integrity-vision-language-auto-labelling</p>",
+    "description": "<p>An openly licensed object-detection dataset of alpacas and other South American camelids, assembled from ten public Roboflow Universe projects and audited for licence, label format, exact duplicates, near-duplicates and content: <strong>1,461 images (2,537 boxes) from 517 distinct photographs</strong>, single class <code>alpaca</code>, YOLO format.</p><p><strong>Version 3.1 supersedes 3.0.</strong> Exact deduplication now uses SHA-256 and keeps the licensed copy of byte-identical files (37 files recovered); a content review removed 14 photographs that do not show a live camelid (39 files); and copies that a platform cropped or rescaled are now grouped through the source-photo identifier kept in Roboflow file names. The v3.0 README wrongly stated that CLAHE had been applied; images are distributed as exported. See CHANGELOG.md.</p><p>The split is drawn over photographs, not images: train / validation / test = 361 / 77 / 79 photographs (1,035 / 215 / 211 images). On a random per-image split of this corpus, 82.3% of test images have a copy in training, so keep the released split or split by the photo_group column of provenance.csv.</p><p>The source projects also label llamas and occasionally wild vicu&ntilde;as and guanacos as alpaca; the class should be read as South American camelid labelled as alpaca by the source. Every retained image comes from a project declaring CC BY 4.0; per-image provenance and every exclusion with its reason are included.</p><p>Code: https://github.com/Andre031222/data-integrity-vision-language-auto-labelling</p>",
     "keywords": [
       "object detection",
       "data integrity",
@@ -17,7 +17,9 @@
       "precision livestock farming",
       "alpaca",
       "Vicugna pacos",
-      "YOLO"
+      "YOLO",
+      "South American camelids",
+      "source-photo identifier"
     ],
     "creators": [
       {

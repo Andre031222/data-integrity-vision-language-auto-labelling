@@ -1,0 +1,63 @@
+{
+  "dataset": "data/v3.1/s2sha/data.yaml",
+  "weights": "models/pretrained/yolo11n.pt",
+  "epochs": 80,
+  "per_seed": {
+    "0": {
+      "mAP50": 0.9155,
+      "mAP50_95": 0.7606,
+      "precision": 0.9199,
+      "recall": 0.8511
+    },
+    "1": {
+      "mAP50": 0.9201,
+      "mAP50_95": 0.7636,
+      "precision": 0.919,
+      "recall": 0.8625
+    },
+    "2": {
+      "mAP50": 0.9102,
+      "mAP50_95": 0.7595,
+      "precision": 0.9153,
+      "recall": 0.8511
+    }
+  },
+  "summary": {
+    "mAP50": {
+      "mean": 0.9153,
+      "std": 0.004,
+      "values": [
+        0.9155,
+        0.9201,
+        0.9102
+      ]
+    },
+    "mAP50_95": {
+      "mean": 0.7612,
+      "std": 0.0017,
+      "values": [
+        0.7606,
+        0.7636,
+        0.7595
+      ]
+    },
+    "precision": {
+      "mean": 0.9181,
+      "std": 0.002,
+      "values": [
+        0.9199,
+        0.919,
+        0.9153
+      ]
+    },
+    "recall": {
+      "mean": 0.8549,
+      "std": 0.0054,
+      "values": [
+        0.8511,
+        0.8625,
+        0.8511
+      ]
+    }
+  }
+}

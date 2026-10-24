@@ -1,0 +1,63 @@
+{
+  "dataset": "data/v3.1/s6photoid/data.yaml",
+  "weights": "models/pretrained/yolo11s.pt",
+  "epochs": 80,
+  "per_seed": {
+    "0": {
+      "mAP50": 0.8469,
+      "mAP50_95": 0.6698,
+      "precision": 0.8593,
+      "recall": 0.8157
+    },
+    "1": {
+      "mAP50": 0.821,
+      "mAP50_95": 0.6159,
+      "precision": 0.8713,
+      "recall": 0.7329
+    },
+    "2": {
+      "mAP50": 0.855,
+      "mAP50_95": 0.6707,
+      "precision": 0.8945,
+      "recall": 0.7953
+    }
+  },
+  "summary": {
+    "mAP50": {
+      "mean": 0.841,
+      "std": 0.0145,
+      "values": [
+        0.8469,
+        0.821,
+        0.855
+      ]
+    },
+    "mAP50_95": {
+      "mean": 0.6521,
+      "std": 0.0256,
+      "values": [
+        0.6698,
+        0.6159,
+        0.6707
+      ]
+    },
+    "precision": {
+      "mean": 0.875,
+      "std": 0.0146,
+      "values": [
+        0.8593,
+        0.8713,
+        0.8945
+      ]
+    },
+    "recall": {
+      "mean": 0.7813,
+      "std": 0.0352,
+      "values": [
+        0.8157,
+        0.7329,
+        0.7953
+      ]
+    }
+  }
+}

@@ -37,7 +37,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--record", default="21134001",
                     help="Zenodo concept or version id; the latest version is resolved")
-    ap.add_argument("--file", default="_local/zenodo_v3/alpacavision-v3.0.zip")
+    ap.add_argument("--deposition", default=None)
+    ap.add_argument("--file", default="_local/zenodo_v3.1/alpacavision-v3.1.zip")
     ap.add_argument("--metadata", default="scripts/zenodo_metadata.json")
     ap.add_argument("--dry-run", action="store_true",
                     help="show what would happen without touching Zenodo")
@@ -60,20 +61,18 @@ def main():
     tok = load_token()
     p = {"access_token": tok}
 
-    # A concept id and a version id look alike; only the version id can be edited.
-    rec = check(requests.get(f"{API}/records/{a.record}", timeout=60), "resolve record").json()
-    version_id = rec["id"]
-    if str(version_id) != str(a.record):
-        print(f"resolved : concept {a.record} -> latest version {version_id}")
-    print(f"concept DOI: {rec.get('conceptdoi')}  (this is the one to cite)")
-
-    print("\ncreating a new version...")
-    r = check(requests.post(f"{API}/deposit/depositions/{version_id}/actions/newversion",
-                            params=p, timeout=60), "newversion")
-    draft_url = r.json()["links"]["latest_draft"]
-    draft = check(requests.get(draft_url, params=p, timeout=60), "get draft").json()
+    if a.deposition:
+        draft = check(requests.get(f"{API}/deposit/depositions/{a.deposition}", params=p,
+                                   timeout=60), "get draft").json()
+    else:
+        rec = check(requests.get(f"{API}/records/{a.record}", timeout=60), "resolve record").json()
+        r = check(requests.post(f"{API}/deposit/depositions/{rec['id']}/actions/newversion",
+                                params=p, timeout=60), "newversion")
+        draft = check(requests.get(r.json()["links"]["latest_draft"], params=p, timeout=60),
+                      "get draft").json()
     dep_id, bucket = draft["id"], draft["links"]["bucket"]
-    print(f"draft id : {dep_id}")
+    reserved = draft["metadata"].get("prereserve_doi", {}).get("doi")
+    print(f"draft id : {dep_id}   reserved DOI: {reserved}")
 
     for f in draft.get("files", []):
         requests.delete(f"{API}/deposit/depositions/{dep_id}/files/{f['id']}",
@@ -87,7 +86,7 @@ def main():
     print("upload done")
 
     check(requests.put(f"{API}/deposit/depositions/{dep_id}",
-                       params=p, json={"metadata": meta},
+                       params=p, json={"metadata": {**meta, "prereserve_doi": True}},
                        headers={"Content-Type": "application/json"}, timeout=60),
           "metadata")
     print("metadata set")

@@ -14,12 +14,11 @@ from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
 from torchvision import transforms
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from src.data.group_split import build_group_split, assert_no_leakage  # noqa: E402
+from src.data.group_split import build_group_split, assert_no_leakage
 
 CROPS = Path("data/crops/eyes")
 STAGE1 = Path("models/classifier/eyes_b2_honest/stage1_pretrain.pt")
 
-# Exactly the augmentation of the published run.
 TRAIN_TF_STRONG = transforms.Compose([
     transforms.Resize(256),
     transforms.RandomResizedCrop(224, scale=(0.7, 1.0)),
@@ -30,7 +29,6 @@ TRAIN_TF_STRONG = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
 ])
-# Milder variant, used to test how much the geometric jitter costs.
 TRAIN_TF_MILD = transforms.Compose([
     transforms.Resize(256), transforms.RandomResizedCrop(224, scale=(0.7, 1.0)),
     transforms.RandomHorizontalFlip(), transforms.ColorJitter(0.2, 0.2, 0.2),
@@ -80,8 +78,9 @@ def probs(model, items, device, anomaly_idx, tta=False):
     return np.concatenate(ys), np.concatenate(ps)
 
 
-def one_seed(seed, epochs, patience, gamma, device, aug='strong', tta=True):
-    split = build_group_split(CROPS, seed=seed, test_frac=0.15, val_frac=0.15,
+def one_seed(seed, epochs, patience, gamma, device, aug='strong', tta=True, split_seed=None):
+    split_seed = seed if split_seed is None else split_seed
+    split = build_group_split(CROPS, seed=split_seed, test_frac=0.15, val_frac=0.15,
                               originals_only_eval=True)
     assert_no_leakage(split)
     classes = split["classes"]
@@ -126,7 +125,6 @@ def one_seed(seed, epochs, patience, gamma, device, aug='strong', tta=True):
                 break
     model.load_state_dict(best_state)
 
-    # Threshold chosen on validation by macro F1, exactly as in the published run.
     y, p = probs(model, split["val"], device, ai, tta)
     yb = (y == ai).astype(int)
     thr = max(np.linspace(0.05, 0.95, 91),
@@ -135,11 +133,14 @@ def one_seed(seed, epochs, patience, gamma, device, aug='strong', tta=True):
     y, p = probs(model, split["test"], device, ai, tta)
     yb = (y == ai).astype(int)
     pred = (p >= thr).astype(int)
-    return {"seed": seed, "aug": aug, "tta": tta, "threshold": round(float(thr), 3),
+    return {"seed": seed, "split_seed": split_seed, "aug": aug, "tta": tta,
+            "threshold": round(float(thr), 3),
             "n_test": int(len(yb)), "n_test_anomaly": int(yb.sum()),
             "auc_roc": round(float(roc_auc_score(yb, p)), 4),
             "f1_anomaly": round(float(f1_score(yb, pred, zero_division=0)), 4),
-            "accuracy": round(float(accuracy_score(yb, pred)), 4)}
+            "accuracy": round(float(accuracy_score(yb, pred)), 4),
+            "test_files": [Path(q).name for q, _ in split["test"]],
+            "y_true": yb.tolist(), "p_anomaly": [round(float(v), 5) for v in p]}
 
 
 def main():
@@ -148,6 +149,7 @@ def main():
     ap.add_argument("--epochs", type=int, default=60)
     ap.add_argument("--patience", type=int, default=15)
     ap.add_argument("--gamma", type=float, default=1.5)
+    ap.add_argument("--split-seed", type=int, default=None)
     ap.add_argument("--aug", choices=("strong", "mild"), default="strong",
                     help="strong reproduces the published augmentation")
     ap.add_argument("--no-tta", dest="tta", action="store_false",
@@ -159,12 +161,13 @@ def main():
 
     runs = []
     for s in a.seeds:
-        r = one_seed(s, a.epochs, a.patience, a.gamma, device, a.aug, a.tta)
+        r = one_seed(s, a.epochs, a.patience, a.gamma, device, a.aug, a.tta, a.split_seed)
         runs.append(r)
-        print(f"[seed {s}] {r}", flush=True)
+        print(f"[seed {s}] auc {r['auc_roc']}", flush=True)
         aucs = [x["auc_roc"] for x in runs]
         Path(a.out).write_text(json.dumps(
-            {"protocol": f"stage-2 protocol, aug={a.aug}, tta={a.tta}",
+            {"protocol": f"stage-2 protocol, aug={a.aug}, tta={a.tta}, "
+                         f"split_seed={'per run' if a.split_seed is None else a.split_seed}",
              "per_seed": runs,
              "auc_mean": round(statistics.mean(aucs), 4),
              "auc_std": round(statistics.pstdev(aucs), 4) if len(aucs) > 1 else 0.0,

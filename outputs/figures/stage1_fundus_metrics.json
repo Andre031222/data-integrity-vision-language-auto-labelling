@@ -7,5 +7,14 @@
     0.9996
   ],
   "f1_anomaly": 0.9573,
-  "accuracy": 0.9604
+  "accuracy": 0.9604,
+  "tta_flip": {
+    "auc_roc": 0.9968,
+    "auc_ci95": [
+      0.9926,
+      0.9996
+    ],
+    "f1_anomaly": 0.9456,
+    "accuracy": 0.9499
+  }
 }

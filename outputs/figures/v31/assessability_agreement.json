@@ -1,0 +1,100 @@
+{
+  "crops": 462,
+  "raters": [
+    "VIQ",
+    "DMYY",
+    "RAVS"
+  ],
+  "per_rater": {
+    "VIQ": {
+      "assessable": 16,
+      "assessable_pct": 3.5,
+      "visible_sign": 3
+    },
+    "DMYY": {
+      "assessable": 41,
+      "assessable_pct": 8.9,
+      "visible_sign": 3
+    },
+    "RAVS": {
+      "assessable": 87,
+      "assessable_pct": 18.8,
+      "visible_sign": 1
+    }
+  },
+  "pairwise_kappa": {
+    "VIQ-DMYY": {
+      "kappa": 0.501,
+      "ci95": [
+        0.327,
+        0.651
+      ],
+      "raw_agreement": 0.942
+    },
+    "VIQ-RAVS": {
+      "kappa": 0.268,
+      "ci95": [
+        0.158,
+        0.375
+      ],
+      "raw_agreement": 0.846
+    },
+    "DMYY-RAVS": {
+      "kappa": 0.467,
+      "ci95": [
+        0.352,
+        0.572
+      ],
+      "raw_agreement": 0.87
+    }
+  },
+  "fleiss_kappa": {
+    "kappa": 0.388,
+    "ci95": [
+      0.279,
+      0.489
+    ]
+  },
+  "consensus": {
+    "assessable_by_all": 15,
+    "assessable_by_majority": 35,
+    "assessable_by_none": 368,
+    "not_assessable_by_majority_pct": 92.4,
+    "visible_sign_by_any": 5,
+    "visible_sign_by_majority": 2
+  },
+  "vlm_anomaly_labels": {
+    "total": 91,
+    "assessable_by_majority": 16,
+    "visible_sign_by_any_rater": 4,
+    "visible_sign_by_majority": 2
+  },
+  "by_crop_side_px": {
+    "0-32": {
+      "crops": 232,
+      "assessable_by_majority": 0
+    },
+    "32-64": {
+      "crops": 150,
+      "assessable_by_majority": 25
+    },
+    "64-100": {
+      "crops": 42,
+      "assessable_by_majority": 10
+    },
+    "100-max": {
+      "crops": 38,
+      "assessable_by_majority": 0
+    }
+  },
+  "median_side_px": 31.0,
+  "median_side_px_assessable_by_majority": 50.0,
+  "vs_ai_prescreen": {
+    "ai_assessable": 28,
+    "kappa_ai_vs_majority": 0.404,
+    "ci95": [
+      0.235,
+      0.563
+    ]
+  }
+}

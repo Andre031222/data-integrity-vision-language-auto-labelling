@@ -1,0 +1,41 @@
+{
+  "cpu": "x86_64",
+  "cpu_threads": 4,
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "imgsz": 640,
+  "batch": 1,
+  "models": {
+    "s6photoid_seed0": {
+      "size_mb": 5.24,
+      "pytorch_cpu": {
+        "median_ms": 55.14,
+        "p90_ms": 58.48
+      },
+      "pytorch_gpu": {
+        "median_ms": 7.66,
+        "p90_ms": 8.22
+      },
+      "onnx_size_mb": 10.11,
+      "onnx_cpu": {
+        "median_ms": 70.41,
+        "p90_ms": 94.7
+      }
+    },
+    "s6photoid_yolo11s_seed0": {
+      "size_mb": 18.32,
+      "pytorch_cpu": {
+        "median_ms": 120.19,
+        "p90_ms": 125.21
+      },
+      "pytorch_gpu": {
+        "median_ms": 12.5,
+        "p90_ms": 13.0
+      },
+      "onnx_size_mb": 36.17,
+      "onnx_cpu": {
+        "median_ms": 107.77,
+        "p90_ms": 130.47
+      }
+    }
+  }
+}

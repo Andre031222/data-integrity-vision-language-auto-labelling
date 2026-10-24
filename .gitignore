@@ -44,6 +44,8 @@ models/pretrained/
 
 # Outputs — ignore heavy run data, KEEP figures + metrics JSON for the paper
 outputs/training_runs/
+outputs/training_runs_v31/
+outputs/cache/
 outputs/predictions/
 outputs/reports/
 outputs/figures/stage1_test_eval/

@@ -1,0 +1,43 @@
+{
+  "dataset": "data/v3.1/splits/s5dihedral_split1/data.yaml",
+  "weights": "models/pretrained/yolo11n.pt",
+  "epochs": 80,
+  "per_seed": {
+    "0": {
+      "mAP50": 0.8148,
+      "mAP50_95": 0.6263,
+      "precision": 0.9151,
+      "recall": 0.7152
+    }
+  },
+  "summary": {
+    "mAP50": {
+      "mean": 0.8148,
+      "std": 0.0,
+      "values": [
+        0.8148
+      ]
+    },
+    "mAP50_95": {
+      "mean": 0.6263,
+      "std": 0.0,
+      "values": [
+        0.6263
+      ]
+    },
+    "precision": {
+      "mean": 0.9151,
+      "std": 0.0,
+      "values": [
+        0.9151
+      ]
+    },
+    "recall": {
+      "mean": 0.7152,
+      "std": 0.0,
+      "values": [
+        0.7152
+      ]
+    }
+  }
+}

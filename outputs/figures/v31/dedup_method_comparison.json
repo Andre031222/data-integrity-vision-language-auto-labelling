@@ -1,0 +1,65 @@
+{
+  "images": 1461,
+  "pairs": 1066530,
+  "photo_id_pairs": 1663,
+  "cpu": "x86_64",
+  "torch_threads": 12,
+  "phash_dihedral": {
+    "seconds_total": 50.45,
+    "ms_per_image": 34.53,
+    "seconds_all_pairs": 1.003,
+    "bytes_per_image": 64,
+    "photo_id_pairs_found": 1155,
+    "other_pairs_flagged": 9
+  },
+  "clip_vit_b32": {
+    "cpu": {
+      "seconds_total": 49.57,
+      "ms_per_image": 33.93
+    },
+    "cuda": {
+      "seconds_total": 12.18,
+      "ms_per_image": 8.33,
+      "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+    },
+    "bytes_per_image": 2048,
+    "threshold_sweep": {
+      "0.9": {
+        "photo_id_pairs_found": 1313,
+        "other_pairs_flagged": 7716,
+        "photo_id_pairs_missed_by_hash_found": 290
+      },
+      "0.92": {
+        "photo_id_pairs_found": 1258,
+        "other_pairs_flagged": 1647,
+        "photo_id_pairs_missed_by_hash_found": 236
+      },
+      "0.94": {
+        "photo_id_pairs_found": 1160,
+        "other_pairs_flagged": 253,
+        "photo_id_pairs_missed_by_hash_found": 140
+      },
+      "0.95": {
+        "photo_id_pairs_found": 1103,
+        "other_pairs_flagged": 106,
+        "photo_id_pairs_missed_by_hash_found": 84
+      },
+      "0.96": {
+        "photo_id_pairs_found": 1043,
+        "other_pairs_flagged": 53,
+        "photo_id_pairs_missed_by_hash_found": 31
+      },
+      "0.97": {
+        "photo_id_pairs_found": 991,
+        "other_pairs_flagged": 26,
+        "photo_id_pairs_missed_by_hash_found": 5
+      },
+      "0.98": {
+        "photo_id_pairs_found": 875,
+        "other_pairs_flagged": 9,
+        "photo_id_pairs_missed_by_hash_found": 0
+      }
+    }
+  },
+  "photo_id_pairs_missed_by_hash": 508
+}

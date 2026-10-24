@@ -1,141 +1,110 @@
-# AlpacaVision AI — Curated Alpaca Detection Dataset (v1.0)
+# AlpacaVision detection benchmark, v3.1
 
-**A curated, licence-audited, geometry-audited and scene-deduplicated object-detection
-dataset of Peruvian Altiplano alpacas (*Vicugna pacos*).**
+An openly licensed object-detection dataset of alpacas and other South American camelids,
+assembled from public Roboflow Universe projects and audited for licence, label format,
+exact duplicates, near-duplicates and content.
 
-- **Version:** 3.0
-- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
-- **Format:** YOLO (images + `.txt` bounding-box labels), single class `alpaca`
-- **Total:** 1,460 images resolving to 628 distinct scenes · 1 class
-- **Split (scene groups):** 440 / 93 / 95 → **images** 1,022 / 214 / 224
+| | |
+|---|---|
+| Version | 3.1 (supersedes 3.0) |
+| Licence | Creative Commons Attribution 4.0 International (CC BY 4.0) |
+| Format | YOLO detection: one image and one `.txt` label file per sample |
+| Class | `0: alpaca` |
+| Images | 1,461 (2,537 boxes) |
+| Distinct photographs | 517 |
+| Split | train / val / test = 361 / 77 / 79 photographs = 1,035 / 215 / 211 images |
 
----
+## What the class covers
 
-## Summary
+The source projects label alpacas, and also llamas and occasionally wild vicuñas and
+guanacos, as `alpaca`. We kept these images because separating domestic camelids reliably
+requires expert review of each animal. Treat the class as "South American camelid labelled
+as alpaca by the source project". Fourteen photographs that do not show a live camelid
+(camels, sheep, drawings, a decal and a sculpture) were removed.
 
-This dataset consolidates alpaca imagery from public Roboflow Universe projects into a
-deduplicated, licence-audited detection benchmark. It was produced for the AlpacaVision
-study (Universidad Nacional del Altiplano de Puno, Peru).
-
-Version 3.0 supersedes 2.0 after an annotation audit found a **label-format fault**. Two
-source projects export segmentation polygons rather than boxes, and the consolidation read
-the first four values of every line as `(cx, cy, w, h)`. For a polygon those values are two
-arbitrary vertices, so the resulting box is meaningless. The fault had two consequences:
-
-1. One source (294 images, 523 boxes) entered v2.0 with boxes that do not contain the
-   animal — 84.5% of them fail a geometry audit, against 0–2% for every box-format source.
-2. The other polygon source had been **excluded by hand as "very low quality"**, because a
-   screen that discarded projects with mean box area below 1% was in fact measuring the
-   parser's garbage output. Its annotations are sound.
-
-Parsing polygons as their enclosing box recovers **1,001 annotations** across the two
-sources, none discarded.
-
-Three filters then apply, each for a different reason:
-
-| Filter | Removed | Reason |
-|---|---:|---|
-| Licence | 593 images | source declares `License: undefined` |
-| Annotation target | 322 images | source annotates **heads** (median box area 0.071 vs 0.19–0.22) |
-| Content | 3 images | one scene depicts **sheep**, found by human review |
-
-## Contents & structure
+## Contents
 
 ```
-annotated_v3_final/
-├── images/
-│   ├── train/   1,022 images  (440 scene groups)
-│   ├── val/       214 images  ( 93 scene groups)
-│   └── test/      224 images  ( 95 scene groups)
-├── labels/                     one YOLO .txt per image
-├── data.yaml
-└── build_manifest.json         thresholds, seed, provenance, exclusions
+alpacavision-v3.1/
+├── images/{train,val,test}/   1,035 / 215 / 211 images
+├── labels/{train,val,test}/   YOLO labels: class cx cy w h (normalised)
+├── data.yaml                  Ultralytics dataset file, relative paths
+├── provenance.csv             per image: split, source project, source-photo id,
+│                              photo group, number of boxes, SHA-256
+├── exclusions.csv             every consolidated file not in the release, with the reason
+├── build_manifest.json        build parameters (threshold, seed, exclusions)
+├── CHANGELOG.md
+└── LICENSE.txt
 ```
 
-- **Classes:** `0: alpaca` (single class).
-- **Label format:** YOLO — one `.txt` per image; each line `class cx cy w h` (normalised).
-- **Split:** whole scene groups, fixed seed = 42. The build script asserts that no
-  near-duplicate pair crosses a split boundary.
+## How the dataset was built
 
-## Provenance and licensing
+1. **Consolidation.** 3,419 files from ten Roboflow Universe projects, single class.
+2. **Label-format normalisation.** Two projects export segmentation polygons; each polygon
+   is reduced to its enclosing box (1,001 annotations).
+3. **Exact deduplication.** SHA-256 over file bytes; 1,041 byte-identical copies removed.
+   Among copies, the one from a redistributable source is kept.
+4. **Source filters.** `alpaca-xqfiw` (licence undefined, 556 images) and `alpaca-lls3s`
+   (annotates heads, 322 images) are excluded.
+5. **Content review.** 14 photographs that do not show a live camelid are excluded together
+   with all their copies (39 files).
+6. **Grouping.** Copies of one photograph are grouped by a 64-bit DCT perceptual hash made
+   invariant to the eight flips and 90-degree rotations of the square (Hamming distance at
+   most 6), and by the source-photo identifier that Roboflow keeps in exported file names,
+   which also links cropped or rescaled copies. 1,461 images form 517 groups.
+7. **Split.** Whole groups are assigned to train, validation and test (70/15/15, seed 42).
+   No group and no source-photo identifier spans two partitions.
+
+Images are distributed as exported by their source projects; no photometric preprocessing
+was applied. The build is reproducible with `scripts/build_dataset_v2.py --hash dihedral
+--source-id` in the code repository.
+
+## Use the groups, not the images
+
+Copies of the same photograph (flips, rotations, crops and re-encodings made by the source
+platforms) are frequent. On a random per-image split of this corpus, 82.3% of test images
+have a copy in training. Keep the released split, or split by the `photo_group` column of
+`provenance.csv`, and compute confidence intervals over groups rather than images.
+
+## Provenance
 
 | Source project | Images | Disposition |
 |---|---:|---|
-| `alpaca-ofxv9` | 684 | retained, CC BY 4.0 |
-| `alpaca-5jmfl` | 313 | retained, CC BY 4.0 |
-| `alpaca-zehtv` | 291 | retained, CC BY 4.0, **labels repaired from polygons** |
-| `alpaca-ibscl` | 63 | retained, CC BY 4.0 |
-| `alpaca-gkbmi` | 43 | retained, CC BY 4.0 |
-| `alpaca-8baig` | 30 | retained, CC BY 4.0 |
-| `alpaca-nrzos` | 29 | retained, CC BY 4.0 |
-| `alpaca-epqna` | 7 | retained, CC BY 4.0 |
-| **Total retained** | **1,460** | **CC BY 4.0** |
-| `alpaca-xqfiw` | 593 | excluded: licence undefined |
-| `alpaca-lls3s` | 322 | excluded: annotates heads, not whole animals |
-| (one scene) | 3 | excluded: depicts sheep |
+| alpaca-ofxv9 | 666 | retained |
+| alpaca-5jmfl | 336 | retained |
+| alpaca-zehtv | 289 | retained, labels repaired from polygons |
+| alpaca-ibscl | 65 | retained |
+| alpaca-gkbmi | 40 | retained |
+| alpaca-8baig | 31 | retained |
+| alpaca-nrzos | 28 | retained |
+| alpaca-epqna | 6 | retained |
+| alpaca-xqfiw | 556 | excluded: licence undefined |
+| alpaca-lls3s | 322 | excluded: annotates heads |
+| 14 photographs | 39 | excluded: no live camelid |
 
-Supplementary imagery from iNaturalist (taxon 319688, *Vicugna pacos*, Peru) was explored but
-never annotated and contributes **zero images**.
+Counts are after exact deduplication. Every retained project declares CC BY 4.0.
 
-**Residual class noise:** human review of all 141 distinct scenes of `alpaca-zehtv` found one
-depicting sheep (0.7%). It is excluded. We report the rate rather than implying the review
-found nothing.
+## Limitations
 
-## Why scene groups, and not images
-
-Splitting per image is not safe on this corpus. Audited at Hamming threshold 6 on the
-deduplicated, source-filtered split (1,463 images, 220 test), which contains **zero** exact
-duplicates:
-
-| Notion of duplicate | Pairs | Test images with a training twin |
-|---|---:|---:|
-| Cryptographic (MD5) | — | 0 (0.0%) by construction |
-| Perceptual (pHash) | 433 | 89 (**40.5%**) |
-| **Dihedral-invariant pHash** | 1,137 | 175 (**79.5%**) |
-
-Public projects re-encode images on export, which defeats cryptographic hashing, and three
-of them ship three flipped or rotated copies of every image, which defeats a plain
-perceptual hash. Only about one test image in five was genuinely unseen. Any metric computed
-on a per-image split of this corpus should be treated as inflated.
-
-## Curation & preprocessing
-
-1. **Label-format normalisation** — polygons reduced to their enclosing box (1,001 recovered).
-2. **Geometry audit** — coordinates in range, non-zero sides, box inside the image, aspect
-   ratio below 10:1.
-3. **Cryptographic deduplication** — 1,041 byte-identical files removed of 3,419.
-4. **Source filters** — licence, annotation target, content.
-5. **CLAHE** — compensates the high ultraviolet irradiance and haze of Andean photography.
-6. **Dihedral-invariant perceptual grouping** — 1,460 images into 628 scene groups at τ = 6.
-7. **Group-aware split** — whole groups assigned to a partition, seed = 42.
-
-Reproduce with `scripts/consolidate_dataset.py` then `scripts/build_dataset_v2.py`.
-
-## Benchmark (reference)
-
-A compact YOLOv11n detector (2.58M parameters) trained on this dataset reaches
-**mAP@0.5 = 0.814 ± 0.021** over three seeds on the held-out test set; a larger YOLOv11s
-reaches 0.835 ± 0.009.
-
-> Under a five-stage ablation the same detector scores 0.936 ± 0.002 on the raw corpus. The
-> difference is removed contamination plus a smaller training set, not a regression.
-
-## Intended use & limitations
-
-- **Intended use:** body-level alpaca detection/localisation; precision-livestock-farming
-  research; transfer-learning source for camelid vision tasks.
-- **Limitations:** single class (body only — no anatomical-part or anomaly labels); source
-  imagery is globally sourced (not exclusively altiplano biome); not intended for clinical
-  diagnosis.
+- One class only; no anatomical parts, individual identities or health labels.
+- Global web imagery; Andean herds, breeds and seasons are unevenly represented.
+- The class mixes alpacas with other South American camelids (see above).
+- Fourteen non-camelid photographs were found in two review passes; a few may remain.
+- Some byte-identical copies carried different boxes in different projects (56 groups); the
+  release keeps the boxes of the retained copy.
 
 ## Citation
 
-> Vilca-Solorzano, R.A.; Yana-Yucra, D.M.; Ccopa-Acero, C.D.; Aleman-Gonzales, L.
-> *AlpacaVision AI: A Curated Dataset and Compact Detector for Altiplano Alpacas.*
-> Universidad Nacional del Altiplano de Puno, 2026. Dataset, CC BY 4.0.
+Please cite the dataset and the accompanying article:
+
+D. M. Yana-Yucra, R. A. Vilca-Solorzano, L. Aleman-Gonzales, C. D. Ccopa-Acero and
+V. Ibañez-Quispe, "AlpacaVision: a curated, licence-audited alpaca detection benchmark
+(Peruvian Altiplano), v3.1," Zenodo, 2026.
+
+Code: https://github.com/Andre031222/data-integrity-vision-language-auto-labelling
 
 ## Contact
 
-John J. Hopfield Research Seedbed, Professional School of Statistical and Informatics
-Engineering, Universidad Nacional del Altiplano de Puno (UNAP), Puno, Peru.
-Corresponding: Leonid Aleman-Gonzales — laleman@unap.edu.pe
+John J. Hopfield Research Seedbed, Faculty of Statistical and Informatics Engineering
+(FINESI), Universidad Nacional del Altiplano, Puno, Peru.
+Corresponding author: Richar Andre Vilca-Solorzano, 75521963@est.unap.edu.pe
