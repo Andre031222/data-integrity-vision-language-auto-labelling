@@ -166,8 +166,7 @@
       </div>
     </div>
     <p class="lead" data-i18n="lead">A reproducible research demo: upload a photograph of an alpaca
-      (<em>Vicugna pacos</em>) and a compact detector localises the animal, trained on a curated,
-      licence-audited dataset of <strong>628 distinct scenes</strong> from the Peruvian Altiplano.</p>
+      (<em>Vicugna pacos</em>) and a compact detector localises the animal, trained on release v3.0 of the licence-audited AlpacaVision benchmark (<strong>628 scene groups</strong>; the current release, v3.1, groups the images into 517 distinct photographs).</p>
     <div class="metrics">
       <div class="metric"><div class="k">mAP@0.5</div><div class="v">0.814</div></div>
       <div class="metric"><div class="k">mAP@.5:.95</div><div class="v">0.611</div></div>
@@ -215,16 +214,16 @@
 </main>
 
 <footer class="wrap">
-  <p style="margin:0 0 5px"><span data-i18n="dev">Developed by</span> <strong>Richar Andre Vilca-Solorzano</strong> · <span data-i18n="role">Lead author &amp; developer</span></p>
+  <p style="margin:0 0 5px"><span data-i18n="dev">Developed by</span> <strong>Richar Andre Vilca-Solorzano</strong> · <span data-i18n="role">Corresponding author &amp; developer</span></p>
   Semillero de Investigación John J. Hopfield —
   <a href="https://github.com/Andre031222/data-integrity-vision-language-auto-labelling" target="_blank" rel="noopener" data-i18n="lk_code">code &amp; dataset</a> ·
-  <a href="https://doi.org/10.5281/zenodo.21134001" target="_blank" rel="noopener">Zenodo</a>
+  <a href="https://doi.org/10.5281/zenodo.23579349" target="_blank" rel="noopener">Zenodo</a>
 </footer>
 
 <script>
   const L={
     en:{ sub:"AlpacaVision · scene-deduplicated YOLOv11n detector",
-      lead:"A reproducible research demo: upload a photograph of an alpaca (<em>Vicugna pacos</em>) and a compact detector localises the animal, trained on a curated, licence-audited dataset of <strong>628 distinct scenes</strong> from the Peruvian Altiplano.",
+      lead:"A reproducible research demo: upload a photograph of an alpaca (<em>Vicugna pacos</em>) and a compact detector localises the animal, trained on release v3.0 of the licence-audited AlpacaVision benchmark (<strong>628 scene groups</strong>; the current release, v3.1, groups the images into 517 distinct photographs).",
       m_params:"params", m_weights:"weights", m_test:"test set",
       p_input:"Input", p_output:"Detection output",
       drop:"<strong>Click to choose</strong> or drop an alpaca photo", drop_hint:"JPG / PNG · ≤16MB · runs automatically",
@@ -236,10 +235,10 @@
       t_class:"class", t_conf:"conf", ai:"AI description · experimental",
       ai_dis:"Generated locally by a vision–language model. Not a veterinary diagnosis.",
       ai_wait:"Generating a local description…",
-      note:"<strong>Scope:</strong> this demo serves only the body detector. The ocular anomaly classifier is <em>not</em> deployed: it predicts its own vision-language auto-labels above chance (AUC-ROC = 0.736 &plusmn; 0.089), but an independent model judged 93.9% of those crops not assessable and agreed at &kappa; = 0.09, so the score reflects the labeller rather than any pathology.",
-      dev:"Developed by", role:"Lead author & developer", lk_code:"code & dataset" },
+      note:"<strong>Scope:</strong> this demo serves only the body detector. The ocular anomaly classifier is <em>not</em> deployed: it reproduces its vision-language auto-labels above chance (AUC-ROC 0.65&ndash;0.74), but crop size alone predicts those labels better (AUC 0.77) and three blind raters judged 92% of the crops not assessable, so the score reflects the labeller rather than any pathology.",
+      dev:"Developed by", role:"Corresponding author & developer", lk_code:"code & dataset" },
     es:{ sub:"AlpacaVision · detector YOLOv11n sin escenas repetidas",
-      lead:"Un demo de investigación reproducible: sube una foto de una alpaca (<em>Vicugna pacos</em>) y un detector compacto la localiza, entrenado con un conjunto curado y auditado de <strong>628 escenas distintas</strong> del Altiplano peruano.",
+      lead:"Un demo de investigación reproducible: sube una foto de una alpaca (<em>Vicugna pacos</em>) y un detector compacto la localiza, entrenado con la versión v3.0 del benchmark auditado AlpacaVision (<strong>628 grupos de escenas</strong>; la versión actual, v3.1, agrupa las imágenes en 517 fotografías distintas).",
       m_params:"parámetros", m_weights:"pesos", m_test:"conjunto test",
       p_input:"Entrada", p_output:"Salida de detección",
       drop:"<strong>Elige</strong> o suelta una foto de alpaca", drop_hint:"JPG / PNG · ≤16MB · automático",
@@ -251,8 +250,8 @@
       t_class:"clase", t_conf:"conf", ai:"Descripción IA · experimental",
       ai_dis:"Generada localmente por un modelo de visión-lenguaje. No es un diagnóstico veterinario.",
       ai_wait:"Generando una descripción local…",
-      note:"<strong>Alcance:</strong> este demo sirve solo el detector corporal. El clasificador ocular <em>no</em> está desplegado: predice sus propias auto-etiquetas por encima del azar (AUC-ROC = 0.736 &plusmn; 0.089), pero un modelo independiente declaró el 93.9% de esos recortes no evaluables y coincidió con &kappa; = 0.09, así que la cifra refleja al etiquetador, no una patología.",
-      dev:"Desarrollado por", role:"Autor principal y desarrollador", lk_code:"código y datos" }
+      note:"<strong>Alcance:</strong> este demo sirve solo el detector corporal. El clasificador ocular <em>no</em> está desplegado: reproduce sus auto-etiquetas de visión-lenguaje por encima del azar (AUC-ROC 0.65&ndash;0.74), pero el solo tamaño del recorte predice esas etiquetas mejor (AUC 0.77) y tres evaluadores a ciegas juzgaron no evaluable el 92% de los recortes, así que la cifra refleja al etiquetador, no una patología.",
+      dev:"Desarrollado por", role:"Autor de correspondencia y desarrollador", lk_code:"código y datos" }
   };
   const SUN='<circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>';
   const MOON='<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>';
