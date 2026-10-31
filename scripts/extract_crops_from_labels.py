@@ -102,12 +102,7 @@ def extract_crops():
     print(f"  Ojos (eyes/normal):  {counts['eyes']}")
     print(f"  Patas (legs/normal): {counts['legs']}")
     print(f"  Saltados:            {counts['skipped']}")
-    print(f"\nProximo paso:")
-    print(f"  El semillero debe mover imágenes con anomalías a:")
-    print(f"    data/crops/eyes/anomaly/")
-    print(f"    data/crops/legs/anomaly/")
-    print(f"  Con >= 50 ejemplos anomaly, entrenar clasificadores con:")
-    print(f"    venv/Scripts/python.exe scripts/run_pipeline.py --skip-autolabel --skip-upload --skip-training")
+    print(f"\nNext step: python scripts/label_crops_with_vision.py")
 
 
 if __name__ == "__main__":

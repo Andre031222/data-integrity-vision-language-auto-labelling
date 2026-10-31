@@ -221,8 +221,7 @@ def main():
     print(f"  Sin detecciones: {stats['empty']}")
     print(f"  Errores:         {stats['errors']}")
     print(f"  Labels en:       {OUTPUT_DIR}/")
-    print(f"\nSiguiente paso:")
-    print(f"  python scripts/upload_labels_roboflow.py")
+    print(f"\nNext step: python scripts/extract_crops_from_labels.py")
 
 
 def _rebuild_manifest(images: list, output_dir: Path, stats: dict | None = None):

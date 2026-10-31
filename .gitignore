@@ -46,14 +46,12 @@ models/pretrained/
 outputs/training_runs/
 outputs/training_runs_v31/
 outputs/cache/
-outputs/predictions/
-outputs/reports/
-outputs/figures/stage1_test_eval/
 !outputs/figures/
 
 # Ultralytics run dirs & logs
 /runs/
 /logs/
+outputs/logs/
 *.log
 
 # Root-level stray weights / archives
@@ -80,18 +78,8 @@ Thumbs.db
 
 # Legacy / archived (superseded files kept locally, not published)
 **/legacy/
-INICIAR.bat
 /_local/
-/NuevasImagenes/
 
 # Internal / Spanish working docs — kept local, not part of the public English repo
-docs/ESTADO_PAPER.md
-docs/ARRANCAR_SESION.md
-docs/PLAN_SIGUIENTE_NIVEL.md
-docs/PRECRIBADO_IA_batch01.md
-docs/INSTRUCCIONES_VETERINARIO.md
-docs/annotation_guide_stage2.md
-docs/CLASIFICACION_OCULAR_VET.md
 
 # Ultralytics stray download dir
-/weights/

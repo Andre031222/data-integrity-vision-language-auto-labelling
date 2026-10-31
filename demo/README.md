@@ -21,7 +21,7 @@ Endpoints: `GET /health`, `POST /api/predict` (fast detection), `POST /api/descr
 # from the repository root
 python -m venv .venv-demo && source .venv-demo/bin/activate
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-pip install -r demo/requirements.txt
+pip install -e ".[demo]"
 
 python demo/app.py            # http://localhost:5070
 ```
@@ -56,7 +56,7 @@ git clone https://github.com/Andre031222/data-integrity-vision-language-auto-lab
 cd data-integrity-vision-language-auto-labelling
 python -m venv .venv-demo && . .venv-demo/bin/activate
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-pip install -r demo/requirements.txt
+pip install -e ".[demo]"
 # place best_v3_n.pt in models/detector/ (from Zenodo / Releases)
 
 # 2) systemd service (Gunicorn on 127.0.0.1:9060)
@@ -79,7 +79,6 @@ Check it: `curl -s https://paqocha.ginit.dev/health` → `{"status":"ok","detect
 demo/
 ├── app.py                     Flask app: / + /api/predict + /api/describe + /health
 ├── templates/index.html       single-page UI (self-contained)
-├── requirements.txt           minimal CPU inference stack
 ├── gunicorn_conf.py           Gunicorn settings (127.0.0.1:9060)
 └── deploy/
     ├── paqocha.service        systemd unit

@@ -30,7 +30,7 @@ revealed contamination that the previous one had missed:
 Shares measured on a random image-level split of the deduplicated, source-filtered corpus
 (1461 images, 220 test images).
 
-<p align="center"><img src="assets/fig_leakage.png" width="94%" alt="Detector under six constructions of the dataset"></p>
+<p align="center"><img src="docs/figures/fig_leakage.png" width="94%" alt="Detector under six constructions of the dataset"></p>
 
 A YOLOv11n detector trained on six progressively stricter versions of the dataset falls from
 mAP@0.5 = 0.941 to 0.852. Controls for training-set size, split variance and test composition
@@ -54,7 +54,7 @@ Three training seeds per row. Over five random splits, stages 3, 4 and 5 keep th
 every split, and stages 5 and 6 cannot be told apart (0.808 and 0.814). The released model scores
 0.853 with a 95% interval of 0.80 to 0.91 computed over the 79 test photographs.
 
-<p align="center"><img src="assets/fig_detections.jpg" width="94%" alt="Detections of the released model"></p>
+<p align="center"><img src="docs/figures/fig_detections.jpg" width="94%" alt="Detections of the released model"></p>
 
 ## Ocular case study: an above-chance score that measures the labeller
 
@@ -62,7 +62,7 @@ Eye crops were labelled *normal* or *anomaly* by a vision–language model
 (`llama-4-scout-17b-16e-instruct`) without expert review, and an EfficientNet-B2 was trained on
 them after pre-training on public human fundus photographs (cataract versus normal, from a Kaggle compilation of IDRiD, ODIR and HRF images).
 
-<p align="center"><img src="assets/fig_transfer.png" width="94%" alt="Two-stage classifier and label check"></p>
+<p align="center"><img src="docs/figures/fig_transfer.png" width="94%" alt="Two-stage classifier and label check"></p>
 
 The classifier recovers the auto-labels above chance (AUC-ROC 0.654 ± 0.054 over ten seeds on
 one split; 0.741 ± 0.049 over ten splits), but crop size alone predicts the same labels with an
@@ -72,11 +72,11 @@ labelled anomalous only 2 show a visible sign. No crop below 32 px was assessabl
 largest crops do not frame an eye at all. The score measures agreement with the labeller, not
 ocular pathology. Per-crop labels and ratings are in `outputs/figures/v31/ocular/`.
 
-<p align="center"><img src="assets/fig_classifier.png" width="94%" alt="Classifier score and blind rating"></p>
+<p align="center"><img src="docs/figures/fig_classifier.png" width="94%" alt="Classifier score and blind rating"></p>
 
 ## Data
 
-<p align="center"><img src="assets/fig_dataset.png" width="94%" alt="Dataset composition"></p>
+<p align="center"><img src="docs/figures/fig_dataset.png" width="94%" alt="Dataset composition"></p>
 
 | Field | Value |
 |---|---|
@@ -98,7 +98,7 @@ Version 3.1 corrects version 3.0 (DOI 10.5281/zenodo.22741553); see
 uv venv .venv --python 3.12
 uv pip install --python .venv/bin/python torch==2.6.0 torchvision==0.21.0 \
     --index-url https://download.pytorch.org/whl/cu124
-uv pip install --python .venv/bin/python -r requirements.txt imagehash open_clip_torch
+uv pip install --python .venv/bin/python -e ".[research,dev]"
 
 .venv/bin/python scripts/build_dataset_v2.py --hash dihedral --source-id --out data/v3.1/s6photoid
 scripts/run_revision.sh
@@ -106,17 +106,15 @@ scripts/run_revision.sh
 .venv/bin/python scripts/make_revision_figures.py
 ```
 
-| Script | Purpose |
+All scripts run from the repository root. The study follows four steps:
+
+| Step | Scripts |
 |---|---|
-| `build_dataset_v2.py` | exact deduplication, source and content filters, grouping, split; asserts that no near-duplicate or source-photo identifier crosses a split |
-| `audit_near_duplicates.py` | share of test images with a training copy under each notion of identity |
-| `run_revision.sh` | every detector, classifier and benchmark run behind the manuscript |
-| `analyse_contamination.py` | contaminated versus clean test images, group bootstrap intervals |
-| `analyse_revision_extra.py` | paired comparisons on identical test images; shortcut checks for the eye-crop labels |
-| `analyse_assessability.py` | agreement of the blind ratings of the eye crops |
-| `compare_dedup_methods.py` | pHash versus CLIP: cost and recovery of known copies |
-| `benchmark_latency.py` | CPU, GPU and ONNX latency |
-| `package_release.py` | Zenodo archive with provenance and exclusions |
+| 1. Sources and labels | `consolidate_dataset.py`, `repair_polygon_labels.py`, `audit_annotations.py` |
+| 2. Dataset build and audit | `build_dataset_v2.py` (deduplication, source and content filters, grouping, split; asserts that no near-duplicate or source-photo identifier crosses a split), `build_size_control.py`, `audit_near_duplicates.py`, `compare_dedup_methods.py` |
+| 3. Detector | `run_revision.sh` (every run behind the manuscript), `train_detector_v2.py`, `analyse_contamination.py`, `analyse_revision_extra.py`, `benchmark_latency.py` |
+| 4. Ocular case study | `select_annotation_batch.py`, `auto_label.py`, `extract_crops_from_labels.py`, `label_crops_with_vision.py`, `resolve_label_conflicts.py`, `train_eyes_honest.py`, `eval_stage1_fundus.py`, `seed_sweep_classifier.py`, `make_vet_labeling_batch.py`, `analyse_assessability.py` |
+| Figures and release | `summarise_revision.py`, `make_revision_figures.py`, `gen_fig_detections.py`, `gen_fig_transfer.py`, `package_release.py`, `upload_zenodo.py` |
 
 All reported numbers are collected in `outputs/figures/v31/summary.json`.
 
