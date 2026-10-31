@@ -34,7 +34,7 @@ def main():
     ap.add_argument("--version", default="3.1")
     ap.add_argument("--readme", default="docs/release/README_v3.1.md")
     ap.add_argument("--changelog", default="docs/release/CHANGELOG.md")
-    ap.add_argument("--out", default="_local/zenodo_v3.1")
+    ap.add_argument("--out", default="_local/zenodo/zenodo_v3.1")
     a = ap.parse_args()
 
     split_root, out_root = Path(a.split), Path(a.out)

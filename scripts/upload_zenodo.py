@@ -38,7 +38,7 @@ def main():
     ap.add_argument("--record", default="21134001",
                     help="Zenodo concept or version id; the latest version is resolved")
     ap.add_argument("--deposition", default=None)
-    ap.add_argument("--file", default="_local/zenodo_v3.1/alpacavision-v3.1.zip")
+    ap.add_argument("--file", default="_local/zenodo/zenodo_v3.1/alpacavision-v3.1.zip")
     ap.add_argument("--metadata", default="scripts/zenodo_metadata.json")
     ap.add_argument("--dry-run", action="store_true",
                     help="show what would happen without touching Zenodo")
