@@ -12,7 +12,7 @@ licence, label format, exact duplicates, near-duplicates and content.
 
 Companion code for the manuscript *Near-Duplicate Leakage and Auto-Label Reliability in Image
 Datasets Assembled From Public Sources: An Audited Benchmark for Alpaca Detection* (under review
-at *IEEE Access*). The manuscript itself is not mirrored here.
+at *IEEE Access*, manuscript Access-2026-54931). The manuscript itself is not mirrored here.
 
 ## Summary
 
@@ -60,14 +60,14 @@ every split, and stages 5 and 6 cannot be told apart (0.808 and 0.814). The rele
 
 Eye crops were labelled *normal* or *anomaly* by a vision–language model
 (`llama-4-scout-17b-16e-instruct`) without expert review, and an EfficientNet-B2 was trained on
-them after pre-training on public human fundus photographs (cataract versus normal, from a Kaggle compilation of IDRiD, ODIR and HRF images).
+them after pre-training on public human fundus photographs (cataract versus normal, from a
+Kaggle compilation of IDRiD, ODIR and HRF images).
 
 <p align="center"><img src="docs/figures/fig_transfer.png" width="94%" alt="Two-stage classifier and label check"></p>
 
 The classifier recovers the auto-labels above chance (AUC-ROC 0.654 ± 0.054 over ten seeds on
 one split; 0.741 ± 0.049 over ten splits), but crop size alone predicts the same labels with an
-AUC of 0.77. Three authors then rated all 462 crops blind to the
-labels: a majority found 92.4% of them not assessable (Fleiss' κ = 0.39), and of the 91 crops
+AUC of 0.77. Three authors then rated all 462 crops blind to the labels: a majority found 92.4% of them not assessable (Fleiss' κ = 0.39), and of the 91 crops
 labelled anomalous only 2 show a visible sign. No crop below 32 px was assessable, and the
 largest crops do not frame an eye at all. The score measures agreement with the labeller, not
 ocular pathology. Per-crop labels and ratings are in `outputs/figures/v31/ocular/`.
@@ -91,6 +91,30 @@ ocular pathology. Per-crop labels and ratings are in `outputs/figures/v31/ocular
 
 Version 3.1 corrects version 3.0 (DOI 10.5281/zenodo.22741553); see
 [`docs/release/CHANGELOG.md`](docs/release/CHANGELOG.md).
+
+## Trained weights
+
+The weights are attached to the [v3.1 release](https://github.com/Andre031222/data-integrity-vision-language-auto-labelling/releases/tag/v3.1):
+
+| File | Model |
+|---|---|
+| `alpacavision-yolo11n-v3.1.pt` | YOLOv11n detector trained on the released split (seed 0; test mAP@0.5 = 0.868) |
+| `alpacavision-yolo11n-v3.1.onnx` | The same detector exported to ONNX |
+| `efficientnet-b2-fundus-pretrain.pt` | EfficientNet-B2 after pre-training on human fundus photographs (cataract versus normal) |
+
+## Repository layout
+
+| Path | Content |
+|---|---|
+| `scripts/` | Every script behind the manuscript, run from the repository root |
+| `src/` | Shared modules: detector and classifier wrappers, group-aware split, metrics |
+| `tests/` | Unit tests (`pytest`) |
+| `demo/` | Public detection demo |
+| `docs/` | Data card, release notes and the figures of this page |
+| `outputs/figures/v31/` | Every result of version 3.1; `summary.json` collects the numbers of the manuscript |
+| `outputs/archive_v3.0/` | Results of the first submission, kept for traceability |
+
+The images are distributed through Zenodo and are not stored in this repository.
 
 ## Reproducing the study
 
@@ -116,13 +140,14 @@ All scripts run from the repository root. The study follows four steps:
 | 4. Ocular case study | `select_annotation_batch.py`, `auto_label.py`, `extract_crops_from_labels.py`, `label_crops_with_vision.py`, `resolve_label_conflicts.py`, `train_eyes_honest.py`, `eval_stage1_fundus.py`, `seed_sweep_classifier.py`, `make_vet_labeling_batch.py`, `analyse_assessability.py` |
 | Figures and release | `summarise_revision.py`, `make_revision_figures.py`, `gen_fig_detections.py`, `gen_fig_transfer.py`, `package_release.py`, `upload_zenodo.py` |
 
-All reported numbers are collected in `outputs/figures/v31/summary.json`.
+All reported numbers are collected in `outputs/figures/v31/summary.json`. Run the tests with
+`.venv/bin/python -m pytest`.
 
 ## Demo
 
 `demo/` holds the public detection demo cited in the manuscript (https://paqocha.ginit.dev): a
-single page that runs the detector on an uploaded photograph. It serves the detector only; the
-ocular classifier is not deployed. See [`demo/README.md`](demo/README.md).
+single page that runs the detector on an uploaded photograph. It serves the detector trained on
+release v3.0 and does not deploy the ocular classifier. See [`demo/README.md`](demo/README.md).
 
 ## Authors
 
