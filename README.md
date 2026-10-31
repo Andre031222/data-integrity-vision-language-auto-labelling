@@ -120,13 +120,11 @@ scripts/run_revision.sh
 
 All reported numbers are collected in `outputs/figures/v31/summary.json`.
 
-## Web application
+## Demo
 
-A Flask dashboard runs the detector with an ONNX runtime. The ocular classifier is not used.
-
-```bash
-python run_webapp.py
-```
+`demo/` holds the public detection demo cited in the manuscript (https://paqocha.ginit.dev): a
+single page that runs the detector on an uploaded photograph. It serves the detector only; the
+ocular classifier is not deployed. See [`demo/README.md`](demo/README.md).
 
 ## Authors
 

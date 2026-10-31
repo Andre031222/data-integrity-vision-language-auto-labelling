@@ -3,19 +3,22 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.backends.legacy:build"
 
 [project]
-name = "alpacavision-ai"
-version = "1.0.0"
-description = "Automatic detection of morphological anomalies in Peruvian Altiplano alpacas"
+name = "alpacavision"
+version = "3.1.0"
+description = "Near-duplicate leakage audit and licence-audited alpaca detection benchmark"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.11"
 authors = [
-    { name = "Vilca Solorzano, Richar Andre" },
-    { name = "Yana Yucra, Dina Maribel" },
+    { name = "Dina Maribel Yana-Yucra" },
+    { name = "Richar Andre Vilca-Solorzano" },
+    { name = "Leonid Aleman-Gonzales" },
+    { name = "Cristian Daniel Ccopa-Acero" },
+    { name = "Vladimiro Ibañez-Quispe" },
 ]
-keywords = ["computer-vision", "deep-learning", "alpaca", "yolo", "efficientnet"]
+keywords = ["computer-vision", "object-detection", "data-leakage", "near-duplicate-detection", "alpaca", "yolo"]
 classifiers = [
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
