@@ -1,0 +1,1355 @@
+{
+  "groups": 56,
+  "by_category": {
+    "different number of boxes": 18,
+    "same boxes, coordinate jitter (IoU >= 0.9)": 30,
+    "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)": 8
+  },
+  "kept_copy_in_release": 54,
+  "kept_copy_in_release_by_category": {
+    "different number of boxes": 16,
+    "same boxes, coordinate jitter (IoU >= 0.9)": 30,
+    "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)": 8
+  },
+  "sheets": "outputs/figures/v31/box_conflicts",
+  "groups_detail": [
+    {
+      "kept": "alpaca-5jmfl_0a2ea8f93b4cb30a_jpg.rf.311d880aaa3de7ed718adc543f4e8abc.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 6,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        9,
+        9,
+        6,
+        9,
+        9,
+        9
+      ],
+      "category": "different number of boxes",
+      "matched": 8,
+      "unmatched": 2,
+      "min_iou": 0.0,
+      "mean_iou": 0.767,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0a46037beed719ca_jpg.rf.861fa536e63a03223cc5937c4e5c752a.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 1,
+      "min_iou": 0.915,
+      "mean_iou": 0.915,
+      "kept_copy_in_release": false
+    },
+    {
+      "kept": "alpaca-5jmfl_0b4a78d8d865d5e7_jpg.rf.7d42a0ce199e25196a8c40e04af73c6b.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        3,
+        3,
+        2,
+        3,
+        3
+      ],
+      "category": "different number of boxes",
+      "matched": 2,
+      "unmatched": 2,
+      "min_iou": 0.481,
+      "mean_iou": 0.803,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0b506e17c4bc5264_jpg.rf.d2bc79f7afa6520e4857d144857f94b7.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.921,
+      "mean_iou": 0.933,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0dba33ff827acee8_jpg.rf.a99be61c044c2603ac438e63230bf9d0.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        3,
+        3,
+        1,
+        3,
+        3
+      ],
+      "category": "different number of boxes",
+      "matched": 3,
+      "unmatched": 0,
+      "min_iou": 0.594,
+      "mean_iou": 0.835,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0e7e88988d889648_jpg.rf.29b8e9ee2fe372500c0c4f4ba8c0fa18.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.969,
+      "mean_iou": 0.969,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0f0c2aed4beb9cf5_jpg.rf.d8dacd8b7bfb8c324c5a6c44c0bed8fe.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        5,
+        1,
+        1,
+        1
+      ],
+      "category": "different number of boxes",
+      "matched": 0,
+      "unmatched": 2,
+      "min_iou": 0.361,
+      "mean_iou": 0.361,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0f27bd012166df9a_jpg.rf.cb22bb13af02d684fcc282febdb00a9b.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.97,
+      "mean_iou": 0.97,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0f9c46b29eced4b4_jpg.rf.937169f54eef95879c67c28eb36663f1.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.975,
+      "mean_iou": 0.975,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0fbe97b23b276a89_jpg.rf.e0c96bf0abf572749692705fd50d5d8a.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 6,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.848,
+      "mean_iou": 0.848,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_0fe3965a66fa817b_jpg.rf.847f7851b3e5028b16ac5a9f63893097.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        3,
+        2,
+        2,
+        3,
+        3
+      ],
+      "category": "different number of boxes",
+      "matched": 2,
+      "unmatched": 1,
+      "min_iou": 0.865,
+      "mean_iou": 0.911,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1a407de97211d879_jpg.rf.f11d5f7b30576de51516590f8924b269.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 6,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 2,
+      "min_iou": 0.954,
+      "mean_iou": 0.954,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1a474e1cf4fe29e7_jpg.rf.59c2f2ded0261f983f896166519528b8.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.951,
+      "mean_iou": 0.951,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1a843a9296c305f8_jpg.rf.4c462fd4339f941ccdc063aaf727ff63.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.887,
+      "mean_iou": 0.887,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1ace2083c27cd920_jpg.rf.22ae9e35c7c08f91031b08181dbec776.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 6,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        7,
+        1,
+        7,
+        1,
+        7,
+        7
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 6,
+      "min_iou": 0.98,
+      "mean_iou": 0.98,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1ba72ef4244e85ff_jpg.rf.208b667490f5a56c0c2e0fdfad147a14.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 3,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.959,
+      "mean_iou": 0.959,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1ba9f11998378ade_jpg.rf.cbfab5b0cd9470e8ca79b6a18137587a.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.867,
+      "mean_iou": 0.867,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1c0f88b2d64e9d2b_jpg.rf.82225e78f6fcda0070056ced0d4e3ba4.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.978,
+      "mean_iou": 0.981,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1e047513ca635154_jpg.rf.56737d1c52cbee6f974e87c1611aece8.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 3,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.994,
+      "mean_iou": 0.994,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1e4a1fea461403ce_jpg.rf.9f5917eb93c117e632bbe4ea0bfc76b5.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 1,
+      "min_iou": 0.97,
+      "mean_iou": 0.97,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1ece761a81dd62c8_jpg.rf.1e5145ee785e1bf161bc546f5ba12ab5.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 3,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.961,
+      "mean_iou": 0.961,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_1ff81e1a8a7a60d9_jpg.rf.ec97840487186c91edb33c9e7e87eb94.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.983,
+      "mean_iou": 0.983,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2a376bef4b63cad9_jpg.rf.f399ec1b8b91b87408cfae93b77ae340.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.941,
+      "mean_iou": 0.941,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2a8ae56a35195b81_jpg.rf.88d09c0879a2d34fcaf00d5040a3d939.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.944,
+      "mean_iou": 0.944,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2a8db0202e878707_jpg.rf.7fa26d72ecfe24e8dcd49e64c3c9a477.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        4,
+        2,
+        4,
+        4
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 4,
+      "min_iou": 0.19,
+      "mean_iou": 0.412,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2b62d324281bbf29_jpg.rf.db496f54cdf9879c90cbd65e0ed1163e.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.966,
+      "mean_iou": 0.966,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2b9f929ad756b54e_jpg.rf.57aa6c3254bdf1d7c5f0cebd61537ffa.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.927,
+      "mean_iou": 0.927,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2caa537bf0361234_jpg.rf.34a997093b46ae70e193449933c56a0f.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        4,
+        3,
+        4,
+        4
+      ],
+      "category": "different number of boxes",
+      "matched": 3,
+      "unmatched": 1,
+      "min_iou": 0.512,
+      "mean_iou": 0.829,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2cb859d061407162_jpg.rf.09960a17db8a3f59496f5f2167bc7f79.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        1,
+        2,
+        2
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 1,
+      "min_iou": 0.982,
+      "mean_iou": 0.982,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2cb9a9027c1a0c93_jpg.rf.bc8b19e3336efb0c39b29c1b5e48d79c.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.994,
+      "mean_iou": 0.994,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2ccf2ee6388c9a50_jpg.rf.5ceacf57528a85af1e91a75a8ed4a069.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 3,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        4,
+        1
+      ],
+      "category": "different number of boxes",
+      "matched": 0,
+      "unmatched": 5,
+      "min_iou": 0.466,
+      "mean_iou": 0.466,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2d4698f860cac339_jpg.rf.882865ccca7beae56a43a750eeabf4d3.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.982,
+      "mean_iou": 0.982,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2db9549230f6ffa5_jpg.rf.109c8480c3ef43c51251b959e7b9edb0.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 3,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.858,
+      "mean_iou": 0.858,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2df156ea145a24d7_jpg.rf.26b29c41c64a888404ce521f1ff6daad.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.961,
+      "mean_iou": 0.966,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2e2a959745e02bc3_jpg.rf.764a66f25ee8f1fdf9fe513ad4d8a13a.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.977,
+      "mean_iou": 0.977,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-5jmfl_2e302d536918c3c4_jpg.rf.7edcbecfc14c54f6b09392133d3f6954.jpg",
+      "kept_source": "alpaca-5jmfl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.989,
+      "mean_iou": 0.989,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-8baig_00ad17d214e32d2b_jpg.rf.594fc1e9336e3a1b6d6186d9658de2c2.jpg",
+      "kept_source": "alpaca-8baig",
+      "copies": 6,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        3,
+        4,
+        3,
+        3,
+        3,
+        3
+      ],
+      "category": "different number of boxes",
+      "matched": 2,
+      "unmatched": 2,
+      "min_iou": 0.042,
+      "mean_iou": 0.531,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-8baig_0f72ac8b9b54e507_jpg.rf.c06e1f9b8f939d72e53e4d211ace70c2.jpg",
+      "kept_source": "alpaca-8baig",
+      "copies": 6,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.882,
+      "mean_iou": 0.882,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-8baig_1ac13ff3e0d15673_jpg.rf.faec9e2327a7009cb73136461c7c33b4.jpg",
+      "kept_source": "alpaca-8baig",
+      "copies": 6,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.923,
+      "mean_iou": 0.923,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-8baig_1e13ca0a99eda2fe_jpg.rf.a54ce2d0b55c66954460ccc6698a4074.jpg",
+      "kept_source": "alpaca-8baig",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.591,
+      "mean_iou": 0.591,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-8baig_2cb527ecc32caef1_jpg.rf.3a1f31f7836e6db0dab3b805feb44d07.jpg",
+      "kept_source": "alpaca-8baig",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.981,
+      "mean_iou": 0.981,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-8baig_2d367f976672619f_jpg.rf.902cedb40e79cf7a958e158f617ed874.jpg",
+      "kept_source": "alpaca-8baig",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-8baig",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        5,
+        4,
+        5,
+        5,
+        5
+      ],
+      "category": "different number of boxes",
+      "matched": 2,
+      "unmatched": 5,
+      "min_iou": 0.0,
+      "mean_iou": 0.59,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-epqna_01ad3ff1d94eb557_jpg.rf.0637ec7e547998e78fa1aa59a6533d9a.jpg",
+      "kept_source": "alpaca-epqna",
+      "copies": 2,
+      "sources": [
+        "alpaca-epqna",
+        "alpaca-gkbmi"
+      ],
+      "boxes_per_copy": [
+        1,
+        3
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 2,
+      "min_iou": 0.943,
+      "mean_iou": 0.943,
+      "kept_copy_in_release": false
+    },
+    {
+      "kept": "alpaca-epqna_0b2a2c061ef16759_jpg.rf.11bc03325b920a3f202e3e331e1b6827.jpg",
+      "kept_source": "alpaca-epqna",
+      "copies": 2,
+      "sources": [
+        "alpaca-epqna",
+        "alpaca-gkbmi"
+      ],
+      "boxes_per_copy": [
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.938,
+      "mean_iou": 0.938,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-epqna_0c440068732dde19_jpg.rf.3be6bb21b4a59b13d0baa4e98f867c83.jpg",
+      "kept_source": "alpaca-epqna",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.944,
+      "mean_iou": 0.944,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-epqna_0e6044cdcd9318f3_jpg.rf.d227822211c0c51cad6faae731a57113.jpg",
+      "kept_source": "alpaca-epqna",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.987,
+      "mean_iou": 0.987,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-epqna_0e6ba4d54d478f76_jpg.rf.3c30786567a6a51b4f058a2c803b7d43.jpg",
+      "kept_source": "alpaca-epqna",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.602,
+      "mean_iou": 0.741,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-epqna_0ea961cbe041f639_jpg.rf.9ee0803b64bd8684f8be042d8d233f13.jpg",
+      "kept_source": "alpaca-epqna",
+      "copies": 2,
+      "sources": [
+        "alpaca-epqna",
+        "alpaca-gkbmi"
+      ],
+      "boxes_per_copy": [
+        2,
+        2
+      ],
+      "category": "same objects, looser or tighter boxes (0.5 <= IoU < 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.606,
+      "mean_iou": 0.727,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-epqna_1a1cd031ac16112c_jpg.rf.a9562ba234c1c587eb604f15d1a19761.jpg",
+      "kept_source": "alpaca-epqna",
+      "copies": 5,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-epqna",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.923,
+      "mean_iou": 0.949,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-gkbmi_0cb5cae66bb9c4cd_jpg.rf.1fb8637da2b0140ccce7cf868808b003.jpg",
+      "kept_source": "alpaca-gkbmi",
+      "copies": 2,
+      "sources": [
+        "alpaca-epqna",
+        "alpaca-gkbmi"
+      ],
+      "boxes_per_copy": [
+        3,
+        1
+      ],
+      "category": "different number of boxes",
+      "matched": 1,
+      "unmatched": 2,
+      "min_iou": 0.941,
+      "mean_iou": 0.941,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-gkbmi_1bf729885ce69b03_jpg.rf.ac03715aba80ac82d7c7237a7d207002.jpg",
+      "kept_source": "alpaca-gkbmi",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.915,
+      "mean_iou": 0.915,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-gkbmi_1c5c8222d36780f0_jpg.rf.4147a7bc853175d1ba99e46cb0b7cf7e.jpg",
+      "kept_source": "alpaca-gkbmi",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.98,
+      "mean_iou": 0.98,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-gkbmi_1d4c5862dc9cb381_jpg.rf.10d96e1a877a8d7d63802ef6d6d170d7.jpg",
+      "kept_source": "alpaca-gkbmi",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.922,
+      "mean_iou": 0.925,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-gkbmi_1e2d22f8a50646c4_jpg.rf.7fd84fdb1c8e1d8ce2ee83ee2b55beeb.jpg",
+      "kept_source": "alpaca-gkbmi",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.974,
+      "mean_iou": 0.974,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-gkbmi_2f3c0cea0d88e6bc_jpg.rf.299e37313032286756d27a4871594821.jpg",
+      "kept_source": "alpaca-gkbmi",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 1,
+      "unmatched": 0,
+      "min_iou": 0.981,
+      "mean_iou": 0.981,
+      "kept_copy_in_release": true
+    },
+    {
+      "kept": "alpaca-ibscl_1c7ad2801c54b275_jpg.rf.d2e2be391f86cd347a44ab30af1bf636.jpg",
+      "kept_source": "alpaca-ibscl",
+      "copies": 4,
+      "sources": [
+        "alpaca-5jmfl",
+        "alpaca-gkbmi",
+        "alpaca-ibscl",
+        "alpaca-xqfiw"
+      ],
+      "boxes_per_copy": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "category": "same boxes, coordinate jitter (IoU >= 0.9)",
+      "matched": 2,
+      "unmatched": 0,
+      "min_iou": 0.972,
+      "mean_iou": 0.976,
+      "kept_copy_in_release": true
+    }
+  ],
+  "test_sensitivity": {
+    "test_images_relabelled": 2,
+    "map50_released_boxes": 0.8533,
+    "map50_most_complete_copy": 0.8488
+  },
+  "kept_copy_fewer_boxes_than_another": 6
+}

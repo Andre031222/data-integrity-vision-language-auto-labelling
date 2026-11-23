@@ -1,0 +1,3429 @@
+{
+  "files": 1190,
+  "original_crops": 462,
+  "same_name_in_both_classes": 0,
+  "distinct_groups_over_originals": {
+    "crop": 462,
+    "source_file": 300,
+    "source_photo": 286,
+    "photo_plus_phash": 286,
+    "inat_observation": 286
+  },
+  "groups_with_both_labels": {
+    "crop": 0,
+    "source_file": 19,
+    "source_photo": 18,
+    "photo_plus_phash": 18,
+    "inat_observation": 18
+  },
+  "runs": {
+    "fixed_split": [
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 0,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 1,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 2,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 3,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 4,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 5,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 6,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 7,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 8,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 9,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      }
+    ],
+    "split_sweep": [
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 239,
+            "val": 66,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 2
+        },
+        "source_photo": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 230,
+            "val": 65,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 34,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 42,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 232,
+            "val": 66,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 26,
+            "train_test": 33,
+            "val_test": 7
+          },
+          "test_files_with_group_in_train_or_val": 41,
+          "test_anomaly_files_affected": 6,
+          "test_files_with_opposite_label_in_train": 4
+        },
+        "source_photo": {
+          "groups": {
+            "train": 222,
+            "val": 66,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 27,
+            "train_test": 37,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 9,
+          "test_files_with_opposite_label_in_train": 6
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 222,
+            "val": 66,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 27,
+            "train_test": 37,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 9,
+          "test_files_with_opposite_label_in_train": 6
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 222,
+            "val": 66,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 27,
+            "train_test": 37,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 9,
+          "test_files_with_opposite_label_in_train": 6
+        },
+        "seed": 0,
+        "split_seed": 0,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 243,
+            "val": 64,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 29,
+            "train_test": 34,
+            "val_test": 13
+          },
+          "test_files_with_group_in_train_or_val": 46,
+          "test_anomaly_files_affected": 6,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "source_photo": {
+          "groups": {
+            "train": 232,
+            "val": 62,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 30,
+            "train_test": 36,
+            "val_test": 13
+          },
+          "test_files_with_group_in_train_or_val": 46,
+          "test_anomaly_files_affected": 6,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 232,
+            "val": 62,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 30,
+            "train_test": 36,
+            "val_test": 13
+          },
+          "test_files_with_group_in_train_or_val": 46,
+          "test_anomaly_files_affected": 6,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 232,
+            "val": 62,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 30,
+            "train_test": 36,
+            "val_test": 13
+          },
+          "test_files_with_group_in_train_or_val": 46,
+          "test_anomaly_files_affected": 6,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "seed": 1,
+        "split_seed": 1,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 237,
+            "val": 65,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 33,
+            "train_test": 29,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 4
+        },
+        "source_photo": {
+          "groups": {
+            "train": 226,
+            "val": 64,
+            "test": 65
+          },
+          "shared_groups": {
+            "train_val": 34,
+            "train_test": 30,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 4
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 226,
+            "val": 64,
+            "test": 65
+          },
+          "shared_groups": {
+            "train_val": 34,
+            "train_test": 30,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 4
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 226,
+            "val": 64,
+            "test": 65
+          },
+          "shared_groups": {
+            "train_val": 34,
+            "train_test": 30,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 4
+        },
+        "seed": 2,
+        "split_seed": 2,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 233,
+            "val": 67,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 29,
+            "train_test": 31,
+            "val_test": 5
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 5,
+          "test_files_with_opposite_label_in_train": 7
+        },
+        "source_photo": {
+          "groups": {
+            "train": 222,
+            "val": 67,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 32,
+            "train_test": 32,
+            "val_test": 5
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 5,
+          "test_files_with_opposite_label_in_train": 8
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 222,
+            "val": 67,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 32,
+            "train_test": 32,
+            "val_test": 5
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 5,
+          "test_files_with_opposite_label_in_train": 8
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 222,
+            "val": 67,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 32,
+            "train_test": 32,
+            "val_test": 5
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 5,
+          "test_files_with_opposite_label_in_train": 8
+        },
+        "seed": 3,
+        "split_seed": 3,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 244,
+            "val": 64,
+            "test": 63
+          },
+          "shared_groups": {
+            "train_val": 34,
+            "train_test": 32,
+            "val_test": 7
+          },
+          "test_files_with_group_in_train_or_val": 42,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "source_photo": {
+          "groups": {
+            "train": 235,
+            "val": 63,
+            "test": 62
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 35,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 8,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 235,
+            "val": 63,
+            "test": 62
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 35,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 8,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 235,
+            "val": 63,
+            "test": 62
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 35,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 8,
+          "test_files_with_opposite_label_in_train": 3
+        },
+        "seed": 4,
+        "split_seed": 4,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 241,
+            "val": 67,
+            "test": 63
+          },
+          "shared_groups": {
+            "train_val": 36,
+            "train_test": 33,
+            "val_test": 6
+          },
+          "test_files_with_group_in_train_or_val": 40,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "source_photo": {
+          "groups": {
+            "train": 232,
+            "val": 64,
+            "test": 63
+          },
+          "shared_groups": {
+            "train_val": 36,
+            "train_test": 35,
+            "val_test": 6
+          },
+          "test_files_with_group_in_train_or_val": 42,
+          "test_anomaly_files_affected": 5,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 232,
+            "val": 64,
+            "test": 63
+          },
+          "shared_groups": {
+            "train_val": 36,
+            "train_test": 35,
+            "val_test": 6
+          },
+          "test_files_with_group_in_train_or_val": 42,
+          "test_anomaly_files_affected": 5,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 232,
+            "val": 64,
+            "test": 63
+          },
+          "shared_groups": {
+            "train_val": 36,
+            "train_test": 35,
+            "val_test": 6
+          },
+          "test_files_with_group_in_train_or_val": 42,
+          "test_anomaly_files_affected": 5,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "seed": 5,
+        "split_seed": 5,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 237,
+            "val": 69,
+            "test": 66
+          },
+          "shared_groups": {
+            "train_val": 38,
+            "train_test": 31,
+            "val_test": 6
+          },
+          "test_files_with_group_in_train_or_val": 38,
+          "test_anomaly_files_affected": 3,
+          "test_files_with_opposite_label_in_train": 4
+        },
+        "source_photo": {
+          "groups": {
+            "train": 229,
+            "val": 69,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 40,
+            "train_test": 33,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 41,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 229,
+            "val": 69,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 40,
+            "train_test": 33,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 41,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 229,
+            "val": 69,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 40,
+            "train_test": 33,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 41,
+          "test_anomaly_files_affected": 4,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "seed": 6,
+        "split_seed": 6,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 242,
+            "val": 66,
+            "test": 65
+          },
+          "shared_groups": {
+            "train_val": 35,
+            "train_test": 35,
+            "val_test": 9
+          },
+          "test_files_with_group_in_train_or_val": 41,
+          "test_anomaly_files_affected": 6,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "source_photo": {
+          "groups": {
+            "train": 232,
+            "val": 66,
+            "test": 65
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 37,
+            "val_test": 10
+          },
+          "test_files_with_group_in_train_or_val": 44,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 232,
+            "val": 66,
+            "test": 65
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 37,
+            "val_test": 10
+          },
+          "test_files_with_group_in_train_or_val": 44,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 232,
+            "val": 66,
+            "test": 65
+          },
+          "shared_groups": {
+            "train_val": 37,
+            "train_test": 37,
+            "val_test": 10
+          },
+          "test_files_with_group_in_train_or_val": 44,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 5
+        },
+        "seed": 7,
+        "split_seed": 7,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 826,
+          "val": 70,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 70,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 241,
+            "val": 67,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 34,
+            "train_test": 35,
+            "val_test": 5
+          },
+          "test_files_with_group_in_train_or_val": 41,
+          "test_anomaly_files_affected": 7,
+          "test_files_with_opposite_label_in_train": 8
+        },
+        "source_photo": {
+          "groups": {
+            "train": 231,
+            "val": 66,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 33,
+            "train_test": 38,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 10,
+          "test_files_with_opposite_label_in_train": 9
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 231,
+            "val": 66,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 33,
+            "train_test": 38,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 10,
+          "test_files_with_opposite_label_in_train": 9
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 231,
+            "val": 66,
+            "test": 64
+          },
+          "shared_groups": {
+            "train_val": 33,
+            "train_test": 38,
+            "val_test": 8
+          },
+          "test_files_with_group_in_train_or_val": 45,
+          "test_anomaly_files_affected": 10,
+          "test_files_with_opposite_label_in_train": 9
+        },
+        "seed": 8,
+        "split_seed": 8,
+        "test_files_match_recorded_run": true
+      }
+    ],
+    "fixed_split_photo": [
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 0,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 1,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 2,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 3,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 4,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 5,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 6,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 7,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 8,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 9,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      }
+    ],
+    "split_sweep_photo": [
+      {
+        "files": {
+          "train": 831,
+          "val": 75,
+          "test": 68
+        },
+        "crop": {
+          "groups": {
+            "train": 319,
+            "val": 75,
+            "test": 68
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 44,
+            "test": 44
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 42,
+        "split_seed": 42,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 829,
+          "val": 67,
+          "test": 70
+        },
+        "crop": {
+          "groups": {
+            "train": 325,
+            "val": 67,
+            "test": 70
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 208,
+            "val": 46,
+            "test": 46
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 0,
+        "split_seed": 0,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 832,
+          "val": 71,
+          "test": 71
+        },
+        "crop": {
+          "groups": {
+            "train": 320,
+            "val": 71,
+            "test": 71
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 209,
+            "val": 45,
+            "test": 46
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 1,
+        "split_seed": 1,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 814,
+          "val": 72,
+          "test": 72
+        },
+        "crop": {
+          "groups": {
+            "train": 318,
+            "val": 72,
+            "test": 72
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 208,
+            "val": 45,
+            "test": 47
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 2,
+        "split_seed": 2,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 843,
+          "val": 73,
+          "test": 58
+        },
+        "crop": {
+          "groups": {
+            "train": 331,
+            "val": 73,
+            "test": 58
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 45,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 3,
+        "split_seed": 3,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 858,
+          "val": 77,
+          "test": 63
+        },
+        "crop": {
+          "groups": {
+            "train": 322,
+            "val": 77,
+            "test": 63
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 209,
+            "val": 46,
+            "test": 45
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 4,
+        "split_seed": 4,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 842,
+          "val": 65,
+          "test": 67
+        },
+        "crop": {
+          "groups": {
+            "train": 330,
+            "val": 65,
+            "test": 67
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 212,
+            "val": 45,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 5,
+        "split_seed": 5,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 842,
+          "val": 70,
+          "test": 62
+        },
+        "crop": {
+          "groups": {
+            "train": 330,
+            "val": 70,
+            "test": 62
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 211,
+            "val": 46,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 6,
+        "split_seed": 6,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 837,
+          "val": 66,
+          "test": 71
+        },
+        "crop": {
+          "groups": {
+            "train": 325,
+            "val": 66,
+            "test": 71
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 210,
+            "val": 45,
+            "test": 45
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 7,
+        "split_seed": 7,
+        "test_files_match_recorded_run": true
+      },
+      {
+        "files": {
+          "train": 812,
+          "val": 69,
+          "test": 85
+        },
+        "crop": {
+          "groups": {
+            "train": 308,
+            "val": 69,
+            "test": 85
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_file": {
+          "groups": {
+            "train": 203,
+            "val": 48,
+            "test": 49
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "source_photo": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "photo_plus_phash": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "inat_observation": {
+          "groups": {
+            "train": 200,
+            "val": 43,
+            "test": 43
+          },
+          "shared_groups": {
+            "train_val": 0,
+            "train_test": 0,
+            "val_test": 0
+          },
+          "test_files_with_group_in_train_or_val": 0,
+          "test_anomaly_files_affected": 0,
+          "test_files_with_opposite_label_in_train": 0
+        },
+        "seed": 8,
+        "split_seed": 8,
+        "test_files_match_recorded_run": true
+      }
+    ]
+  }
+}

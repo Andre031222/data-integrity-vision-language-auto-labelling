@@ -1,0 +1,82 @@
+{
+  "sd_ratios": {
+    "s3src": {
+      "seed_sd": 0.0024,
+      "split_sd": 0.0186,
+      "ratio": 7.7,
+      "split_mean": 0.9157,
+      "estimator": "sample SD (n-1) for both"
+    },
+    "s4phash": {
+      "seed_sd": 0.004,
+      "split_sd": 0.0149,
+      "ratio": 3.7,
+      "split_mean": 0.8806,
+      "estimator": "sample SD (n-1) for both"
+    },
+    "s5dihedral": {
+      "seed_sd": 0.0213,
+      "split_sd": 0.0279,
+      "ratio": 1.3,
+      "split_mean": 0.8077,
+      "estimator": "sample SD (n-1) for both"
+    },
+    "s6photoid": {
+      "seed_sd": 0.0189,
+      "split_sd": 0.039,
+      "ratio": 2.1,
+      "split_mean": 0.8139,
+      "estimator": "sample SD (n-1) for both"
+    }
+  },
+  "lost_copy_contrast": {
+    "images_losing_copy": 84,
+    "images_keeping_copy": 379,
+    "groups_losing_copy": 50,
+    "groups_keeping_copy": 255,
+    "drop_copy_lost": {
+      "diff": 0.0897,
+      "ci95": [
+        0.0329,
+        0.1802
+      ]
+    },
+    "drop_copy_kept": {
+      "diff": 0.0321,
+      "ci95": [
+        0.0176,
+        0.0506
+      ]
+    },
+    "difference_of_differences": {
+      "diff": 0.0576,
+      "ci95": [
+        -0.0013,
+        0.1485
+      ],
+      "share_of_draws_above_zero": 0.97
+    },
+    "bootstrap_reps_used": 1000
+  },
+  "photo_weighted_benchmark": {
+    "test_images": 211,
+    "photographs": 79,
+    "images_per_photograph": {
+      "min": 1,
+      "median": 2.0,
+      "max": 6
+    },
+    "per_image_map50": 0.8533,
+    "per_image_map50_seed0": 0.868,
+    "canonical_list_map50": 0.8549,
+    "canonical_list_map50_seed0": 0.8631,
+    "photo_weighted_map50": 0.8693,
+    "photo_weighted_map50_seed0": 0.879,
+    "photo_weighted_ci95": [
+      0.8141,
+      0.9242
+    ],
+    "canonical_list": "data/v3.1/s6photoid/test_one_per_photograph.txt",
+    "canonical_rule": "lexicographically first file name within each photograph"
+  }
+}

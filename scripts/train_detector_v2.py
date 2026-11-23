@@ -4,13 +4,13 @@ import argparse, json, statistics, warnings
 from pathlib import Path
 
 warnings.filterwarnings("ignore")
-from ultralytics import YOLO
+from ultralytics import RTDETR, YOLO
 
 
-def run(weights, data, seed, epochs, imgsz, batch, device, project, name):
-    model = YOLO(weights)
+def run(weights, data, seed, epochs, imgsz, batch, device, project, name, lr0=1e-3):
+    model = RTDETR(weights) if "rtdetr" in Path(weights).name else YOLO(weights)
     model.train(data=data, epochs=epochs, imgsz=imgsz, batch=batch, device=device,
-                seed=seed, optimizer="AdamW", lr0=1e-3, weight_decay=5e-4,
+                seed=seed, optimizer="AdamW", lr0=lr0, weight_decay=5e-4,
                 patience=20, workers=4, project=project, name=name,
                 exist_ok=True, verbose=False, plots=False)
     res = model.val(data=data, split="test", imgsz=imgsz, batch=batch, device=device,
@@ -38,6 +38,7 @@ def main():
     ap.add_argument("--imgsz", type=int, default=640)
     ap.add_argument("--batch", type=int, default=8)
     ap.add_argument("--device", default="0")
+    ap.add_argument("--lr0", type=float, default=1e-3)
     ap.add_argument("--project", default="outputs/training_runs_v2")
     ap.add_argument("--out", default="outputs/figures/detector_v2_metrics.json")
     a = ap.parse_args()
@@ -49,7 +50,7 @@ def main():
         name = f"{a.tag}_seed{seed}"
         print(f"[train] {name}", flush=True)
         results[str(seed)] = run(a.weights, a.data, seed, a.epochs, a.imgsz,
-                                 a.batch, a.device, a.project, name)
+                                 a.batch, a.device, a.project, name, a.lr0)
         print(f"[done ] {name}: {results[str(seed)]}", flush=True)
         payload = {"dataset": a.data, "weights": a.weights, "epochs": a.epochs,
                    "per_seed": results, "summary": summarise(list(results.values()))}

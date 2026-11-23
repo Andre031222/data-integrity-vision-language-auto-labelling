@@ -66,6 +66,13 @@ platforms) are frequent. On a random per-image split of this corpus, 82.3% of te
 have a copy in training. Keep the released split, or split by the `photo_group` column of
 `provenance.csv`, and compute confidence intervals over groups rather than images.
 
+The test split keeps the platform-generated copies of its 79 photographs (1 to 6 images each),
+so the per-image mAP counts some photographs several times. Report it together with either the
+score on `docs/benchmark/test_one_per_photograph.txt` (one image per photograph, the
+lexicographically first file name) or a photograph-weighted mAP
+(`scripts/analyse_revision_r2.py`). For the released YOLOv11n these are 0.853 per image, 0.855
+on the list and 0.869 weighted by photograph.
+
 ## Provenance
 
 | Source project | Images | Disposition |
@@ -82,7 +89,9 @@ have a copy in training. Keep the released split, or split by the `photo_group` 
 | alpaca-lls3s | 322 | excluded: annotates heads |
 | 14 photographs | 39 | excluded: no live camelid |
 
-Counts are after exact deduplication. Every retained project declares CC BY 4.0.
+Counts are after exact deduplication. Every retained project declares CC BY 4.0. The licence
+audit is at the level of the project: it does not verify that each uploader held the rights to
+every photograph.
 
 ## Limitations
 
@@ -91,7 +100,8 @@ Counts are after exact deduplication. Every retained project declares CC BY 4.0.
 - The class mixes alpacas with other South American camelids (see above).
 - Fourteen non-camelid photographs were found in two review passes; a few may remain.
 - Some byte-identical copies carried different boxes in different projects (56 groups); the
-  release keeps the boxes of the retained copy.
+  release keeps the boxes of the retained copy. In 30 groups the boxes differ only by jitter, in
+  8 they are looser or tighter, and in 18 the number of boxes differs (`scripts/audit_box_conflicts.py`).
 
 ## Citation
 

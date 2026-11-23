@@ -181,13 +181,16 @@ def fig_classifier(s, out, runs):
                              gridspec_kw={"width_ratios": [1.1, 1.0, 1.0]})
     ax = axes[0]
     rng = np.random.default_rng(1)
-    for i, (name, key) in enumerate((("Fixed split,\n10 seeds", "fixed_split"),
-                                     ("10 different\nsplits", "split_sweep"))):
+    for i, (name, key) in enumerate((("Fixed split,\n10 seeds", "fixed_split_photo"),
+                                     ("10 different\nsplits", "split_sweep_photo"))):
         aucs = [r["auc_roc"] for r in runs[key]["per_seed"]]
         ax.scatter(i + rng.uniform(-0.12, 0.12, len(aucs)), aucs, s=12, color=BLUE, lw=0, zorder=3)
         m = np.mean(aucs)
         ax.plot([i - 0.25, i + 0.25], [m, m], color=INK, lw=1.2)
         ax.text(i + 0.28, m, f"{m:.2f}", va="center", fontsize=6.5, color=INK)
+        cs = runs["shortcut"]["designs"][key]["summary"]["crop_size"]["mean"]
+        ax.scatter([i], [cs], s=26, marker="_", color=ORANGE, lw=1.6, zorder=4)
+        ax.text(i - 0.1, cs, f"{cs:.2f}", va="center", ha="right", fontsize=6.5, color=ORANGE)
     fundus = s["fundus"]["tta_flip"]["auc_roc"]
     ax.scatter([2], [fundus], s=18, marker="D", color=GREEN, zorder=3)
     ax.text(2, fundus - 0.05, f"{fundus:.3f}", ha="center", fontsize=6.5, color=INK)
@@ -195,6 +198,7 @@ def fig_classifier(s, out, runs):
     ax.text(2, 0.43, "different task:\nnot comparable", ha="center", fontsize=5.5, color=MUTED)
     ax.axhline(0.5, color=GREY, lw=0.8, ls="--")
     ax.text(2.45, 0.505, "chance", fontsize=6, color=MUTED, ha="right", va="bottom")
+    ax.text(-0.45, 0.99, "crop size alone", fontsize=5.5, color=ORANGE, va="top")
     ax.set_xticks([0, 1, 2], ["Fixed split,\n10 seeds", "10 different\nsplits", "Human fundus\n(control)"])
     ax.set_ylim(0.4, 1.02)
     ax.set_xlim(-0.5, 2.5)
@@ -243,7 +247,8 @@ def main():
     style()
     s = json.loads(Path(a.summary).read_text())
     runs = {k: json.loads(Path(f"outputs/figures/v31/classifier_{k}.json").read_text())
-            for k in ("fixed_split", "split_sweep")}
+            for k in ("fixed_split_photo", "split_sweep_photo")}
+    runs["shortcut"] = json.loads(Path("outputs/figures/v31/ocular/shortcut_same_test.json").read_text())
     out = Path(a.out)
     fig_leakage(s, out / "fig_leakage")
     fig_dataset(s, out / "fig_dataset", json.loads(Path(a.manifest).read_text()))

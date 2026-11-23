@@ -31,6 +31,9 @@ import numpy as np
 
 IMG_EXTS = {".jpg", ".jpeg", ".png", ".bmp"}
 _AUG_RE = re.compile(r"^aug_\d+_")
+_CROP_SUFFIX = re.compile(r"_(?:cls\d+_\d+_\d+|eye_\d+_c[\d.]+)\.(?:jpg|jpeg|png)$")
+_RF_PHOTO = re.compile(r"alpaca-[a-z0-9]+_+([0-9a-f]{16,32})_(?:jpg|jpeg|png)\.rf\.")
+_INAT_PHOTO = re.compile(r"inat_(\d+)_(\d+)")
 
 
 def original_stem(filename: str) -> str:
@@ -40,6 +43,80 @@ def original_stem(filename: str) -> str:
 
 def is_augmented(filename: str) -> bool:
     return bool(_AUG_RE.match(filename))
+
+
+def source_file(filename: str) -> str:
+    """Return the name of the photograph a crop was cut from."""
+    return _CROP_SUFFIX.sub("", original_stem(filename).replace("pseudo_", ""))
+
+
+def source_photo(filename: str) -> str:
+    """Return a photograph identity shared by every export and crop of the same photograph."""
+    src = source_file(filename)
+    m = _RF_PHOTO.match(src)
+    if m:
+        return "rf:" + m.group(1)
+    m = _INAT_PHOTO.match(src)
+    if m:
+        return f"inat:{m.group(1)}_{m.group(2)}"
+    return "file:" + src
+
+
+def build_photo_split(
+    data_dir: str | Path,
+    seed: int = 42,
+    test_frac: float = 0.15,
+    val_frac: float = 0.15,
+    originals_only_eval: bool = True,
+) -> dict:
+    """Assign whole photographs, with every crop and augmented copy, to one partition.
+
+    Photographs are stratified by whether any of their crops is labelled anomaly, so each
+    partition keeps a similar share of anomaly crops.
+    """
+    data_dir = Path(data_dir)
+    classes = sorted([d.name for d in data_dir.iterdir() if d.is_dir()])
+    class_to_idx = {c: i for i, c in enumerate(classes)}
+    rng = np.random.default_rng(seed)
+
+    groups: dict[str, list[tuple[Path, int]]] = defaultdict(list)
+    for cls in classes:
+        for p in (data_dir / cls).iterdir():
+            if p.suffix.lower() in IMG_EXTS:
+                groups[source_photo(p.name)].append((p, class_to_idx[cls]))
+
+    anomaly = class_to_idx.get("anomaly", 1)
+    strata = defaultdict(list)
+    for k in sorted(groups):
+        strata[any(l == anomaly for _, l in groups[k])].append(k)
+
+    keys = {"train": set(), "val": set(), "test": set()}
+    for _, members in sorted(strata.items()):
+        rng.shuffle(members)
+        n = len(members)
+        n_test = max(1, int(round(n * test_frac)))
+        n_val = max(1, int(round(n * val_frac)))
+        keys["test"].update(members[:n_test])
+        keys["val"].update(members[n_test:n_test + n_val])
+        keys["train"].update(members[n_test + n_val:])
+
+    out = {"train": [], "val": [], "test": []}
+    for part, ks in keys.items():
+        for k in sorted(ks):
+            for p, label in groups[k]:
+                if part != "train" and originals_only_eval and is_augmented(p.name):
+                    continue
+                out[part].append((str(p), label))
+    rng.shuffle(out["train"])
+
+    return {
+        "data_dir": str(data_dir), "seed": seed, "test_frac": test_frac, "val_frac": val_frac,
+        "originals_only_eval": originals_only_eval, "grouping": "source_photo",
+        "classes": classes, "class_to_idx": class_to_idx,
+        **out,
+        "n_train": len(out["train"]), "n_val": len(out["val"]), "n_test": len(out["test"]),
+        "photographs": {k: len(v) for k, v in keys.items()},
+    }
 
 
 def build_group_split(
@@ -134,10 +211,12 @@ def build_group_split(
     }
 
 
-def assert_no_leakage(split: dict) -> None:
+def assert_no_leakage(split: dict, key=None) -> None:
     """Raise if any source group appears in more than one partition."""
+    key = key or original_stem
+
     def stems(bucket):
-        return {original_stem(Path(p).name) for p, _ in bucket}
+        return {key(Path(p).name) for p, _ in bucket}
     tr, va, te = stems(split["train"]), stems(split["val"]), stems(split["test"])
     leaks = {
         "train_val": tr & va,

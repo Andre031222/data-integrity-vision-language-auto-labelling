@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
 from torchvision import transforms
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from src.data.group_split import build_group_split, assert_no_leakage
+from src.data.group_split import build_group_split, build_photo_split, assert_no_leakage, source_photo
 
 CROPS = Path("data/crops/eyes")
 STAGE1 = Path("models/classifier/eyes_b2_honest/stage1_pretrain.pt")
@@ -78,18 +78,25 @@ def probs(model, items, device, anomaly_idx, tta=False):
     return np.concatenate(ys), np.concatenate(ps)
 
 
-def one_seed(seed, epochs, patience, gamma, device, aug='strong', tta=True, split_seed=None):
+def one_seed(seed, epochs, patience, gamma, device, aug='strong', tta=True, split_seed=None,
+             grouping="crop", init="fundus"):
     split_seed = seed if split_seed is None else split_seed
-    split = build_group_split(CROPS, seed=split_seed, test_frac=0.15, val_frac=0.15,
-                              originals_only_eval=True)
-    assert_no_leakage(split)
+    if grouping == "photo":
+        split = build_photo_split(CROPS, seed=split_seed, test_frac=0.15, val_frac=0.15,
+                                  originals_only_eval=True)
+        assert_no_leakage(split, source_photo)
+    else:
+        split = build_group_split(CROPS, seed=split_seed, test_frac=0.15, val_frac=0.15,
+                                  originals_only_eval=True)
+        assert_no_leakage(split)
     classes = split["classes"]
     ai = classes.index("anomaly")
 
     torch.manual_seed(seed)
     np.random.seed(seed)
-    model = timm.create_model("efficientnet_b2", pretrained=False, num_classes=2)
-    model.load_state_dict(torch.load(STAGE1, map_location="cpu", weights_only=True))
+    model = timm.create_model("efficientnet_b2", pretrained=init == "imagenet", num_classes=2)
+    if init == "fundus":
+        model.load_state_dict(torch.load(STAGE1, map_location="cpu", weights_only=True))
     model.to(device)
 
     labels = [l for _, l in split["train"]]
@@ -133,7 +140,8 @@ def one_seed(seed, epochs, patience, gamma, device, aug='strong', tta=True, spli
     y, p = probs(model, split["test"], device, ai, tta)
     yb = (y == ai).astype(int)
     pred = (p >= thr).astype(int)
-    return {"seed": seed, "split_seed": split_seed, "aug": aug, "tta": tta,
+    return {"seed": seed, "split_seed": split_seed, "grouping": grouping, "init": init,
+            "aug": aug, "tta": tta,
             "threshold": round(float(thr), 3),
             "n_test": int(len(yb)), "n_test_anomaly": int(yb.sum()),
             "auc_roc": round(float(roc_auc_score(yb, p)), 4),
@@ -154,19 +162,25 @@ def main():
                     help="strong reproduces the published augmentation")
     ap.add_argument("--no-tta", dest="tta", action="store_false",
                     help="the published run used test-time horizontal flipping")
+    ap.add_argument("--grouping", choices=("crop", "photo"), default="crop",
+                    help="photo keeps every crop of a photograph in one partition")
+    ap.add_argument("--init", choices=("fundus", "imagenet"), default="fundus",
+                    help="imagenet skips the fundus pre-training stage")
     ap.add_argument("--out", default="outputs/figures/classifier_seed_sweep.json")
     a = ap.parse_args()
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = ("cuda" if torch.cuda.is_available()
+              else "mps" if torch.backends.mps.is_available() else "cpu")
     print(f"device: {device}")
 
     runs = []
     for s in a.seeds:
-        r = one_seed(s, a.epochs, a.patience, a.gamma, device, a.aug, a.tta, a.split_seed)
+        r = one_seed(s, a.epochs, a.patience, a.gamma, device, a.aug, a.tta, a.split_seed,
+                     a.grouping, a.init)
         runs.append(r)
         print(f"[seed {s}] auc {r['auc_roc']}", flush=True)
         aucs = [x["auc_roc"] for x in runs]
         Path(a.out).write_text(json.dumps(
-            {"protocol": f"stage-2 protocol, aug={a.aug}, tta={a.tta}, "
+            {"protocol": f"stage-2 protocol, grouping={a.grouping}, init={a.init}, aug={a.aug}, tta={a.tta}, "
                          f"split_seed={'per run' if a.split_seed is None else a.split_seed}",
              "per_seed": runs,
              "auc_mean": round(statistics.mean(aucs), 4),
